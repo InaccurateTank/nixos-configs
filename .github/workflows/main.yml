@@ -1,0 +1,24 @@
+name: Update Lock
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Release
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Install Nix
+      uses: DeterminateSystems/nix-installer-action@main
+    - name: Update flake.lock
+      uses: DeterminateSystems/update-flake-lock@main
+      with:
+        pr-title: "Update flake.lock"
+        pr-labels: |
+          dependencies
+          automated
