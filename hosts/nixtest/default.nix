@@ -38,12 +38,12 @@ in {
   services = {
     openssh.enable = true;
     qemuGuest.enable = true;
-    pterodactyl = {
-      wings = {
-        enable = true;
-        configuration = "test";
-      };
-    };
+    # pterodactyl = {
+    #   wings = {
+    #     enable = true;
+    #     configuration = "test";
+    #   };
+    # };
   };
 
   users.users.control = {
