@@ -4,7 +4,6 @@ on:
 
 jobs:
   build:
-    name: Release
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -16,9 +15,10 @@ jobs:
     - name: Install Nix
       uses: DeterminateSystems/nix-installer-action@main
     - name: Update flake.lock
-      uses: DeterminateSystems/update-flake-lock@main
+      run: nix flake update
+    - name: Push commit
+      uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        pr-title: "Update flake.lock"
-        pr-labels: |
-          dependencies
-          automated
+        commit-message: Update flake.lock
+        branch: main
+        file_pattern: flake.lock
