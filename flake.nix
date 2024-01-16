@@ -7,7 +7,7 @@
     pterodactyl-wings.url = "github:InaccurateTank/pterodactyl-flake";
   };
 
-  outputs = { self, nixpkgs, impermanence, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
         "nixtest" = nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
