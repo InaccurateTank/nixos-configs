@@ -72,7 +72,7 @@ in {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keyFiles = [ (fetchKeys "inaccuratetank") ];
-    passwordFile = "/nix/persist/passwords/control";
+    hashedPasswordFile = "/nix/persist/passwords/control";
   };
 
   nix = {

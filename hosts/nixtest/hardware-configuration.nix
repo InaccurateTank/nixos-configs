@@ -40,7 +40,9 @@
     options = [ "bind" ];
   };
 
-  swapDevices = [ ];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/c1fae44a-65e0-4ed0-b521-1ca7d1029fc3"; }
+  ];
 
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
