@@ -50,7 +50,7 @@ in {
 
   security.sudo.extraConfig = ''
     Defaults lecture = never
-  ''
+  '';
 
   environment.systemPackages = with pkgs; [
     git
