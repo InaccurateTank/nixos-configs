@@ -7,7 +7,7 @@ let
   });
 in {
   imports = [
-    inputs.pterodactyl-wings.nixosModules.pterodactyl-wings
+    inputs.pterodactyl.nixosModules.pterodactyl-wings
     ../../modules/security.nix
     ./hardware-configuration.nix
   ];
