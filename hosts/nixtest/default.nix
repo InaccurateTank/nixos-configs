@@ -7,6 +7,7 @@ let
   });
 in {
   imports = [
+    impermanence.nixosModules.impermanence
     inputs.pterodactyl.nixosModules.pterodactyl-wings
     ../../modules/security.nix
     ./hardware-configuration.nix
@@ -29,6 +30,22 @@ in {
     };
     defaultGateway = "10.10.5.1";
     nameservers = [ "10.10.5.1" ];
+  };
+
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/etc/nixos" # nixos system config files
+      "/srv"       # service data
+      "/var/lib"   # system service persistent data
+      "/var/log"   # the place that journald dumps logs to
+    ];
+    files = [
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/machine-id"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
