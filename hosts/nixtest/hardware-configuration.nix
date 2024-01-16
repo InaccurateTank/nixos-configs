@@ -10,26 +10,32 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = { device = "none";
+  fileSystems."/" = {
+    device = "none";
     fsType = "tmpfs";
     options = [ "defaults" "size=2G" "mode=755" ];
   };
 
-  fileSystems."/boot" = { device = "/dev/disk/by-uuid/1300-C978";
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/11E8-04F3";
     fsType = "vfat";
-    options = [ "umask=0077" ];
+    options = [ "defaults" "umask=0077" ];
   };
 
-  fileSystems."/nix" = { device = "/dev/disk/by-uuid/38775e9a-e274-4da7-9966-641f7f11f092";
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/127407c8-c8cf-4a6f-9f58-e4f21722cce5";
     fsType = "ext4";
+    options = [ "defaults" ];
   };
 
-  fileSystems."/etc/nixos" = { device = "/nix/persist/etc/nixos";
+  fileSystems."/etc/nixos" = {
+    device = "/nix/persist/etc/nixos";
     fsType = "none";
     options = [ "bind" ];
   };
 
-  fileSystems."/var/log" = { device = "/nix/persist/var/log";
+  fileSystems."/var/log" = {
+    device = "/nix/persist/var/log";
     fsType = "none";
     options = [ "bind" ];
   };

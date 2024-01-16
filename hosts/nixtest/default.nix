@@ -48,6 +48,10 @@ in {
     ];
   };
 
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  ''
+
   environment.systemPackages = with pkgs; [
     git
   ];
@@ -63,10 +67,12 @@ in {
     # };
   };
 
+  users.mutableUsers = false;
   users.users.control = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keyFiles = [ (fetchKeys "inaccuratetank") ];
+    passwordFile = "/nix/persist/passwords/control";
   };
 
   nix = {
