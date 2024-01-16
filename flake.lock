@@ -47,7 +47,7 @@
         "type": "github"
       }
     },
-    "pterodactyl-wings": {
+    "pterodactyl": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
       },
@@ -69,7 +69,7 @@
       "inputs": {
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs",
-        "pterodactyl-wings": "pterodactyl-wings"
+        "pterodactyl": "pterodactyl"
       }
     }
   },
