@@ -67,7 +67,10 @@ in {
     # };
   };
 
+  programs.zsh.enable = true;
+
   users.mutableUsers = false;
+  users.defaultUserShell = pkgs.zsh;
   users.users.control = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
