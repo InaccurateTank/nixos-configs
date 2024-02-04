@@ -9,6 +9,7 @@ in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.pterodactyl.nixosModules.pterodactyl-wings
+    inputs.crowdsec.nixModules.crowdsec
     ../../modules/security.nix
     ./hardware-configuration.nix
   ];
@@ -59,6 +60,7 @@ in {
   services = {
     openssh.enable = true;
     qemuGuest.enable = true;
+    crowdsec.enable = true;
     # pterodactyl = {
     #   wings = {
     #     enable = true;
