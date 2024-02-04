@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "crowdsec": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1707086462,
+        "narHash": "sha256-QfDI+QEviVwCwJiKIZTolIWi8t6wYHonnENx+56OJBI=",
+        "owner": "InaccurateTank",
+        "repo": "crowdsec-flake",
+        "rev": "5b4c430d8cdff135ef2238297bcee054cb6d6517",
+        "type": "github"
+      },
+      "original": {
+        "owner": "InaccurateTank",
+        "repo": "crowdsec-flake",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1706639736,
@@ -33,6 +51,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1706826059,
+        "narHash": "sha256-N69Oab+cbt3flLvYv8fYnEHlBsWwdKciNZHUbynVEOA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "25e3d4c0d3591c99929b1ec07883177f6ea70c9d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1704874635,
         "narHash": "sha256-YWuCrtsty5vVZvu+7BchAxmcYzTMfolSPP5io8+WYCg=",
         "owner": "NixOS",
@@ -49,7 +83,7 @@
     },
     "pterodactyl": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1705299965,
@@ -67,8 +101,9 @@
     },
     "root": {
       "inputs": {
+        "crowdsec": "crowdsec",
         "impermanence": "impermanence",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "pterodactyl": "pterodactyl"
       }
     }
