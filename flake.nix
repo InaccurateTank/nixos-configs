@@ -6,11 +6,11 @@
     impermanence.url = "github:nix-community/impermanence";
     pterodactyl = {
       url = "github:InaccurateTank/pterodactyl-flake";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     crowdsec = {
       url = "github:InaccurateTank/crowdsec-flake";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
