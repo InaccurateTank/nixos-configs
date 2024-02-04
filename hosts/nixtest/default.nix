@@ -9,7 +9,7 @@ in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.pterodactyl.nixosModules.pterodactyl-wings
-    inputs.crowdsec.nixModules.crowdsec
+    inputs.crowdsec.nixosModules.crowdsec
     ../../modules/security.nix
     ./hardware-configuration.nix
   ];
