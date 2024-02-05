@@ -1,4 +1,4 @@
-{ impermanence, pterodactyl, crowdsec }:
+{ impermanence, pterodactyl, crowdsec, ... }:
 { config, lib, pkgs, ... }:
 
 let
