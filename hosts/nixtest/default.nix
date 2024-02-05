@@ -1,4 +1,5 @@
-{ inputs, config, lib, pkgs, ... }:
+{ impermanence, pterodactyl, crowdsec }:
+{ config, lib, pkgs, ... }:
 
 let
   fetchKeys = username:(builtins.fetchurl {
@@ -7,9 +8,9 @@ let
   });
 in {
   imports = [
-    inputs.impermanence.nixosModules.impermanence
-    inputs.pterodactyl.nixosModules.pterodactyl-wings
-    inputs.crowdsec.nixosModules.crowdsec
+    impermanence.nixosModules.impermanence
+    pterodactyl.nixosModules.pterodactyl-wings
+    crowdsec.nixosModules.crowdsec
     ../../modules/security.nix
     ./hardware-configuration.nix
   ];
@@ -61,6 +62,15 @@ in {
     openssh.enable = true;
     qemuGuest.enable = true;
     crowdsec.enable = true;
+    crowdsec.acquisEntries = [
+      {
+        filenames = ["testthing"];
+        type = "caddy";
+      }
+      {
+        filenames = ["othertest"];
+      }
+    ];
     # pterodactyl = {
     #   wings = {
     #     enable = true;

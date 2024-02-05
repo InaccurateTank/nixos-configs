@@ -17,8 +17,9 @@
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
         "nixtest" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/nixtest ];
+          modules = [
+            (import ./hosts/nixtest inputs)
+          ];
         };
     };
   };
