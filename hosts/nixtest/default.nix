@@ -62,20 +62,6 @@ in {
     openssh.enable = true;
     qemuGuest.enable = true;
     crowdsec.enable = true;
-    crowdsec.acquisEntries = [
-      ''
-        filenames:
-          - test
-        labels:
-          type: file
-      ''
-      ''
-        filenames:
-          - alsotest
-        labels:
-          type: syslog
-      ''
-    ];
     # pterodactyl = {
     #   wings = {
     #     enable = true;
