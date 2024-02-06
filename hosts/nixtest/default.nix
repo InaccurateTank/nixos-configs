@@ -63,13 +63,18 @@ in {
     qemuGuest.enable = true;
     crowdsec.enable = true;
     crowdsec.acquisEntries = [
-      {
-        filenames = ["testthing"];
-        type = "caddy";
-      }
-      {
-        filenames = ["othertest"];
-      }
+      ''
+        filenames:
+          - test
+        labels:
+          type: file
+      ''
+      ''
+        filenames:
+          - alsotest
+        labels:
+          type: syslog
+      ''
     ];
     # pterodactyl = {
     #   wings = {
