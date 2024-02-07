@@ -37,6 +37,7 @@ in {
   environment.persistence."/nix/persist" = {
     directories = [
       "/etc/nixos" # nixos system config files
+      "/etc/crowdsec"
       "/srv"       # service data
       "/var/lib"   # system service persistent data
       "/var/log"   # the place that journald dumps logs to
