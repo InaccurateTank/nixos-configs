@@ -67,9 +67,9 @@ in {
       enable = true;
       package = (pkgs.callPackage ../../pkgs/custom-caddy.nix {
         externalPlugins = [
-          {name = "porkbun"; repo = "github.com/caddy-dns/porkbun"; version = "v0.1.4"; }
+          { name = "porkbun"; repo = "github.com/caddy-dns/porkbun"; version = "v0.1.4"; }
         ];
-        vendorHash = "000";
+        vendorHash = "";
       });
     };
     # pterodactyl = {
