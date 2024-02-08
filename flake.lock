@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1707353452,
-        "narHash": "sha256-D+d6hxzdcuq9ZQdT4CsGuP6FyqIspZar3dyGRPcxewg=",
+        "lastModified": 1707353995,
+        "narHash": "sha256-p1rs51vOs1ypIzK2K7I/Nt9bGlOpuvUGGOH98DfDo7A=",
         "owner": "InaccurateTank",
         "repo": "crowdsec-flake",
-        "rev": "de748f1a0bdb00069d70b086206cddc4caf9e1fa",
+        "rev": "1f90e59cba249fc8dac2ed46946dbd1e14a47a49",
         "type": "github"
       },
       "original": {
