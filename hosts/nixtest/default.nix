@@ -63,6 +63,15 @@ in {
     openssh.enable = true;
     qemuGuest.enable = true;
     crowdsec.enable = true;
+    caddy = {
+      enable = true;
+      package = (pkgs.callPackage ../../pkgs/custom-caddy.nix {
+        externalPlugins = [
+          {name = "porkbun"; repo = "github.com/caddy-dns/porkbun"; version = "v0.1.4"; }
+        ];
+        vendorHash = fakeHash;
+      });
+    };
     # pterodactyl = {
     #   wings = {
     #     enable = true;
