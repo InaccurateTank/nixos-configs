@@ -69,7 +69,7 @@ in {
         externalPlugins = [
           { name = "porkbun"; repo = "github.com/caddy-dns/porkbun"; version = "v0.1.4"; }
         ];
-        vendorHash = "";
+        vendorHash = "sha256-tR9DQYmI7dGvj0W0Dsze0/BaLjG84hecm0TPiCVSY2Y=";
       });
     };
     # pterodactyl = {
