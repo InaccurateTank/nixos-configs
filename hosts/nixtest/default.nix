@@ -11,6 +11,7 @@ in {
     impermanence.nixosModules.impermanence
     pterodactyl.nixosModules.pterodactyl-wings
     crowdsec.nixosModules.crowdsec
+    crowdsec.nixosModules.cs-firewall-bouncer
     ../../modules/security.nix
     ./hardware-configuration.nix
   ];
@@ -63,6 +64,7 @@ in {
     openssh.enable = true;
     qemuGuest.enable = true;
     crowdsec.enable = true;
+    cs-firewall-bouncer.enable = true;
     caddy = {
       enable = true;
       package = (pkgs.callPackage ../../pkgs/custom-caddy.nix {
