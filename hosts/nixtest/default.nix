@@ -11,7 +11,6 @@ in {
     impermanence.nixosModules.impermanence
     pterodactyl.nixosModules.pterodactyl-wings
     crowdsec.nixosModules.crowdsec
-    crowdsec.nixosModules.cs-firewall-bouncer
     ../../modules/security.nix
     ./hardware-configuration.nix
   ];
