@@ -21,7 +21,7 @@
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
         "heat" = nixpkgs.lib.nixosSystem {
-          nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+          nixpkgs.hostPlatform = "x86_64-linux";
           modules = [
             nixos-wsl.nixosModules.wsl
             ./hosts/heat
