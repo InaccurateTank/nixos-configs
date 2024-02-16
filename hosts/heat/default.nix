@@ -4,6 +4,7 @@
 {
   imports = [
     nixos-wsl.nixosModules.wsl
+    ../../modules/security.nix
   ];
 
   wsl.enable = true;
