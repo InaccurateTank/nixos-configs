@@ -23,7 +23,7 @@ in {
   time.timeZone = "America/Los_Angeles";
 
   networking = {
-    hostName = "nixtest";
+    hostName = "beehive";
     interfaces = {
       ens18.ipv4.addresses = [{
         address = "10.10.5.24";

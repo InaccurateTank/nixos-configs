@@ -1,10 +1,17 @@
+{ nixos-wsl, ... }:
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    nixos-wsl.nixosModules.wsl
+  ];
+
   wsl.enable = true;
   wsl.defaultUser = "inaccuratetank";
 
   networking.hostName = "heat";
+
+  security.sudo.wheelNeedsPassword = true;
 
   environment.systemPackages = with pkgs; [
     git
