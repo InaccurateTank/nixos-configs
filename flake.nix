@@ -18,7 +18,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, nixos-wsl, ... }@inputs: {
     nixosConfigurations = {
         "heat" = nixpkgs.lib.nixosSystem {
           nixpkgs.hostPlatform = "x86_64-linux";
