@@ -18,12 +18,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
         "heat" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            nixos-wsl.nixosModules.wsl
+            inputs.nixos-wsl.nixosModules.wsl
             ./hosts/heat
           ];
         };
