@@ -12,6 +12,7 @@
 
   users.users.inaccuratetank = {
     isNormalUser = true;
+    extraGroups = [ "wheel" ];
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
