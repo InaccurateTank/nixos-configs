@@ -10,7 +10,6 @@
     git
   ];
 
-  users.mutableUsers = false;
   users.users.inaccuratetank = {
     isNormalUser = true;
   };
