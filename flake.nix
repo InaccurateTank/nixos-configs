@@ -21,11 +21,12 @@
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
         "heat" = nixpkgs.lib.nixosSystem {
+          nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
           modules = [
             nixos-wsl.nixosModules.wsl
             ./hosts/heat
-          ]
-        }
+          ];
+        };
         "nixtest" = nixpkgs.lib.nixosSystem {
           modules = [
             (import ./hosts/nixtest inputs)
