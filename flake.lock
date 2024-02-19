@@ -114,11 +114,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1705299965,
-        "narHash": "sha256-fCVBk5e2yH38+FQ0WV+TpQdpR0xc2xfZnOX997prHK0=",
+        "lastModified": 1708310255,
+        "narHash": "sha256-YoaYwurC7k1tAgLY385z7rcmgQw1XcYvWuSiQM1zXlM=",
         "owner": "InaccurateTank",
         "repo": "pterodactyl-flake",
-        "rev": "114c2ec7d89b20fc74d044f64da8c570e92d31d0",
+        "rev": "712be45d0ceb5b964bbc16f865d2fca46d1cb96e",
         "type": "github"
       },
       "original": {
