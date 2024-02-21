@@ -2,8 +2,11 @@
 
 {
     networking.firewall.enable = true;
-    nix.settings.allowed-users = [ "root" ];
-    security.sudo.execWheelOnly = true;
+    nix.settings.allowed-users = [ "@wheel" ];
+    security.sudo = {
+      execWheelOnly = true;
+      wheelNeedsPassword = true;
+    };
     services.openssh = {
       allowSFTP = false;
       settings = {

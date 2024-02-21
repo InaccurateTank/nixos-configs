@@ -1,12 +1,7 @@
 { impermanence, pterodactyl, crowdsec, ... }:
 { config, lib, pkgs, ... }:
 
-let
-  fetchKeys = username:(builtins.fetchurl {
-    url = "https://github.com/${username}.keys";
-    sha256 = "sha256:0c0b3c3kx3z7hlc5bl1bl30mvc3z9afpmsrikzq49wgl7zpnjpyy";
-  });
-in {
+{
   imports = [
     impermanence.nixosModules.impermanence
     pterodactyl.nixosModules.pterodactyl-wings
@@ -85,12 +80,6 @@ in {
 
   users.mutableUsers = false;
   users.defaultUserShell = pkgs.zsh;
-  users.users.control = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keyFiles = [ (fetchKeys "inaccuratetank") ];
-    hashedPasswordFile = "/nix/persist/passwords/control";
-  };
 
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];

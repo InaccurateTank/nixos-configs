@@ -4,24 +4,18 @@
 {
   imports = [
     nixos-wsl.nixosModules.wsl
-    ../../modules/security.nix
   ];
 
-  wsl.enable = true;
-  wsl.defaultUser = "inaccuratetank";
-
-  networking.hostName = "heat";
-
-  security.sudo.wheelNeedsPassword = true;
+  wsl = {
+    enable = true;
+    defaultUser = "inaccuratetank";
+    interop.includePath = true;
+    nativeSystemd = true;
+  };
 
   environment.systemPackages = with pkgs; [
     git
   ];
-
-  users.users.inaccuratetank = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
