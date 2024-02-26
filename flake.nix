@@ -65,7 +65,7 @@
 
     #Probably not useful but whatever
     homeConfigurations = {
-      "inaccuratetank" = mkHome "x86_64-linux" ./users/inaccuratetank/home.nix;
+      "inaccuratetank" = mkHome "x86_64-linux" ./users/inaccuratetank/home;
     };
   };
 }

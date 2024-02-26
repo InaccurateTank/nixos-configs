@@ -6,7 +6,6 @@
     impermanence.nixosModules.impermanence
     pterodactyl.nixosModules.pterodactyl-wings
     crowdsec.nixosModules.crowdsec
-    ../../modules/security.nix
     ./hardware-configuration.nix
   ];
 

@@ -5,5 +5,5 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };
-  home-manager.users.inaccuratetank = ./home.nix;
+  home-manager.users.inaccuratetank = ./home;
 }
