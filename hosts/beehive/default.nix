@@ -88,7 +88,10 @@
     # };
   };
 
-  programs.zsh.enable = true;
+  programs = {
+    nix-ld.enable = true;
+    zsh.enable = true;
+  };
 
   users.mutableUsers = false;
   users.defaultUserShell = pkgs.zsh;

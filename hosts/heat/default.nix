@@ -14,6 +14,7 @@
   wsl = {
     enable = true;
     defaultUser = "inaccuratetank";
+    # Needed for working vscode for some reason?
     extraBin = with pkgs; [
       {src = "${coreutils}/bin/uname";}
       {src = "${coreutils}/bin/dirname";}
