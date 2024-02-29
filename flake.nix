@@ -5,14 +5,26 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     impermanence.url = "github:nix-community/impermanence";
     home-manager = {
-        url = "github:nix-community/home-manager/release-23.11";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    nix-ld-rs = {
+      url = "github:nix-community/nix-ld-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
+    # Formatter
+    alejandra = {
+      url = "github:kamadorueda/alejandra/3.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Custom
     pterodactyl = {
       url = "github:InaccurateTank/pterodactyl-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,18 +35,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
-      # System builder
-      mkSystem = architecture: hostname: extraModules:
-        nixpkgs.lib.nixosSystem {
-          system = architecture;
-          modules = [
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    alejandra,
+    ...
+  } @ inputs: let
+    # System builder
+    mkSystem = architecture: hostname: extraModules:
+      nixpkgs.lib.nixosSystem {
+        system = architecture;
+        modules =
+          [
             home-manager.nixosModules.home-manager
             ./modules/security.nix
             (import ./hosts/${hostname} inputs)
 
-            ({ config, ... }: {
+            ({config, ...}: {
               networking.hostName = hostname;
 
               home-manager = {
@@ -42,16 +60,17 @@
                 useGlobalPkgs = true;
               };
             })
-          ] ++ extraModules;
-        };
+          ]
+          ++ extraModules;
+      };
 
-      # Home Builder
-      mkHome = architecture: home:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${architecture};
-          modules = [ home ];
-        };
-    in {
+    # Home Builder
+    mkHome = architecture: home:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${architecture};
+        modules = [home];
+      };
+  in {
     nixosConfigurations = {
       # WSL
       "heat" = mkSystem "x86_64-linux" "heat" [
@@ -67,5 +86,8 @@
     homeConfigurations = {
       "inaccuratetank" = mkHome "x86_64-linux" ./users/inaccuratetank/home;
     };
+
+    # nix fmt formatters
+    formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;
   };
 }

@@ -1,23 +1,42 @@
-{ nixos-wsl, ... }:
-{ config, lib, pkgs, ... }:
-
 {
+  nixos-wsl,
+  vscode-server,
+  nix-ld-rs,
+  ...
+}: {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     nixos-wsl.nixosModules.wsl
+    vscode-server.nixosModules.default
   ];
 
   wsl = {
     enable = true;
     defaultUser = "inaccuratetank";
-    interop.includePath = true;
-    nativeSystemd = true;
+    extraBin = with pkgs; [
+      {src = "${coreutils}/bin/uname";}
+      {src = "${coreutils}/bin/dirname";}
+      {src = "${coreutils}/bin/readlink";}
+      {src = "${coreutils}/bin/cat";}
+      {src = "${gnused}/bin/sed";}
+    ];
   };
 
+  programs.nix-ld = {
+    enable = true;
+    package = nix-ld-rs.packages.${pkgs.system}.default;
+  };
+  services.vscode-server.enable = true;
+
   environment.systemPackages = with pkgs; [
-    git
+    wget
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   system.stateVersion = "23.11";
 }

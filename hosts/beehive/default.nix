@@ -1,7 +1,14 @@
-{ impermanence, pterodactyl, crowdsec, ... }:
-{ config, lib, pkgs, ... }:
-
 {
+  impermanence,
+  pterodactyl,
+  crowdsec,
+  ...
+}: {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     impermanence.nixosModules.impermanence
     pterodactyl.nixosModules.pterodactyl-wings
@@ -19,22 +26,24 @@
   networking = {
     hostName = "beehive";
     interfaces = {
-      ens18.ipv4.addresses = [{
-        address = "10.10.5.24";
-        prefixLength = 24;
-      }];
+      ens18.ipv4.addresses = [
+        {
+          address = "10.10.5.24";
+          prefixLength = 24;
+        }
+      ];
     };
     defaultGateway = "10.10.5.1";
-    nameservers = [ "10.10.5.1" ];
+    nameservers = ["10.10.5.1"];
   };
 
   environment.persistence."/nix/persist" = {
     directories = [
       "/etc/nixos" # nixos system config files
       "/etc/crowdsec"
-      "/srv"       # service data
-      "/var/lib"   # system service persistent data
-      "/var/log"   # the place that journald dumps logs to
+      "/srv" # service data
+      "/var/lib" # system service persistent data
+      "/var/log" # the place that journald dumps logs to
     ];
     files = [
       "/etc/ssh/ssh_host_rsa_key"
@@ -60,12 +69,16 @@
     cs-firewall-bouncer.enable = true;
     caddy = {
       enable = true;
-      package = (pkgs.callPackage ../../pkgs/custom-caddy.nix {
+      package = pkgs.callPackage ../../pkgs/custom-caddy.nix {
         externalPlugins = [
-          { name = "porkbun"; repo = "github.com/caddy-dns/porkbun"; version = "v0.1.4"; }
+          {
+            name = "porkbun";
+            repo = "github.com/caddy-dns/porkbun";
+            version = "v0.1.4";
+          }
         ];
         vendorHash = "sha256-tR9DQYmI7dGvj0W0Dsze0/BaLjG84hecm0TPiCVSY2Y=";
-      });
+      };
     };
     # pterodactyl = {
     #   wings = {
@@ -81,7 +94,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = ["nix-command" "flakes"];
     settings.auto-optimise-store = true;
     gc = {
       automatic = true;
