@@ -1,6 +1,5 @@
 {
   nixos-wsl,
-  vscode-server,
   ...
 }: {
   config,
@@ -10,7 +9,6 @@
 }: {
   imports = [
     nixos-wsl.nixosModules.wsl
-    vscode-server.nixosModules.default
   ];
 
   wsl = {
@@ -26,7 +24,6 @@
   };
 
   programs.nix-ld.enable = true;
-  services.vscode-server.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget
