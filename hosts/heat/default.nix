@@ -1,7 +1,6 @@
 {
   nixos-wsl,
   vscode-server,
-  nix-ld-rs,
   ...
 }: {
   config,
@@ -26,10 +25,7 @@
     ];
   };
 
-  programs.nix-ld = {
-    enable = true;
-    package = nix-ld-rs.packages.${pkgs.system}.default;
-  };
+  programs.nix-ld.enable = true;
   services.vscode-server.enable = true;
 
   environment.systemPackages = with pkgs; [

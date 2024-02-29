@@ -38,6 +38,7 @@
   outputs = {
     self,
     nixpkgs,
+    nix-ld-rs,
     home-manager,
     alejandra,
     ...
@@ -54,6 +55,8 @@
 
             ({config, ...}: {
               networking.hostName = hostname;
+
+              programs.nix-ld.package = nix-ld-rs.packages.${architecture}.default;
 
               home-manager = {
                 useUserPackages = true;
