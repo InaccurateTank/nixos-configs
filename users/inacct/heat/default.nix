@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: {
-  users.users.inaccuratetank = {
+  users.users.inacct = {
     isNormalUser = true;
     extraGroups = ["wheel"];
   };
-  home-manager.users.inaccuratetank = ./home;
+  home-manager.users.inacct = ./home;
 }
