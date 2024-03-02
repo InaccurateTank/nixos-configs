@@ -1,14 +1,10 @@
 {
-  nixos-wsl,
-  ...
-}: {
-  config,
-  lib,
+  inputs,
   pkgs,
   ...
 }: {
   imports = [
-    nixos-wsl.nixosModules.wsl
+    inputs.nixos-wsl.nixosModules.wsl
   ];
 
   wsl = {
@@ -23,8 +19,6 @@
       {src = "${gnused}/bin/sed";}
     ];
   };
-
-  programs.nix-ld.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget

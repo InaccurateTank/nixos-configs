@@ -4,7 +4,7 @@
   inputs = {
     # Packages
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Core
     impermanence.url = "github:nix-community/impermanence";
@@ -62,7 +62,6 @@
   outputs = {
     self,
     nixpkgs,
-    nix-ld-rs,
     home-manager,
     alejandra,
     ...
@@ -71,53 +70,54 @@
     mkSystem = architecture: hostname: extraModules:
       nixpkgs.lib.nixosSystem {
         system = architecture;
+        specialArgs = {inherit inputs;};
         modules =
           [
+            # home-manager installed by default
             home-manager.nixosModules.home-manager
-            ./modules/security.nix
-            (import ./hosts/${hostname} inputs)
-
-            ({config, ...}: {
+            {
               networking.hostName = hostname;
-
-              programs.nix-ld.package = nix-ld-rs.packages.${architecture}.default;
-
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = true;
+                extraSpecialArgs = {inherit inputs;};
               };
-            })
+            }
+            ./hosts/${hostname}
+            ./modules/nix/security.nix
           ]
           ++ extraModules;
       };
 
     # Home Builder
-    mkHome = architecture: home:
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${architecture};
-        modules = [home];
-      };
+    # mkHome = architecture: home:
+    #   home-manager.lib.homeManagerConfiguration {
+    #     pkgs = nixpkgs.legacyPackages.${architecture};
+    #     extraSpecialArgs = {inherit inputs;};
+    #     modules = [home];
+    #   };
   in {
     nixosConfigurations = {
       # WSL
       "heat" = mkSystem "x86_64-linux" "heat" [
-        ./users/inacct/heat
+        ./modules/nix/nix-ld.nix
+        ./users/inacct-wsl
       ];
       # VM
       "beehive" = mkSystem "x86_64-linux" "beehive" [
+        ./modules/nix/nix-ld.nix
         ./users/control
       ];
       # Desktop
       "sabot" = mkSystem "x86_64-linux" "sabot" [
-        ./users/inacct/sabot
+        ./users/inacct
       ];
     };
 
-    #Probably not useful but whatever
-    homeConfigurations = {
-      "inacct@heat" = mkHome "x86_64-linux" ./users/inacct/heat/home;
-      "inacct@sabot" = mkHome "x86_64-linux" ./users/inacct/sabot/home;
-    };
+    # homeConfigurations = {
+    #   "inacct@heat" = mkHome "x86_64-linux" ./users/inacct-wsl/home.nix;
+    #   "inacct@sabot" = mkHome "x86_64-linux" ./users/inacct/home.nix;
+    # };
 
     # nix fmt formatters
     formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;

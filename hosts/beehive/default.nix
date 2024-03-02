@@ -1,18 +1,12 @@
 {
-  impermanence,
-  pterodactyl,
-  crowdsec,
-  ...
-}: {
-  config,
-  lib,
+  inputs,
   pkgs,
   ...
 }: {
   imports = [
-    impermanence.nixosModules.impermanence
-    pterodactyl.nixosModules.pterodactyl-wings
-    crowdsec.nixosModules.crowdsec
+    inputs.impermanence.nixosModules.impermanence
+    inputs.pterodactyl.nixosModules.pterodactyl-wings
+    inputs.crowdsec.nixosModules.crowdsec
     ./hardware-configuration.nix
   ];
 
@@ -24,7 +18,6 @@
   time.timeZone = "America/Los_Angeles";
 
   networking = {
-    hostName = "beehive";
     interfaces = {
       ens18.ipv4.addresses = [
         {
@@ -58,10 +51,6 @@
     Defaults lecture = never
   '';
 
-  environment.systemPackages = with pkgs; [
-    git
-  ];
-
   services = {
     openssh.enable = true;
     qemuGuest.enable = true;
@@ -88,10 +77,7 @@
     # };
   };
 
-  programs = {
-    nix-ld.enable = true;
-    zsh.enable = true;
-  };
+  programs.zsh.enable = true;
 
   users.mutableUsers = false;
   users.defaultUserShell = pkgs.zsh;

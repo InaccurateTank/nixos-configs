@@ -1,15 +1,12 @@
 {
-  impermanence,
-  hyprland,
-  ...
-}: {
-  config,
-  lib,
+  inputs,
   pkgs,
   ...
-}: {
+}: let
+  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
+in {
   imports = [
-    impermanence.nixosModules.impermanence
+    inputs.impermanence.nixosModules.impermanence
     ./hardware-configuration.nix
   ];
 
@@ -19,20 +16,6 @@
   };
 
   time.timeZone = "America/Los_Angeles";
-
-  networking = {
-    hostName = "sabot";
-    interfaces = {
-      ens18.ipv4.addresses = [
-        {
-          address = "10.10.5.25";
-          prefixLength = 24;
-        }
-      ];
-    };
-    defaultGateway = "10.10.5.1";
-    nameservers = ["10.10.5.1"];
-  };
 
   environment.persistence."/nix/persist" = {
     directories = [
@@ -58,7 +41,7 @@
   programs = {
     hyprland = {
       enable = true;
-      package = hyprland.packages.${pkgs.system}.hyprland;
+      package = hyprland;
       xwayland.enable = true;
     };
   };
