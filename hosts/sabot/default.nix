@@ -2,9 +2,7 @@
   inputs,
   pkgs,
   ...
-}: let
-  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-in {
+}: {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     ./hardware-configuration.nix
@@ -41,17 +39,17 @@ in {
   programs = {
     hyprland = {
       enable = true;
-      package = hyprland;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;;
       xwayland.enable = true;
     };
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = with pkgs; [
+  #     xdg-desktop-portal-gtk
+  #   ];
+  # };
 
   users.mutableUsers = false;
 
