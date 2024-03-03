@@ -13,7 +13,7 @@
   };
 
   programs = {
-    wezterm.enable = true;
+    kitty.enable = true;
     git.enable = true;
     btop.enable = true;
     hyfetch = {
