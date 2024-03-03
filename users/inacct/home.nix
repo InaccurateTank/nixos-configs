@@ -1,9 +1,7 @@
 {
   inputs,
   ...
-}: let
-  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-in {
+}: {
   imports = [
     inputs.hyprland.homeManagerModules.default
   ];
