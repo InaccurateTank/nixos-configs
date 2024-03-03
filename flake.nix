@@ -62,14 +62,13 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     home-manager,
     alejandra,
     ...
   } @ inputs: let
     # System builder
-    mkSystem = pkgs: architecture: hostname: extraModules:
-      pkgs.lib.nixosSystem {
+    mkSystem = architecture: hostname: extraModules:
+      nixpkgs.lib.nixosSystem {
         system = architecture;
         specialArgs = {inherit inputs;};
         modules =
@@ -100,17 +99,17 @@
   in {
     nixosConfigurations = {
       # WSL
-      "heat" = mkSystem nixpkgs "x86_64-linux" "heat" [
+      "heat" = mkSystem "x86_64-linux" "heat" [
         ./modules/nix/nix-ld.nix
         ./users/inacct-wsl
       ];
       # VM
-      "beehive" = mkSystem nixpkgs "x86_64-linux" "beehive" [
+      "beehive" = mkSystem "x86_64-linux" "beehive" [
         ./modules/nix/nix-ld.nix
         ./users/control
       ];
       # Desktop
-      "sabot" = mkSystem nixpkgs-unstable "x86_64-linux" "sabot" [
+      "sabot" = mkSystem "x86_64-linux" "sabot" [
         ./users/inacct
       ];
     };

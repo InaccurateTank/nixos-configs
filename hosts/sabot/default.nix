@@ -5,7 +5,11 @@
 }: {
   imports = [
     inputs.impermanence.nixosModules.impermanence
+    inputs.hyprland.nixosModules.default
     ./hardware-configuration.nix
+  ];
+  disabledModules = [
+    "programs/hyprland.nix"
   ];
 
   boot.loader = {
