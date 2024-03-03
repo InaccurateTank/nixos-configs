@@ -26,7 +26,7 @@
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland";
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -123,6 +123,7 @@
       "sabot" = mkSystem {
         hostname = "sabot";
         extraModules = [
+          ./modules/nix/hyprland.nix
           ./users/inacct
         ];
       };

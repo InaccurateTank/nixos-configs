@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.unstable.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.default;
     xwayland.enable = true;
     settings = {
       monitor = ",preferred,auto,1";
