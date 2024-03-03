@@ -62,6 +62,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     alejandra,
     ...
@@ -81,6 +82,15 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 extraSpecialArgs = {inherit inputs;};
+              };
+              nixpkgs = {
+                overlays = [
+                  (final: prev: {
+                    unstable = import nixpkgs-unstable {
+                      system = prev.system;
+                    };
+                  })
+                ];
               };
             }
             ./hosts/${hostname}
