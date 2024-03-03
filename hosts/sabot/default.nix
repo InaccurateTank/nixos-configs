@@ -56,6 +56,16 @@
 
   # documentation.nixos.enable = false;
 
+  nixpkgs = {
+    overlays = [
+      (final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          system = prev.system;
+        };
+      })
+    ];
+  };
+
   nix = {
     settings = {
       auto-optimise-store = true;

@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
@@ -13,7 +14,10 @@
   };
 
   programs = {
-    kitty.enable = true;
+    wezterm = {
+      enable = true;
+      package = pkgs.unstable.wezterm;
+    };
     git.enable = true;
     btop.enable = true;
     hyfetch = {
