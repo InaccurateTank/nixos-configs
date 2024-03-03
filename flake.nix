@@ -68,13 +68,16 @@
     ...
   } @ inputs: let
     # System builder
-    mkSystem = architecture: hostname: extraModules:
+    mkSystem = {
+      system ? "x86_64-linux",
+      hostname ? "nixos",
+      extraModules ? [],
+    }:
       nixpkgs.lib.nixosSystem {
-        system = architecture;
+        system = system;
         specialArgs = {inherit inputs;};
         modules =
           [
-            # home-manager installed by default
             home-manager.nixosModules.home-manager
             {
               networking.hostName = hostname;
@@ -98,36 +101,32 @@
           ]
           ++ extraModules;
       };
-
-    # Home Builder
-    # mkHome = architecture: home:
-    #   home-manager.lib.homeManagerConfiguration {
-    #     pkgs = nixpkgs.legacyPackages.${architecture};
-    #     extraSpecialArgs = {inherit inputs;};
-    #     modules = [home];
-    #   };
   in {
     nixosConfigurations = {
       # WSL
-      "heat" = mkSystem "x86_64-linux" "heat" [
-        ./modules/nix/nix-ld.nix
-        ./users/inacct-wsl
-      ];
+      "heat" = mkSystem {
+        hostname = "heat";
+        extraModules = [
+          ./modules/nix/nix-ld.nix
+          ./users/inacct-wsl
+        ];
+      };
       # VM
-      "beehive" = mkSystem "x86_64-linux" "beehive" [
-        ./modules/nix/nix-ld.nix
-        ./users/control
-      ];
+      "beehive" = mkSystem {
+        hostname = "beehive";
+        extraModules = [
+          ./modules/nix/nix-ld.nix
+          ./users/control
+        ];
+      };
       # Desktop
-      "sabot" = mkSystem "x86_64-linux" "sabot" [
-        ./users/inacct
-      ];
+      "sabot" = mkSystem {
+        hostname = "sabot";
+        extraModules = [
+          ./users/inacct
+        ];
+      };
     };
-
-    # homeConfigurations = {
-    #   "inacct@heat" = mkHome "x86_64-linux" ./users/inacct-wsl/home.nix;
-    #   "inacct@sabot" = mkHome "x86_64-linux" ./users/inacct/home.nix;
-    # };
 
     # nix fmt formatters
     formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;

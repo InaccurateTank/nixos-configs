@@ -1,12 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
-  imports = [
-    inputs.hyprland.homeManagerModules.default
-  ];
-
+{pkgs, ...}: {
   home = {
     username = "inacct";
     homeDirectory = "/home/inacct";
