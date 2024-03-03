@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    ../../modules/home/hyprland.nix
+  ];
+
   home = {
     username = "inacct";
     homeDirectory = "/home/inacct";
