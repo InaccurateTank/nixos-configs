@@ -8,7 +8,7 @@
     "programs/hyprland.nix"
   ];
   imports = [
-    "${inputs.nixpkgs-unstable}/nixos/modules/programs/hyprland.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/programs/wayland/hyprland.nix"
   ];
 
   programs = {
