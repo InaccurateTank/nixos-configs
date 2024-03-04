@@ -10,10 +10,7 @@
   };
 
   programs = {
-    wezterm = {
-      enable = true;
-      package = pkgs.unstable.wezterm;
-    };
+    wezterm.enable = true;
     git.enable = true;
     btop.enable = true;
     hyfetch = {

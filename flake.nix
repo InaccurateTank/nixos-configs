@@ -3,13 +3,13 @@
 
   inputs = {
     # Packages
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # Core
     impermanence.url = "github:nix-community/impermanence";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl = {
@@ -62,7 +62,7 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
+    nixpkgs-stable,
     home-manager,
     alejandra,
     ...
@@ -89,7 +89,7 @@
               nixpkgs = {
                 overlays = [
                   (final: prev: {
-                    unstable = import nixpkgs-unstable {
+                    stable = import nixpkgs-stable {
                       system = prev.system;
                     };
                   })
