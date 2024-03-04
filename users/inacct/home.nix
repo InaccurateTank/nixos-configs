@@ -13,7 +13,7 @@
     wezterm.enable = true;
     wezterm.extraConfig = ''
       return {
-        enable_wayland=false
+        use_fancy_tab_bar=false
       }
     '';
     git.enable = true;
