@@ -11,6 +11,11 @@
 
   programs = {
     wezterm.enable = true;
+    wezterm.extraConfig = ''
+      return {
+        enable_wayland=false
+      }
+    '';
     git.enable = true;
     btop.enable = true;
     hyfetch = {
