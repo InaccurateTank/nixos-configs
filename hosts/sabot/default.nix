@@ -30,10 +30,16 @@
     ];
   };
 
+  networking.networkmanager.enable  = true;
+
   security = {
     sudo.extraConfig = ''
       Defaults lecture = never
     '';
+  };
+
+  programs = {
+    thunar.enable = true;
   };
 
   services.openssh.enable = true;

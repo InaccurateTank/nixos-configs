@@ -6,7 +6,10 @@
 in {
   users.users.inacct = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      ];
     openssh.authorizedKeys.keyFiles = [(fetchKeys "inaccuratetank")];
     hashedPasswordFile = "/nix/persist/passwords/inacct";
   };

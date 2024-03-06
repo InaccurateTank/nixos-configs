@@ -7,9 +7,6 @@
     username = "inacct";
     homeDirectory = "/home/inacct";
     stateVersion = "23.11";
-    packages = with pkgs; [
-      xfce.thunar
-    ];
   };
 
   programs = {
@@ -21,7 +18,7 @@
       enable = true;
       settings = {
         preset = "nonbinary";
-        mode = "8bit";
+        mode = "rgb";
         brightness = "0.50";
         color_align.mode = "horizontal";
       };
