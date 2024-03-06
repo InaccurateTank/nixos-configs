@@ -59,5 +59,6 @@ for _, gpu in ipairs(wez.gui.enumerate_gpus()) do
 		break
 	end
 end
+config.enable_wayland = false
 
 return config
