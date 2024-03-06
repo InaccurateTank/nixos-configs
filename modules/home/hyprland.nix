@@ -83,6 +83,7 @@
         # Program Hotkeys
         "$mod, Q, exec, wezterm"
         "$mod, R, exec, wofi --show drun"
+        "$mod, F, exec, thunar"
 
         "$mod, C, killactive,"
         "$mod, V, togglefloating,"
