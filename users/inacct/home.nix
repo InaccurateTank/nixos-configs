@@ -20,6 +20,9 @@
         use_fancy_tab_bar=false
       }
     '';
+
+    firefox.enable = true;
+
     git.enable = true;
     btop.enable = true;
     hyfetch = {

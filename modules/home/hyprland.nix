@@ -84,6 +84,7 @@
         "$mod, Q, exec, wezterm"
         "$mod, R, exec, wofi --show drun"
         "$mod, F, exec, thunar"
+        "$mod, W, exec, firefox"
 
         "$mod, C, killactive,"
         "$mod, V, togglefloating,"
