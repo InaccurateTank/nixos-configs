@@ -1,0 +1,51 @@
+[colors]
+ansi = [
+    '#16161C',
+    '#E95678',
+    '#29D398',
+    '#FAB795',
+    '#26BBD9',
+    '#EE64AE',
+    '#59E1E3',
+    '#D5D8DA',
+]
+brights = [
+    '#6C6F93',
+    '#EC6A88',
+    '#3FDAA4',
+    '#FBC3A7',
+    '#3FC4DE',
+    '#F075B7',
+    '#6BE6E6',
+    '#FDF0ED',
+]
+background = '#1C1E26'
+cursor_bg = '#6C6F93'
+cursor_border = '#6C6F93'
+cursor_fg = '#1C1E26'
+foreground = '#D5D8DA'
+selection_bg = '#232530'
+
+[colors.tab_bar]
+background = '#2E303E'
+inactive_tab_edge = '#BBBBBB'
+
+[colors.tab_bar.active_tab]
+bg_color = '#1C1E26'
+fg_color = '#27D796'
+
+[colors.tab_bar.inactive_tab]
+bg_color = '#2E303E'
+fg_color = '#BBBBBB'
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = '#6C6F93'
+fg_color = '#D5D8DA'
+
+[colors.tab_bar.new_tab]
+bg_color = '#2E303E'
+fg_color = '#BBBBBB'
+
+[colors.tab_bar.new_tab_hover]
+bg_color = '#2E303E'
+fg_color = '#D5D8DA'

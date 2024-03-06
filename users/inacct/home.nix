@@ -12,6 +12,12 @@
     ];
   };
 
+  xdg.configFile."wezterm" = {
+    enable = true;
+    recursive = true;
+    source = ./wezterm;
+  };
+
   programs = {
     wezterm.enable = true;
     wezterm.extraConfig = ''
