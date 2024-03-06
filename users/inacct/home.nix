@@ -12,23 +12,9 @@
     ];
   };
 
-  xdg.configFile."wezterm" = {
-    enable = true;
-    recursive = true;
-    source = ./wezterm;
-  };
-
   programs = {
     wezterm.enable = true;
-    wezterm.extraConfig = ''
-      return {
-        enable_wayland=false,
-        use_fancy_tab_bar=false
-      }
-    '';
-
     firefox.enable = true;
-
     git.enable = true;
     btop.enable = true;
     hyfetch = {
@@ -40,5 +26,11 @@
         color_align.mode = "horizontal";
       };
     };
+  };
+
+  xdg.configFile."wezterm" = {
+    enable = true;
+    recursive = true;
+    source = ./wezterm;
   };
 }
