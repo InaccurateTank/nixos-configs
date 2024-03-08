@@ -8,8 +8,8 @@
     homeDirectory = "/home/inacct";
     stateVersion = "23.11";
     pointerCursor = {
-      name = "Nordzy-cursors";
-      package = pkgs.nordzy-cursor-theme;
+      name = "mochaLight";
+      package = pkgs.catppuccin-cursors;
       size = 22;
     };
   };
