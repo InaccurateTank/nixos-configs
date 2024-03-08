@@ -90,6 +90,7 @@
                 config.allowUnfreePredicate = pkg:
                   builtins.elem (lib.getName pkg) [
                     "vscode"
+                    "vscode-extensions.ms-vscode-remote.remote-ssh"
                   ];
                 overlays = [
                   (final: prev: {
