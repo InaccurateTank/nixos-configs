@@ -8,8 +8,8 @@
     homeDirectory = "/home/inacct";
     stateVersion = "23.11";
     pointerCursor = {
-      name = "mochaLight";
-      package = pkgs.catppuccin-cursors.mochaLight;
+      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
       size = 22;
     };
   };
@@ -44,8 +44,8 @@
       package = pkgs.callPackage ../../pkgs/horizon-theme.nix {};
     };
     cursorTheme = {
-      name = "mochaLight";
-      package = pkgs.catppuccin-cursors;
+      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
       size = 22;
     };
   };
