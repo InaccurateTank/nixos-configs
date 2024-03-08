@@ -87,6 +87,10 @@
                 extraSpecialArgs = {inherit inputs;};
               };
               nixpkgs = {
+                config.allowUnfreePredicate = pkg:
+                  builtins.elem (lib.getName pkg) [
+                    vscode
+                  ];
                 overlays = [
                   (final: prev: {
                     stable = import nixpkgs-stable {

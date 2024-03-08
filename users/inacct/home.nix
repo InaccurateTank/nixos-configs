@@ -19,10 +19,7 @@
     firefox.enable = true;
     git.enable = true;
     btop.enable = true;
-    vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-    };
+    vscode.enable = true;
     hyfetch = {
       enable = true;
       settings = {
