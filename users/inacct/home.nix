@@ -7,6 +7,11 @@
     username = "inacct";
     homeDirectory = "/home/inacct";
     stateVersion = "23.11";
+    pointerCursor = {
+      name = "Nordzy-cursors";
+      package = pkgs.nordzy-cursor-theme;
+      size = 22;
+    };
   };
 
   programs = {
@@ -28,7 +33,7 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Colloid";
+      name = "Colloid-red-dark";
       package = pkgs.colloid-icon-theme.override {
         colorVariants = ["red"];
       };
@@ -41,6 +46,11 @@
         tweaks = ["rimless"];
         variant = "mocha";
       };
+    };
+    cursorTheme = {
+      name = "Nordzy-cursors";
+      package = pkgs.nordzy-cursor-theme;
+      size = 22;
     };
   };
 
