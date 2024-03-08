@@ -15,6 +15,6 @@ stdenvNoCC.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/share/themes/
-    cp ${src}/.themes/horizon-theme $out/share/themes
+    cp -r ${src}/.themes/horizon-theme $out/share/themes
   '';
 }
