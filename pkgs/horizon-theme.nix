@@ -10,7 +10,7 @@ stdenvNoCC.mkDerivation rec {
     owner = "zoddDev";
     repo = "Horizon";
     rev = "d4f25b5";
-    hash = "";
+    hash = "sha256-gwREyPG5SnjVTpx1Po4Ie0+3cWww4KNyWbKbJjPWtWg=";
   };
 
   installPhase = ''
