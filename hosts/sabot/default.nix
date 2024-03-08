@@ -42,7 +42,13 @@
     thunar.enable = true;
   };
 
-  services.openssh.enable = true;
+  services = {
+    openssh.enable = true;
+    pipewire = {
+      enable = true;
+      wireplumber.enable = true;
+    };
+  };
 
   # xdg.portal = {
   #   enable = true;

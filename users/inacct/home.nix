@@ -25,6 +25,25 @@
     };
   };
 
+  gtk = {
+    enabled = true;
+    iconTheme = {
+      name = "Colloid";
+      package = pkgs.colloid-icon-theme.override {
+        colorVariants = ["red"];
+      };
+    };
+    theme = {
+      name = "Catppuccin-Mocha-Compact-Red-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["red"];
+        size = "compact";
+        tweaks = ["rimless"];
+        variant = "mocha";
+      };
+    };
+  };
+
   xdg.configFile."wezterm" = {
     enable = true;
     recursive = true;
