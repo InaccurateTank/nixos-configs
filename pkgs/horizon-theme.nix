@@ -1,6 +1,6 @@
 {
   stdenvNoCC,
-  fetchFromGitHub
+  fetchFromGitHub,
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "horizon-theme";

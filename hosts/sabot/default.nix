@@ -30,7 +30,7 @@
     ];
   };
 
-  networking.networkmanager.enable  = true;
+  networking.networkmanager.enable = true;
 
   security = {
     sudo.extraConfig = ''

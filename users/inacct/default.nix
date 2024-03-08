@@ -9,7 +9,7 @@ in {
     extraGroups = [
       "wheel"
       "networkmanager"
-      ];
+    ];
     openssh.authorizedKeys.keyFiles = [(fetchKeys "inaccuratetank")];
     hashedPasswordFile = "/nix/persist/passwords/inacct";
   };

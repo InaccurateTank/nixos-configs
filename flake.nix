@@ -79,7 +79,7 @@
         modules =
           [
             home-manager.nixosModules.home-manager
-            {
+            ({lib, ...}: {
               networking.hostName = hostname;
               home-manager = {
                 useUserPackages = true;
@@ -89,7 +89,7 @@
               nixpkgs = {
                 config.allowUnfreePredicate = pkg:
                   builtins.elem (lib.getName pkg) [
-                    vscode
+                    "vscode"
                   ];
                 overlays = [
                   (final: prev: {
@@ -99,7 +99,7 @@
                   })
                 ];
               };
-            }
+            })
             ./hosts/${hostname}
             ./modules/nix/security.nix
           ]
