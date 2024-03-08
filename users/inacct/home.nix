@@ -19,6 +19,10 @@
     firefox.enable = true;
     git.enable = true;
     btop.enable = true;
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+    };
     hyfetch = {
       enable = true;
       settings = {
@@ -33,24 +37,15 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Colloid-red-dark";
-      package = pkgs.colloid-icon-theme.override {
-        colorVariants = ["red"];
+      name = "Nordzy-red-dark";
+      package = pkgs.nordzy-icon-theme.override {
+        nordzy-themes = ["red"];
       };
     };
     theme = {
       name = "horizon-theme";
       package = pkgs.callPackage ../../pkgs/horizon-theme.nix {};
     };
-    # theme = {
-    #   name = "Catppuccin-Mocha-Compact-Red-Dark";
-    #   package = pkgs.catppuccin-gtk.override {
-    #     accents = ["red"];
-    #     size = "compact";
-    #     tweaks = ["rimless"];
-    #     variant = "mocha";
-    #   };
-    # };
     cursorTheme = {
       name = "Nordzy-cursors";
       package = pkgs.nordzy-cursor-theme;
