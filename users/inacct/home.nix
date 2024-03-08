@@ -19,17 +19,7 @@
     firefox.enable = true;
     git.enable = true;
     btop.enable = true;
-    vscode = {
-      enable = true;
-      extensions = with pkgs.vscode-extensions; [
-        # Lang
-
-        # Misc
-        ms-vscode-remote.remote-ssh
-        editorconfig.editorconfig
-        sanaajani.taskrunnercode
-      ];
-    };
+    vscode.enable = true;
     hyfetch = {
       enable = true;
       settings = {
