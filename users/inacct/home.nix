@@ -28,7 +28,7 @@
         ms-vscode-remote.remote-ssh
         editorconfig.editorconfig
         sanaajani.taskrunnercode
-      ]
+      ];
     };
     hyfetch = {
       enable = true;
