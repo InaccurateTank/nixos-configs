@@ -9,7 +9,7 @@
     stateVersion = "23.11";
     pointerCursor = {
       name = "mochaLight";
-      package = pkgs.catppuccin-cursors;
+      package = pkgs.catppuccin-cursors.mochaLight;
       size = 22;
     };
   };
