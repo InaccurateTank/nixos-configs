@@ -48,7 +48,7 @@ config.window_background_opacity = 0.95
 config.status_update_interval = 2000
 config.mouse_bindings = require 'utils.mousebinds'
 -- config.disable_default_key_bindings = true
--- config.keys = require 'utils.keybinds'
+config.keys = require 'utils.keybinds'
 config.default_cursor_style = "BlinkingUnderline"
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 -- Rendering issues on default webgpu choice, needs Gl
