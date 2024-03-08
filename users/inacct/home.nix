@@ -39,14 +39,18 @@
       };
     };
     theme = {
-      name = "Catppuccin-Mocha-Compact-Red-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["red"];
-        size = "compact";
-        tweaks = ["rimless"];
-        variant = "mocha";
-      };
+      name = "horizon-theme";
+      package = pkgs.callPackage ../../pkgs/horizon-theme.nix {};
     };
+    # theme = {
+    #   name = "Catppuccin-Mocha-Compact-Red-Dark";
+    #   package = pkgs.catppuccin-gtk.override {
+    #     accents = ["red"];
+    #     size = "compact";
+    #     tweaks = ["rimless"];
+    #     variant = "mocha";
+    #   };
+    # };
     cursorTheme = {
       name = "Nordzy-cursors";
       package = pkgs.nordzy-cursor-theme;
