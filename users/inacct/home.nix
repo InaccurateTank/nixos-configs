@@ -12,7 +12,13 @@
       package = pkgs.catppuccin-cursors.mochaDark;
       size = 22;
     };
+    packages = with pkgs; [
+      flakePkgs.iosevka-tonk
+      flakePkgs.iosevka-tonk-term
+    ];
   };
+
+  fonts.fontconfig.enable = true;
 
   programs = {
     wezterm.enable = true;
@@ -29,10 +35,15 @@
         color_align.mode = "horizontal";
       };
     };
+    thefuck.enable = true;
   };
 
   gtk = {
     enable = true;
+    font = {
+      name = "Cantarell";
+      package = pkgs.cantarell-fonts;
+    };
     iconTheme = {
       name = "Nordzy-red-dark";
       package = pkgs.nordzy-icon-theme.override {
@@ -41,7 +52,7 @@
     };
     theme = {
       name = "horizon-theme";
-      package = pkgs.callPackage ../../pkgs/horizon-theme.nix {};
+      package = pkgs.flakePkgs.horizon-theme;
     };
     cursorTheme = {
       name = "Catppuccin-Mocha-Dark-Cursors";

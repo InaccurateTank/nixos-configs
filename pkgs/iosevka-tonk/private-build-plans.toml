@@ -1,0 +1,200 @@
+# Standard Font
+[buildPlans.iosevka-tonk]
+family = "Iosevka Tonk"
+spacing = "normal"
+serifs = "sans"
+noCvSs = true
+exportGlyphNames = false
+
+[buildPlans.iosevka-tonk.variants.design]
+capital-d = "more-rounded-bilateral-serifed"
+capital-g = "toothless-corner-serifless-hooked"
+capital-k = "curly-serifless"
+capital-m = "flat-bottom-serifless"
+capital-q = "crossing"
+a = "double-storey-toothless-corner"
+b = "toothless-corner-serifless"
+d = "toothless-corner-serifless"
+e = "rounded"
+f = "flat-hook-serifless"
+g = "single-storey-flat-hook-earless-corner"
+i = "tailed-serifed"
+l = "serifed-flat-tailed"
+m = "earless-rounded-double-arch-short-leg-serifless"
+n = "earless-corner-straight-serifless"
+p = "earless-corner-serifless"
+q = "earless-corner-straight-serifless"
+r = "hookless-serifless"
+t = "flat-hook"
+u = "toothless-corner-serifless"
+y = "cursive-flat-hook-serifless"
+long-s = "bent-hook-tailed"
+lower-alpha = "barred"
+lower-mu = "toothless-corner-serifless"
+lower-tau = "short-tailed"
+one = "base"
+two = "straight-neck"
+four = "closed-non-crossing"
+five = "upright-flat"
+six = "open-contour"
+eight = "crossing-asymmetric"
+nine = "open-contour"
+diacritic-dot = "square"
+punctuation-dot = "square"
+tilde = "low"
+asterisk = "penta-low"
+brace = "straight"
+guillemet = "straight"
+dollar = "through-cap"
+cent = "through-cap"
+percent = "dots"
+bar = "force-upright"
+
+[buildPlans.iosevka-tonk.variants.italic]
+capital-d = "more-rounded-bilateral-serifed"
+capital-g = "toothless-corner-serifless-hooked"
+capital-k = "curly-serifless"
+capital-m = "flat-bottom-serifless"
+capital-q = "crossing"
+a = "double-storey-serifless"
+b = "toothless-corner-serifless"
+d = "toothless-corner-serifless"
+e = "rounded"
+f = "flat-hook-tailed"
+g = "single-storey-flat-hook-earless-corner"
+i = "tailed-serifed"
+l = "serifed-flat-tailed"
+m = "earless-rounded-double-arch-short-leg-serifless"
+n = "earless-corner-straight-serifless"
+p = "earless-corner-serifless"
+q = "earless-corner-straight-serifless"
+r = "hookless-serifless"
+t = "flat-hook"
+u = "toothless-corner-serifless"
+y = "cursive-serifless"
+long-s = "bent-hook-tailed"
+lower-alpha = "barred"
+lower-mu = "toothless-corner-serifless"
+lower-tau = "short-tailed"
+one = "base"
+two = "straight-neck"
+four = "closed-non-crossing"
+five = "upright-flat"
+six = "open-contour"
+eight = "crossing-asymmetric"
+nine = "open-contour"
+diacritic-dot = "square"
+punctuation-dot = "square"
+tilde = "low"
+asterisk = "penta-low"
+brace = "straight"
+guillemet = "straight"
+dollar = "through-cap"
+cent = "through-cap"
+percent = "dots"
+bar = "force-upright"
+
+[buildPlans.iosevka-tonk.variants.oblique]
+capital-d = "more-rounded-bilateral-serifed"
+capital-g = "toothless-corner-serifless-hooked"
+capital-k = "curly-serifless"
+capital-m = "flat-bottom-serifless"
+capital-q = "crossing"
+a = "double-storey-serifless"
+b = "toothless-corner-serifless"
+d = "toothless-corner-serifless"
+e = "rounded"
+f = "flat-hook-tailed"
+g = "single-storey-flat-hook-earless-corner"
+i = "tailed-serifed"
+l = "serifed-flat-tailed"
+m = "earless-rounded-double-arch-short-leg-serifless"
+n = "earless-corner-straight-serifless"
+p = "earless-corner-serifless"
+q = "earless-corner-straight-serifless"
+r = "hookless-serifless"
+t = "flat-hook"
+u = "toothless-corner-serifless"
+y = "cursive-serifless"
+long-s = "bent-hook-tailed"
+lower-alpha = "barred"
+lower-mu = "toothless-corner-serifless"
+lower-tau = "short-tailed"
+one = "base"
+two = "straight-neck"
+four = "closed-non-crossing"
+five = "upright-flat"
+six = "open-contour"
+eight = "crossing-asymmetric"
+nine = "open-contour"
+diacritic-dot = "square"
+punctuation-dot = "square"
+tilde = "low"
+asterisk = "penta-low"
+brace = "straight"
+guillemet = "straight"
+dollar = "through-cap"
+cent = "through-cap"
+percent = "dots"
+bar = "force-upright"
+
+[buildPlans.iosevka-tonk.weights.Light]
+shape = 300
+menu = 300
+css = 300
+
+[buildPlans.iosevka-tonk.weights.Regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.iosevka-tonk.weights.Medium]
+shape = 500
+menu = 500
+css = 500
+
+[buildPlans.iosevka-tonk.weights.SemiBold]
+shape = 600
+menu = 600
+css = 600
+
+[buildPlans.iosevka-tonk.weights.Bold]
+shape = 700
+menu = 700
+css = 700
+
+# Terminal Font
+[buildPlans.iosevka-tonk-term]
+family = "Iosevka Tonk Term"
+spacing = "term"
+serifs = "sans"
+noCvSs = true
+exportGlyphNames = false
+
+[buildPlans.iosevka-tonk-term.variants]
+inherits = "buildPlans.iosevka-tonk"
+
+[buildPlans.iosevka-tonk-term.weights.Light]
+shape = 300
+menu = 300
+css = 300
+
+[buildPlans.iosevka-tonk-term.weights.Regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.iosevka-tonk-term.weights.Medium]
+shape = 500
+menu = 500
+css = 500
+
+[buildPlans.iosevka-tonk-term.weights.SemiBold]
+shape = 600
+menu = 600
+css = 600
+
+[buildPlans.iosevka-tonk-term.weights.Bold]
+shape = 700
+menu = 700
+css = 700

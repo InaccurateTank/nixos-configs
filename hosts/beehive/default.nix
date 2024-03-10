@@ -58,16 +58,7 @@
     cs-firewall-bouncer.enable = true;
     caddy = {
       enable = true;
-      package = pkgs.callPackage ../../pkgs/custom-caddy.nix {
-        externalPlugins = [
-          {
-            name = "porkbun";
-            repo = "github.com/caddy-dns/porkbun";
-            version = "v0.1.4";
-          }
-        ];
-        vendorHash = "sha256-tR9DQYmI7dGvj0W0Dsze0/BaLjG84hecm0TPiCVSY2Y=";
-      };
+      package = pkgs.flakePkgs.custom-caddy;
     };
     # pterodactyl = {
     #   wings = {

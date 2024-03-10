@@ -67,6 +67,17 @@
     alejandra,
     ...
   } @ inputs: let
+    # All Possible Systems
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+
     # System builder
     mkSystem = {
       system ? "x86_64-linux",
@@ -92,10 +103,16 @@
                     "vscode"
                   ];
                 overlays = [
+                  # Nixpkgs Stable import
                   (final: prev: {
                     stable = import nixpkgs-stable {
                       system = prev.system;
                     };
+                  })
+
+                  # Flake packages added as overlay
+                  (final: prev: {
+                    flakePkgs = import ./pkgs prev;
                   })
                 ];
               };
@@ -106,6 +123,13 @@
           ++ extraModules;
       };
   in {
+    # Formatter for nix fmt
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    # Packages exposed externally for easy build debugging
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
+    # Actual NixOs configs
     nixosConfigurations = {
       # WSL
       "heat" = mkSystem {
@@ -132,8 +156,5 @@
         ];
       };
     };
-
-    # nix fmt formatters
-    formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;
   };
 }
