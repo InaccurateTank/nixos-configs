@@ -30,10 +30,6 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    gvfs
-  ];
-
   networking.networkmanager.enable = true;
 
   security = {
@@ -59,6 +55,7 @@
       enable = true;
       wireplumber.enable = true;
     };
+    gvfs.enable = true;
   };
 
   # xdg.portal = {
