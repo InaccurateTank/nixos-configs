@@ -79,6 +79,7 @@
       windowrulev2 = [
         "float, class:thunar, title:^(.*)(Preferences)$"
         "size 50% 70%, class:thunar, title:^(.*)(Preferences)$"
+        "center, class:thunar, title:^(.*)(Preferences)$"
 
         # File Dialogs
         "float, title:^(Save)(.*)$"
