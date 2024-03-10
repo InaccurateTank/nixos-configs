@@ -76,6 +76,10 @@
         force_default_wallpaper = -1;
       };
 
+      windowrulev2 = [
+        "float,size 534 600,center,class:thunar,title:(Preferences)"
+      ];
+
       "$mod" = "SUPER";
 
       # Standard Binds
