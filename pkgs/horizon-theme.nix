@@ -22,6 +22,6 @@ stdenvNoCC.mkDerivation rec {
   meta = with lib; {
     homepage = "https://github.com/zoddDev/Horizon/tree/master/.themes/horizon-theme";
     description = "Shamelessly ripped from someones precious dotfiles";
-    license = licenses.gnu;
+    license = licenses.gpl2Only;
   };
 }
