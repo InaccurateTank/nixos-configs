@@ -77,7 +77,17 @@
       };
 
       windowrulev2 = [
-        "float,size 534 600,center,class:thunar,title:(Preferences)"
+        "float, class:thunar, title:^(.*)(Preferences)$"
+        "size 50% 70%, class:thunar, title:^(.*)(Preferences)$"
+
+        # File Dialogs
+        "float, title:^(Save)(.*)$"
+        "size 50% 70%, title:(Save)(.*)$"
+        "pin, move 50% 30%, title:^(Save)(.*)$"
+
+        "float, title:^(Open)(.*)$"
+        "size 50% 70%, title:(Open)(.*)$"
+        "pin, move 50% 30%, title:^(Open)(.*)$"
       ];
 
       "$mod" = "SUPER";
