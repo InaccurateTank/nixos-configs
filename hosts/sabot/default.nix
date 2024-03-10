@@ -30,6 +30,10 @@
     ];
   };
 
+  environment.systemPackages = with pkgs; [
+    gvfs
+  ];
+
   networking.networkmanager.enable = true;
 
   security = {
