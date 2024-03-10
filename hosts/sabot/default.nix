@@ -49,14 +49,6 @@
     };
   };
 
-  home-manager.sharedModules = [
-    {
-      home.sessionVariables = {
-        GIO_EXTRA_MODULES = "${pkgs.gvfs}/lib/gio/modules";
-      };
-    }
-  ];
-
   services = {
     openssh.enable = true;
     pipewire = {
