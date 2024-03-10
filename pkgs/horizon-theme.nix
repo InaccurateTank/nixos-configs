@@ -17,4 +17,10 @@ stdenvNoCC.mkDerivation rec {
     mkdir -p $out/share/themes/
     cp -r ${src}/.themes/horizon-theme $out/share/themes
   '';
+
+  meta = with lib; {
+    homepage = "https://github.com/zoddDev/Horizon/tree/master/.themes/horizon-theme";
+    description = "Shamelessly ripped from someones precious dotfiles";
+    license = licenses.gnu;
+  };
 }
