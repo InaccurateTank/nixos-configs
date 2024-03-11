@@ -51,13 +51,26 @@
       };
     };
     theme = {
-      name = "horizon-theme";
-      package = pkgs.flakePkgs.horizon-theme;
+      name = "Flat-Remix-GTK-Red-Dark-Solid";
+      package = pkgs.flat-remix-gtk;
     };
+    # theme = {
+    #   name = "horizon-theme";
+    #   package = pkgs.flakePkgs.horizon-theme;
+    # };
     cursorTheme = {
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
       size = 22;
+    };
+  };
+
+  xfconf.settings = {
+    # Thunar config
+    thunar = {
+      # Hide status and menubar by default.
+      "last-menubar-visible" = false;
+      "last-statusbar-visible" = false;
     };
   };
 
