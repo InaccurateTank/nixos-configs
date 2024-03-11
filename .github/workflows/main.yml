@@ -15,7 +15,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install Nix
-      uses: DeterminateSystems/nix-installer-action@main
+      uses: cachix/install-nix-action@v26
     - name: Update flake.lock
       run: nix flake update
     - name: Push commit
