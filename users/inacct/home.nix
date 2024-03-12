@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    inputs.ags.homeManagerModules.default
     ../../modules/home/hyprland.nix
   ];
 
@@ -21,6 +22,10 @@
   fonts.fontconfig.enable = true;
 
   programs = {
+    ags = {
+      enable = true;
+      configDir = ./ags;
+    };
     wezterm.enable = true;
     firefox.enable = true;
     git.enable = true;
