@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.ags.homeManagerModules.default
     ../../modules/home/hyprland.nix
