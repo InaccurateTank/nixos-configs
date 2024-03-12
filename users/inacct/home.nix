@@ -28,7 +28,7 @@
     vscode = {
       enable = true;
       userSettings = {
-        "workbench.colorTheme" = "Horizon Dark";
+        "workbench.colorTheme" = "Horizon";
         "editor.fontFamily" = "'Iosevka Tonk Expanded'";
         "editor.fontSize" = 13;
         "editor.fontLigatures" = true;
@@ -61,14 +61,14 @@
         nordzy-themes = ["red"];
       };
     };
-    theme = {
-      name = "Flat-Remix-GTK-Red-Dark-Solid";
-      package = pkgs.flat-remix-gtk;
-    };
     # theme = {
-    #   name = "horizon-theme";
-    #   package = pkgs.flakePkgs.horizon-theme;
+    #   name = "Flat-Remix-GTK-Red-Dark-Solid";
+    #   package = pkgs.flat-remix-gtk;
     # };
+    theme = {
+      name = "horizon-theme";
+      package = pkgs.flakePkgs.horizon-theme;
+    };
     cursorTheme = {
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
