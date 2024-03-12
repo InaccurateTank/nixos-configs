@@ -83,11 +83,11 @@
 
         # File Dialogs
         "float, title:^(Save)(.*)$"
-        "maxsize 50% 70%, title:^(Save)(.*)$"
+        "size 50% 70%, title:^(Save)(.*)$"
         "pin, move 50% 30%, title:^(Save)(.*)$"
 
         "float, title:^(Open)(.*)$"
-        "maxsize 50% 70%, title:^(Open)(.*)$"
+        "size 50% 70%, title:^(Open)(.*)$"
         "pin, move 50% 30%, title:^(Open)(.*)$"
       ];
 
