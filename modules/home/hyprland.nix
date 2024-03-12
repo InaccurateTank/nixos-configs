@@ -3,7 +3,6 @@
   pkgs,
   ...
 }: {
-  home.sessionVariables = {NIXOS_OZONE_WL = "1";};
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -79,17 +78,21 @@
 
       windowrulev2 = [
         "float, class:thunar, title:^(.*)(Preferences)$"
-        "size 50% 70%, class:thunar, title:^(.*)(Preferences)$"
+        "maxsize 50% 70%, class:thunar, title:^(.*)(Preferences)$"
         "center, class:thunar, title:^(.*)(Preferences)$"
 
         # File Dialogs
         "float, title:^(Save)(.*)$"
-        "size 50% 70%, title:(Save)(.*)$"
+        "maxsize 50% 70%, title:^(Save)(.*)$"
         "pin, move 50% 30%, title:^(Save)(.*)$"
 
         "float, title:^(Open)(.*)$"
-        "size 50% 70%, title:(Open)(.*)$"
+        "maxsize 50% 70%, title:^(Open)(.*)$"
         "pin, move 50% 30%, title:^(Open)(.*)$"
+      ];
+
+      exec-once = [
+        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
       ];
 
       "$mod" = "SUPER";

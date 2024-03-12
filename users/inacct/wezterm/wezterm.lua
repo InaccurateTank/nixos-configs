@@ -52,12 +52,11 @@ config.default_cursor_style = "BlinkingUnderline"
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 -- Rendering issues on default webgpu choice, needs Gl
 config.front_end = 'WebGpu'
--- for _, gpu in ipairs(wez.gui.enumerate_gpus()) do
--- 	if gpu.backend == "Gl" then
--- 		config.webgpu_preferred_adapter = gpu
--- 		break
--- 	end
--- end
-config.enable_wayland = false
+for _, gpu in ipairs(wez.gui.enumerate_gpus()) do
+	if gpu.backend == "Gl" then
+		config.webgpu_preferred_adapter = gpu
+		break
+	end
+end
 
 return config
