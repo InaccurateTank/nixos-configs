@@ -28,17 +28,13 @@
     vscode = {
       enable = true;
       userSettings = {
-        workbench.colorTheme = "Horizon Dark";
-        editor = {
-          fontFamily = "'Iosevka Tonk Expanded'";
-          fontSize = 13;
-          fontLigatures = true;
-        };
-        terminal.integrated = {
-          fontFamily = "'Iosevka Tonk Term'";
-          fontSize = 13;
-          "shellIntegration.enabled" = false;
-        };
+        "workbench.colorTheme" = "Horizon Dark";
+        "editor.fontFamily" = "'Iosevka Tonk Expanded'";
+        "editor.fontSize" = 13;
+        "editor.fontLigatures" = true;
+        "terminal.integrated.fontFamily" = "'Iosevka Tonk Term'";
+        "terminal.integrated.fontSize" = 13;
+        "terminal.integrated.shellIntegration.enabled" = false;
       };
     };
     hyfetch = {
