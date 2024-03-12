@@ -25,7 +25,22 @@
     firefox.enable = true;
     git.enable = true;
     btop.enable = true;
-    vscode.enable = true;
+    vscode = {
+      enable = true;
+      userSettings = {
+        workbench.colorTheme = "Horizon Dark";
+        editor = {
+          fontFamily = "'Iosevka Tonk Expanded'";
+          fontSize = 13;
+          fontLigatures = true;
+        };
+        terminal.integrated = {
+          fontFamily = "'Iosevka Tonk Term'";
+          fontSize = 13;
+          "shellIntegration.enabled" = false;
+        };
+      };
+    };
     hyfetch = {
       enable = true;
       settings = {
