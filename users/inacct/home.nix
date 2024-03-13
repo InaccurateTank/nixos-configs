@@ -94,9 +94,12 @@
     };
   };
 
-  xdg.configFile."wezterm" = {
-    enable = true;
-    recursive = true;
-    source = ./wezterm;
+  xdg = {
+    mimeApps.defaultApplications = {};
+    configFile."wezterm" = {
+      enable = true;
+      recursive = true;
+      source = ./wezterm;
+    };
   };
 }

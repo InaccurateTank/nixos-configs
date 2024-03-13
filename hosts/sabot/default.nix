@@ -30,6 +30,10 @@
     ];
   };
 
+  environment.systemPackages = with pkgs; [
+    xdg-terminal-exec
+  ];
+
   networking.networkmanager.enable = true;
 
   security = {
@@ -72,8 +76,6 @@
   # };
 
   users.mutableUsers = false;
-
-  # documentation.nixos.enable = false;
 
   nix = {
     settings = {
