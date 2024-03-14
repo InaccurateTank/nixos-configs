@@ -70,14 +70,14 @@
         nordzy-themes = ["red"];
       };
     };
-    # theme = {
-    #   name = "Flat-Remix-GTK-Red-Dark-Solid";
-    #   package = pkgs.flat-remix-gtk;
-    # };
     theme = {
-      name = "horizon-theme";
-      package = pkgs.flakePkgs.horizon-theme;
+      name = "Flat-Remix-GTK-Grey-Dark-Solid";
+      package = pkgs.flat-remix-gtk;
     };
+    # theme = {
+    #   name = "horizon-theme";
+    #   package = pkgs.flakePkgs.horizon-theme;
+    # };
     cursorTheme = {
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;

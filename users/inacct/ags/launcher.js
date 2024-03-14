@@ -1,5 +1,5 @@
 const { query } = await Service.import("applications")
-const WINDOW_NAME = "applauncher"
+const WINDOW_NAME = "launcher"
 
 /** @param {import('resource:///com/github/Aylur/ags/service/applications.js').Application} app */
 const AppItem = app => Widget.Button({
