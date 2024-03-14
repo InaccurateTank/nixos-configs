@@ -152,6 +152,7 @@
       "sabot" = mkSystem {
         hostname = "sabot";
         extraModules = [
+          ./modules/nix/vscode-remote-fix.nix
           ./modules/nix/hyprland.nix
           ./users/inacct
         ];
