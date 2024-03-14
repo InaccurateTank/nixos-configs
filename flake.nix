@@ -136,7 +136,7 @@
       "heat" = mkSystem {
         hostname = "heat";
         extraModules = [
-          ./modules/nix/nix-ld.nix
+          ./modules/nix/vscode-remote-fix.nix
           ./users/inacct-wsl
         ];
       };
@@ -144,7 +144,7 @@
       "beehive" = mkSystem {
         hostname = "beehive";
         extraModules = [
-          ./modules/nix/nix-ld.nix
+          ./modules/nix/vscode-remote-fix.nix
           ./users/control
         ];
       };
