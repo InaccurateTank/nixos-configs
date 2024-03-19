@@ -71,13 +71,9 @@
       };
     };
     theme = {
-      name = "Flat-Remix-GTK-Grey-Dark-Solid";
-      package = pkgs.flat-remix-gtk;
+      name = "adw-gtk3-horizon";
+      package = pkgs.flakePkgs.adw-gtk3-horizon;
     };
-    # theme = {
-    #   name = "horizon-theme";
-    #   package = pkgs.flakePkgs.horizon-theme;
-    # };
     cursorTheme = {
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;

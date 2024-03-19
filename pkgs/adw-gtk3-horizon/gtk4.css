@@ -1,0 +1,53 @@
+/* BEGIN CUSTOMIZATION */
+
+@define-color accent_bg_color #6c6f93;
+@define-color accent_fg_color #d5d8da;
+@define-color accent_color #6c6f93;
+@define-color destructive_bg_color #e9436d;
+@define-color destructive_fg_color #d5d8da;
+@define-color destructive_color #e95378;
+@define-color success_bg_color #26a269;
+@define-color success_fg_color #ffffff;
+@define-color success_color #09f7a0;
+@define-color warning_bg_color #f09483;
+@define-color warning_fg_color #06060cb3;
+@define-color warning_color #fab38e;
+@define-color error_bg_color #f43e5c;
+@define-color error_fg_color #ffffff;
+@define-color error_color #ff7b63;
+@define-color window_bg_color #1c1e26;
+@define-color window_fg_color #bbbbbb;
+@define-color view_bg_color #232530;
+@define-color view_fg_color #d5d8da;
+@define-color headerbar_bg_color @window_bg_color;
+@define-color headerbar_fg_color @window_fg_color;
+@define-color headerbar_border_color #bbbbbb;
+@define-color headerbar_backdrop_color @window_bg_color;
+@define-color headerbar_shade_color rgba(255, 255, 255, 0);
+@define-color headerbar_darker_shade_color @headerbar_shade_color;
+@define-color sidebar_bg_color @window_bg_color;
+@define-color sidebar_fg_color @window_fg_color;
+@define-color sidebar_border_color @window_bg_color;
+@define-color sidebar_backdrop_color @window_bg_color;
+@define-color sidebar_shade_color @headerbar_shade_color;
+@define-color secondary_sidebar_bg_color @window_bg_color;
+@define-color secondary_sidebar_fg_color @window_fg_color;
+@define-color secondary_sidebar_backdrop_color @window_bg_color;
+@define-color secondary_sidebar_shade_color @headerbar_shade_color;
+@define-color card_bg_color rgba(255, 255, 255, 0.08);
+@define-color card_fg_color #d5d8da;
+@define-color card_shade_color #1a1c23b3;
+@define-color dialog_bg_color #2e303e;
+@define-color dialog_fg_color #d5d8da;
+@define-color popover_bg_color #232530;
+@define-color popover_fg_color #d5d8da;
+@define-color popover_shade_color @headerbar_shade_color;
+@define-color thumbnail_bg_color @window_bg_color;
+@define-color thumbnail_fg_color @window_fg_color;
+@define-color shade_color @headerbar_shade_color;
+@define-color scrollbar_outline_color rgba(0, 0, 0, 0.5);
+
+/* END CUSTOMIZATION */
+
+@import '../gtk-3.0/libadwaita.css';
+@import '../gtk-3.0/libadwaita-tweaks.css';
