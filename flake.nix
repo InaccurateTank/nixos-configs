@@ -4,7 +4,6 @@
   inputs = {
     # Packages
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # Core
     impermanence.url = "github:nix-community/impermanence";
@@ -37,10 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Programs
-    nix-software-center = {
-      url = "github:snowfallorg/nix-software-center";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # Other
+    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.3.0";
+    firefox-gnome-theme = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
     };
 
     # Formatter
@@ -63,7 +63,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
     home-manager,
     alejandra,
     ...
@@ -104,13 +103,6 @@
                     "vscode"
                   ];
                 overlays = [
-                  # Nixpkgs Stable import
-                  (final: prev: {
-                    stable = import nixpkgs-stable {
-                      system = prev.system;
-                    };
-                  })
-
                   # Flake packages added as overlay
                   (final: prev: {
                     flakePkgs = import ./pkgs prev;
