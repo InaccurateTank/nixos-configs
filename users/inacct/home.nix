@@ -91,7 +91,12 @@
   };
 
   xdg = {
-    mimeApps.defaultApplications = {};
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "inode/directory" = "thunar.desktop";
+      };
+    };
     configFile."wezterm" = {
       enable = true;
       recursive = true;

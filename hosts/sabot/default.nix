@@ -32,6 +32,7 @@
 
   environment.systemPackages = with pkgs; [
     xdg-terminal-exec
+    xdg-utils
   ];
 
   networking.networkmanager.enable = true;
@@ -66,6 +67,7 @@
       pulse.enable = true;
     };
     gvfs.enable = true;
+    tumbler.enable = true;
   };
 
   # xdg.portal = {
