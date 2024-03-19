@@ -8,9 +8,16 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "nixos-bgrt";
+      themePackages = [pkgs.nixos-bgrt-plymouth];
+    };
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   time.timeZone = "America/Los_Angeles";
