@@ -21,6 +21,10 @@
       flakePkgs.iosevka-tonk
       flakePkgs.iosevka-tonk-term
     ];
+    file."firefox-gnome-theme" = {
+      target = ".mozilla/firefox/default/chrome/firefox-gnome-theme";
+      source = inputs.firefox-gnome-theme;
+    };
   };
 
   fonts.fontconfig.enable = true;
@@ -31,9 +35,35 @@
       configDir = ./ags;
     };
     wezterm.enable = true;
-    firefox.enable = true;
+    firefox = {
+      enable = true;
+      profiles.default = {
+        name = "Default";
+        id = 0;
+        settings = {
+          # For Firefox GNOME theme:
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Enable customChrome.cs
+          "browser.uidensity" = 0; # Set UI density to normal
+          "svg.context-properties.content.enabled" = true; # Enable SVG context-propertes
+        };
+        userChrome = ''
+          @import "firefox-gnome-theme/userChrome.css";
+        '';
+        userContent = ''
+          @import "firefox-gnome-theme/userContent.css";
+        '';
+      };
+    };
     git.enable = true;
-    btop.enable = true;
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = "horizon";
+        theme_background = false;
+        rounded_corners = false;
+        proc_gradient = false;
+      };
+    };
     vscode = {
       enable = true;
       userSettings = {
