@@ -19,8 +19,8 @@
   installPhase = ''
     runHook preInstall
     install -D -t $out/share/themes/phocus-gtk/ index.theme
-    install -d assets $out/share/themes/phocus-gtk/assets
-    install -d gtk-3.0 $out/share/themes/phocus-gtk/gtk-3.0
+    mv assets $out/share/themes/phocus-gtk
+    mv gtk-3.0 $out/share/themes/phocus-gtk
     runHook postInstall
   '';
 
