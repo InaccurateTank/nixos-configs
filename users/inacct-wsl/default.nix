@@ -1,6 +1,7 @@
-{...}: {
+{pkgs, ...}: {
   users.users.inacct = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     extraGroups = ["wheel"];
   };
 
