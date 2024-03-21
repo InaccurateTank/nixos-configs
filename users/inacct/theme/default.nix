@@ -22,6 +22,12 @@
     };
   };
 
+  qt = {
+    enable = true;
+    platformTheme = "gtk3";
+    style.name = "kvantum";
+  };
+
   # GTK Theme Color Overrides
   xdg.configFile."gtk-3.0/gtk.css" = {
     enable = true;
