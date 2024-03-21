@@ -6,6 +6,7 @@
   imports = [
     inputs.ags.homeManagerModules.default
     ../../modules/home/hyprland.nix
+    ./theme
   ];
 
   home = {
@@ -106,29 +107,6 @@
       };
     };
     thefuck.enable = true;
-  };
-
-  gtk = {
-    enable = true;
-    font = {
-      name = "Cantarell";
-      package = pkgs.cantarell-fonts;
-    };
-    iconTheme = {
-      name = "Nordzy-red-dark";
-      package = pkgs.nordzy-icon-theme.override {
-        nordzy-themes = ["red"];
-      };
-    };
-    theme = {
-      name = "adw-gtk3-horizon";
-      package = pkgs.flakePkgs.adw-gtk3-horizon;
-    };
-    cursorTheme = {
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
-      size = 22;
-    };
   };
 
   xfconf.settings = {

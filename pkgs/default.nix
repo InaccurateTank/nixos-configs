@@ -14,7 +14,4 @@ in {
     ];
     vendorHash = "sha256-tR9DQYmI7dGvj0W0Dsze0/BaLjG84hecm0TPiCVSY2Y=";
   };
-
-  horizon-theme = callPackage ./horizon-theme.nix {};
-  adw-gtk3-horizon = callPackage ./adw-gtk3-horizon {};
 }
