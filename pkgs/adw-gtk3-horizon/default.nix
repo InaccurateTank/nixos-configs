@@ -4,7 +4,8 @@
   stdenvNoCC,
   adw-gtk3,
   ...
-}: stdenvNoCC.mkDerivation rec {
+}:
+stdenvNoCC.mkDerivation rec {
   pname = "adw-gtk3-horizon";
   version = adw-gtk3.version;
 
