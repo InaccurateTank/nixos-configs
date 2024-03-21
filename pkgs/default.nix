@@ -17,5 +17,4 @@ in {
 
   horizon-theme = callPackage ./horizon-theme.nix {};
   adw-gtk3-horizon = callPackage ./adw-gtk3-horizon {};
-  phocus-gtk = callPackage ./phocus-gtk.nix {};
 }

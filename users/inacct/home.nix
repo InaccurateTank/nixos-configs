@@ -101,13 +101,9 @@
       };
     };
     theme = {
-      name = "phocus-gtk";
-      package = pkgs.flakePkgs.phocus-gtk;
+      name = "adw-gtk3-horizon";
+      package = pkgs.flakePkgs.adw-gtk3-horizon;
     };
-    # theme = {
-    #   name = "adw-gtk3-horizon";
-    #   package = pkgs.flakePkgs.adw-gtk3-horizon;
-    # };
     cursorTheme = {
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
