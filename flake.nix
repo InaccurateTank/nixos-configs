@@ -113,6 +113,7 @@
                   })
                 ];
               };
+              nix.settings.experimental-features = ["nix-command" "flakes"];
             })
             ./hosts/${hostname}
             ./modules/nix/security.nix

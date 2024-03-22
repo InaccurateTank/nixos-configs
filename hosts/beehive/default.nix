@@ -74,7 +74,6 @@
   users.defaultUserShell = pkgs.zsh;
 
   nix = {
-    settings.experimental-features = ["nix-command" "flakes"];
     settings.auto-optimise-store = true;
     gc = {
       automatic = true;
