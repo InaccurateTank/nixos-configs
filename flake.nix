@@ -67,98 +67,42 @@
   outputs = {
     self,
     nixpkgs,
-    home-manager,
     alejandra,
     ...
   } @ inputs: let
-    # All Possible Systems
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-
-    # System builder
-    mkSystem = {
-      system ? "x86_64-linux",
-      hostname ? "nixos",
-      extraModules ? [],
-    }:
-      nixpkgs.lib.nixosSystem {
-        system = system;
-        specialArgs = {inherit inputs;};
-        modules =
-          [
-            home-manager.nixosModules.home-manager
-            ({lib, ...}: {
-              networking.hostName = hostname;
-              home-manager = {
-                useUserPackages = true;
-                useGlobalPkgs = true;
-                extraSpecialArgs = {inherit inputs;};
-              };
-              nixpkgs = {
-                config.allowUnfreePredicate = pkg:
-                  builtins.elem (lib.getName pkg) [
-                    "vscode"
-                  ];
-                overlays = [
-                  # Flake packages added as overlay
-                  (final: prev: {
-                    flakePkgs = import ./pkgs prev;
-                  })
-                ];
-              };
-              nix.settings.experimental-features = ["nix-command" "flakes"];
-            })
-            ./modules/nix
-            ./hosts/${hostname}
-          ]
-          ++ extraModules;
-      };
+    flakeLib = import ./lib.nix {
+      inherit (nixpkgs) lib;
+      inherit inputs;
+    };
   in {
     # Formatter for nix fmt
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = flakeLib.forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     # Packages exposed externally for easy build debugging
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    packages = flakeLib.forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
     # Actual NixOs configs
-    nixosConfigurations = {
+    nixosConfigurations = with flakeLib; {
       # WSL
       "heat" = mkSystem {
         hostname = "heat";
-        extraModules = [
-          {
-            flakePresets.vscode-remote-fix.enable = true;
-            flakePresets.security.apparmor.enable = false;
-          }
-          ./users/inacct-wsl
+        wsl = true;
+        users = [
+          "inacct-wsl"
         ];
       };
       # VM
       "beehive" = mkSystem {
         hostname = "beehive";
-        extraModules = [
-          {
-            flakePresets.vscode-remote-fix.enable = true;
-          }
-          ./users/control
+        users = [
+          "control"
         ];
       };
       # Desktop
       "sabot" = mkSystem {
         hostname = "sabot";
-        extraModules = [
-          {
-            flakePresets.vscode-remote-fix.enable = true;
-            flakePresets.hyprland.enable = true;
-          }
-          ./users/inacct
+        users = [
+          "inacct"
         ];
       };
     };

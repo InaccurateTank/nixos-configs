@@ -8,6 +8,11 @@
     ./hardware-configuration.nix
   ];
 
+  flakePresets = {
+    vscode-remote-fix.enable = true;
+    hyprland.enable = true;
+  };
+
   boot = {
     plymouth = {
       enable = true;

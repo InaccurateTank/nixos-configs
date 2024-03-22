@@ -3,9 +3,7 @@
   pkgs,
   ...
 }: {
-  imports = [
-    inputs.nixos-wsl.nixosModules.wsl
-  ];
+  flakePresets.vscode-remote-fix.enable = true;
 
   wsl = {
     enable = true;

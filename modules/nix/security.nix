@@ -7,12 +7,14 @@
   cfg = config.flakePresets.security;
 in {
   options.flakePresets.security = {
-    enable = lib.mkEnableOption "flake security preset"
-    // {default = true;};
+    enable =
+      lib.mkEnableOption "flake security preset"
+      // {default = true;};
 
     # Apparmor completely fails on wsl so add an option to disable it.
-    apparmor.enable = lib.mkEnableOption "apparmor for the security preset"
-    // {default = true;};
+    apparmor.enable =
+      lib.mkEnableOption "apparmor for the security preset"
+      // {default = true;};
   };
 
   config = lib.mkIf cfg.enable {
