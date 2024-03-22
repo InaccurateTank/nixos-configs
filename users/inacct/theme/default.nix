@@ -47,7 +47,7 @@
   xdg.configFile."Kvantum/KvLibadwaita" = {
     enable = true;
     recursive = true;
-    source = ${inputs.firefox-gnome-theme}/src/KvLibadwaita;
+    source = "${inputs.kvlibadwaita}/src/KvLibadwaita";
   };
   xdg.configFile."Kvantum/kvantum.kvconfig" = {
     enable = true;
