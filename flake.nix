@@ -117,6 +117,7 @@
             })
             ./hosts/${hostname}
             ./modules/nix/security.nix
+            ./modules/nix/gc.nix
           ]
           ++ extraModules;
       };
