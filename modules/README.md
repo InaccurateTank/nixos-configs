@@ -2,7 +2,7 @@
 
 Nix(OS):
 |Module|Purpose|Default Enabled?|
-|---|---|---|
+|---|---|:-:|
 |gc|Nix store garbage collection and optimization|:heavy_check_mark:|
 |hyprland|Hyprland WM base setup|:x:|
 |nix-ld|Library linking using nix-ld-rs|:x:|
