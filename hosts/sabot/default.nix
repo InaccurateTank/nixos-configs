@@ -44,11 +44,9 @@
 
   networking.networkmanager.enable = true;
 
-  security = {
-    sudo.extraConfig = ''
-      Defaults lecture = never
-    '';
-  };
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
 
   programs = {
     zsh.enable = true;

@@ -42,6 +42,10 @@
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
     };
+    kvlibadwaita = {
+      url = "github:GabePoel/KvLibadwaita";
+      flake = false;
+    };
 
     # Formatter
     alejandra = {

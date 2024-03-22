@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  #GTK Theme
   gtk = {
     enable = true;
     font = {
@@ -22,12 +27,6 @@
     };
   };
 
-  qt = {
-    enable = true;
-    platformTheme = "gtk3";
-    style.name = "kvantum";
-  };
-
   # GTK Theme Color Overrides
   xdg.configFile."gtk-3.0/gtk.css" = {
     enable = true;
@@ -36,5 +35,25 @@
   xdg.configFile."gtk-4.0/gtk.css" = {
     enable = true;
     source = ./horizon-dark.css;
+  };
+
+  # QT Theme
+  qt = {
+    enable = true;
+    platformTheme = "gtk3";
+    style.name = "kvantum";
+  };
+
+  xdg.configFile."Kvantum/KvLibadwaita" = {
+    enable = true;
+    recursive = true;
+    source = ${inputs.firefox-gnome-theme}/src/KvLibadwaita;
+  };
+  xdg.configFile."Kvantum/kvantum.kvconfig" = {
+    enable = true;
+    text = ''
+      [General]
+      theme=KvLibadwaitaDark
+    '';
   };
 }
