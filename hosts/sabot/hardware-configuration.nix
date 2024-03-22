@@ -15,7 +15,7 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "none";
+    device = "tmpfs";
     fsType = "tmpfs";
     options = ["defaults" "size=2G" "mode=755"];
   };
