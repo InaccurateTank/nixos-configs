@@ -382,6 +382,22 @@
         "type": "github"
       }
     },
+    "kvlibadwaita": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710621848,
+        "narHash": "sha256-xBl6zmpqTAH5MIT5iNAdW6kdOcB5MY0Dtrb95hdYpwA=",
+        "owner": "GabePoel",
+        "repo": "KvLibadwaita",
+        "rev": "87c1ef9f44ec48855fd09ddab041007277e30e37",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GabePoel",
+        "repo": "KvLibadwaita",
+        "type": "github"
+      }
+    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1708268179,
@@ -489,6 +505,7 @@
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
         "impermanence": "impermanence",
+        "kvlibadwaita": "kvlibadwaita",
         "nix-flatpak": "nix-flatpak",
         "nix-ld-rs": "nix-ld-rs",
         "nixos-wsl": "nixos-wsl",
