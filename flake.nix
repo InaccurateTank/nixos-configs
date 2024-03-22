@@ -115,9 +115,8 @@
               };
               nix.settings.experimental-features = ["nix-command" "flakes"];
             })
+            ./modules/nix
             ./hosts/${hostname}
-            ./modules/nix/security.nix
-            ./modules/nix/gc.nix
           ]
           ++ extraModules;
       };
@@ -134,7 +133,10 @@
       "heat" = mkSystem {
         hostname = "heat";
         extraModules = [
-          ./modules/nix/vscode-remote-fix.nix
+          {
+            flakePresets.vscode-remote-fix.enable = true;
+            flakePresets.security.apparmor.enable = false;
+          }
           ./users/inacct-wsl
         ];
       };
@@ -142,7 +144,9 @@
       "beehive" = mkSystem {
         hostname = "beehive";
         extraModules = [
-          ./modules/nix/vscode-remote-fix.nix
+          {
+            flakePresets.vscode-remote-fix.enable = true;
+          }
           ./users/control
         ];
       };
@@ -150,8 +154,10 @@
       "sabot" = mkSystem {
         hostname = "sabot";
         extraModules = [
-          ./modules/nix/vscode-remote-fix.nix
-          ./modules/nix/hyprland.nix
+          {
+            flakePresets.vscode-remote-fix.enable = true;
+            flakePresets.hyprland.enable = true;
+          }
           ./users/inacct
         ];
       };

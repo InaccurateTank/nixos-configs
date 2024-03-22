@@ -1,23 +1,27 @@
 {
-  lib,
   config,
+  lib,
   pkgs,
   ...
-}: {
-  imports = [
-    ./nix-ld.nix
-  ];
+}: let
+  cfg = config.flakePresets.vscode-remote-fix;
+in {
+  options.flakePresets.vscode-remote-fix.enable = lib.mkEnableOption "flake vscode remote fixer preset";
 
-  environment.systemPackages = with pkgs; [
-    wget
-  ];
+  config = lib.mkIf cfg.enable {
+    flakePresets.nix-ld.enable = true;
 
-  system.activationScripts.vscodeFixUsers = with lib; let
-    fixFile = pkgs.writeText "vscodeRemoteFix" ''
-      PATH=$PATH:/run/current-system/sw/bin/
-    '';
-    realUsers = filterAttrs (_: v: v.isNormalUser && v.home != "/var/empty") config.users.users;
-    cmdList = mapAttrsToList (_: v: "install -d -m 755 -o ${v.name} -g users ${v.home}/.vscode-server && ln -fs ${fixFile} ${v.home}/.vscode-server/server-env-setup") realUsers;
-  in
-    concatLines cmdList;
+    environment.systemPackages = with pkgs; [
+      wget
+    ];
+
+    system.activationScripts.vscodeFixUsers = with lib; let
+      fixFile = pkgs.writeText "vscodeRemoteFix" ''
+        PATH=$PATH:/run/current-system/sw/bin/
+      '';
+      realUsers = filterAttrs (_: v: v.isNormalUser && v.home != "/var/empty") config.users.users;
+      cmdList = mapAttrsToList (_: v: "install -d -m 755 -o ${v.name} -g users ${v.home}/.vscode-server && ln -fs ${fixFile} ${v.home}/.vscode-server/server-env-setup") realUsers;
+    in
+      concatLines cmdList;
+  };
 }
