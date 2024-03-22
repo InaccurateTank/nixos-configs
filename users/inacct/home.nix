@@ -5,7 +5,7 @@
 }: {
   imports = [
     inputs.ags.homeManagerModules.default
-    ../../modules/home/hyprland.nix
+    ./hyprland.nix
     ./theme
   ];
 
