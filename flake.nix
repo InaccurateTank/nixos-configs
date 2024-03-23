@@ -70,16 +70,25 @@
     alejandra,
     ...
   } @ inputs: let
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+    forAllSystems = lib.genAttrs systems;
+
     flakeLib = import ./lib.nix {
       inherit (nixpkgs) lib;
       inherit inputs;
     };
   in {
     # Formatter for nix fmt
-    formatter = flakeLib.forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     # Packages exposed externally for easy build debugging
-    packages = flakeLib.forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
     # Actual NixOs configs
     nixosConfigurations = with flakeLib; {

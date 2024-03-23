@@ -1,19 +1,7 @@
 {
   lib,
   inputs,
-}: let
-  # All Possible Systems
-  systems = [
-    "aarch64-linux"
-    "i686-linux"
-    "x86_64-linux"
-    "aarch64-darwin"
-    "x86_64-darwin"
-  ];
-in {
-  # Fetches correct system
-  forAllSystems = lib.genAttrs systems;
-
+}: {
   # System builder
   mkSystem = {
     system ? "x86_64-linux",
