@@ -11,43 +11,47 @@
   plugins ? [],
   vendorHash ? null,
 }:
-
 caddy.override {
-  buildGoModule = args: buildGoModule (args // {
-    src = stdenv.mkDerivation {
-      pname = "caddy-using-xcaddy-${xcaddy.version}";
-      inherit (caddy) version;
+  buildGoModule = args:
+    buildGoModule (args
+      // {
+        src = stdenv.mkDerivation {
+          pname = "caddy-using-xcaddy-${xcaddy.version}";
+          inherit (caddy) version;
 
-      dontUnpack = true;
-      dontFixup = true;
+          dontUnpack = true;
+          dontFixup = true;
 
-      nativeBuildInputs = [
-        cacert
-        go
-      ];
+          nativeBuildInputs = [
+            cacert
+            go
+          ];
 
-      configurePhase = ''
-        export GOCACHE=$TMPDIR/go-cache
-        export GOPATH="$TMPDIR/go"
-        export XCADDY_SKIP_BUILD=1
-      '';
+          configurePhase = ''
+            export GOCACHE=$TMPDIR/go-cache
+            export GOPATH="$TMPDIR/go"
+            export XCADDY_SKIP_BUILD=1
+          '';
 
-      buildPhase = ''
-        ${xcaddy}/bin/xcaddy build "${caddy.src.rev}" ${lib.concatMapStringsSep " " (plugin: "--with ${plugin}") plugins}
-        cd buildenv*
-        go mod vendor
-      '';
+          buildPhase = ''
+            ${xcaddy}/bin/xcaddy build "${caddy.src.rev}" ${lib.concatMapStringsSep " " (plugin: "--with ${plugin}") plugins}
+            cd buildenv*
+            go mod vendor
+          '';
 
-      installPhase = ''
-        cp -r --reflink=auto . $out
-      '';
+          installPhase = ''
+            cp -r --reflink=auto . $out
+          '';
 
-      outputHash = if (vendorHash != null) then vendorHash else lib.fakeHash;
-      outputHashMode = "recursive";
-    };
+          outputHash =
+            if (vendorHash != null)
+            then vendorHash
+            else lib.fakeHash;
+          outputHashMode = "recursive";
+        };
 
-    subPackages = [ "." ];
-    ldflags = [ "-s" "-w" ]; ## don't include version info twice
-    vendorHash = null;
-  });
+        subPackages = ["."];
+        ldflags = ["-s" "-w"]; ## don't include version info twice
+        vendorHash = null;
+      });
 }

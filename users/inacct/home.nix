@@ -21,6 +21,10 @@
     packages = with pkgs; [
       flakePkgs.iosevka-tonk
       flakePkgs.iosevka-tonk-term
+
+      loupe # Gnome Image Viewer
+      evince # Gnome PDF Viewer
+      celluloid # Video Player
     ];
     file."firefox-gnome-theme" = {
       target = ".mozilla/firefox/default/chrome/firefox-gnome-theme";
