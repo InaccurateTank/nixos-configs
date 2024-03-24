@@ -76,12 +76,6 @@
   users.defaultUserShell = pkgs.zsh;
 
   system = {
-    autoUpgrade = {
-      enable = true;
-      allowReboot = true;
-      dates = "03:00";
-      flake = "github:InaccurateTank/nixos-configs";
-    };
     stateVersion = "23.11";
   };
 }

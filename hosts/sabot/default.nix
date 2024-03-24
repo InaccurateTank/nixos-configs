@@ -28,6 +28,7 @@
   time.timeZone = "America/Los_Angeles";
 
   environment.persistence."/nix/persist" = {
+    hideMounts = true;
     directories = [
       "/etc/nixos" # nixos system config files
       "/var/lib" # system service persistent data
@@ -90,12 +91,6 @@
   users.mutableUsers = false;
 
   system = {
-    # autoUpgrade = {
-    #   enable = true;
-    #   allowReboot = true;
-    #   dates = "03:00";
-    #   flake = "github:InaccurateTank/nixos-configs";
-    # };
     stateVersion = "23.11";
   };
 }

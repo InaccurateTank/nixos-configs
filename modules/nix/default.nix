@@ -1,5 +1,6 @@
 {
   imports = [
+    ./auto-upgrade.nix
     ./gc.nix
     ./hyprland.nix
     ./nix-ld.nix
