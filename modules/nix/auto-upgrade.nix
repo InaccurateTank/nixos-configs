@@ -19,8 +19,7 @@ in {
     system = {
       autoUpgrade = {
         enable = true;
-        operation = mkIf (! cfg.reboot) "switch";
-        enable = true;
+        operation = lib.mkIf (! cfg.reboot) "switch";
         allowReboot = cfg.reboot;
         dates = "03:00";
         flake = "github:InaccurateTank/nixos-configs";
