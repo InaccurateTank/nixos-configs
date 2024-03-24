@@ -77,7 +77,7 @@
       "aarch64-darwin"
       "x86_64-darwin"
     ];
-    forAllSystems = lib.genAttrs systems;
+    forAllSystems = nixpkgs.lib.genAttrs systems;
 
     flakeLib = import ./lib.nix {
       inherit (nixpkgs) lib;
