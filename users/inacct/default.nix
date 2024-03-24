@@ -16,5 +16,15 @@
     hashedPasswordFile = "/nix/persist/passwords/inacct";
   };
 
+  environment.persistence."/nix/persist".users.inacct = {
+    directories = [
+      "Downloads"
+      "Music"
+      "Pictures"
+      "Documents"
+      "Videos"
+    ];
+  };
+
   home-manager.users.inacct = ./home.nix;
 }
