@@ -2,8 +2,9 @@ import { launcher } from "./launcher.js"
 
 const launcherButton = Widget.Button({
   child: Widget.Icon({
-    icon: 'nix-snowflake-symbolic',
+    icon: 'nixos-symbolic',
     size: 20,
+    css: 'color: #d5d8da;'
   }),
   onClicked: () => App.toggleWindow("launcher"),
 })
