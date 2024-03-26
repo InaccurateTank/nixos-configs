@@ -15,8 +15,10 @@ in {
       trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
-    environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      WLR_NO_HARDWARE_CURSORS = "1";
+    };
 
     programs = {
       hyprland = {
@@ -26,5 +28,7 @@ in {
         xwayland.enable = true;
       };
     };
+
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 }

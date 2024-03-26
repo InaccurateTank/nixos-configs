@@ -11,9 +11,7 @@ in {
   config = lib.mkIf cfg.enable {
     flakePresets.nix-ld.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      wget
-    ];
+    environment.systemPackages = [pkgs.wget];
 
     system.activationScripts.vscodeFixUsers = with lib; let
       fixFile = pkgs.writeText "vscodeRemoteFix" ''
