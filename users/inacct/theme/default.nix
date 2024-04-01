@@ -11,9 +11,9 @@
       package = pkgs.cantarell-fonts;
     };
     iconTheme = {
-      name = "Nordzy-red-dark";
-      package = pkgs.nordzy-icon-theme.override {
-        nordzy-themes = ["red"];
+      name = "Papirus-Dark";
+      package = pkgs.papirus-nord.override {
+        accent = "aurorared";
       };
     };
     theme = {
