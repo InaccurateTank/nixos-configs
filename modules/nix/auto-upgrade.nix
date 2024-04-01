@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.flakePresets.auto-upgrade;
+  cfg = config.flakeMods.auto-upgrade;
 in {
-  options.flakePresets.auto-upgrade = {
+  options.flakeMods.auto-upgrade = {
     enable = lib.mkEnableOption "flake automatic upgrade preset";
 
     reboot = lib.mkOption {

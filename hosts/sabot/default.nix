@@ -8,7 +8,7 @@
     ./hardware-configuration.nix
   ];
 
-  flakePresets = {
+  flakeMods = {
     vscode-remote-fix.enable = true;
     hyprland.enable = true;
     secrets.enable = true;

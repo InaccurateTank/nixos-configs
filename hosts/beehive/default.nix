@@ -10,7 +10,7 @@
     ./hardware-configuration.nix
   ];
 
-  flakePresets = {
+  flakeMods = {
     vscode-remote-fix.enable = true;
     secrets = {
       enable = true;

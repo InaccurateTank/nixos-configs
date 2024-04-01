@@ -5,9 +5,9 @@
   flakeRoot,
   ...
 }: let
-  cfg = config.flakePresets.secrets;
+  cfg = config.flakeMods.secrets;
 in {
-  options.flakePresets.secrets = {
+  options.flakeMods.secrets = {
     enable = lib.mkEnableOption "machine secrets management";
 
     useSshKey = lib.mkOption {

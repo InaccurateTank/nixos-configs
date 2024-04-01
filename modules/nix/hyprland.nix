@@ -5,9 +5,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.flakePresets.hyprland;
+  cfg = config.flakeMods.hyprland;
 in {
-  options.flakePresets.hyprland.enable = lib.mkEnableOption "flake Hyprland preset";
+  options.flakeMods.hyprland.enable = lib.mkEnableOption "flake Hyprland preset";
 
   config = lib.mkIf cfg.enable {
     nix.settings = {

@@ -5,9 +5,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.flakePresets.nix-ld;
+  cfg = config.flakeMods.nix-ld;
 in {
-  options.flakePresets.nix-ld.enable = lib.mkEnableOption "flake nix-ld preset";
+  options.flakeMods.nix-ld.enable = lib.mkEnableOption "flake nix-ld preset";
 
   config = lib.mkIf cfg.enable {
     programs.nix-ld = {

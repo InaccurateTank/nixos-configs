@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  flakePresets.vscode-remote-fix.enable = true;
+  flakeMods.vscode-remote-fix.enable = true;
 
   wsl = {
     enable = true;

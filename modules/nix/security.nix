@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.flakePresets.security;
+  cfg = config.flakeMods.security;
 in {
-  options.flakePresets.security = {
+  options.flakeMods.security = {
     enable =
       lib.mkEnableOption "flake security preset"
       // {default = true;};

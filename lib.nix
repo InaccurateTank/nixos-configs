@@ -50,7 +50,7 @@
         ]
         ++ lib.optionals wsl [
           inputs.nixos-wsl.nixosModules.wsl
-          {flakePresets.security.apparmor.enable = false;}
+          {flakeMods.security.apparmor.enable = false;}
         ]
         ++ builtins.map (x: ./users/${x}) users
         ++ extraModules;

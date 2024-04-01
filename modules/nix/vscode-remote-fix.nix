@@ -4,12 +4,12 @@
   pkgs,
   ...
 }: let
-  cfg = config.flakePresets.vscode-remote-fix;
+  cfg = config.flakeMods.vscode-remote-fix;
 in {
-  options.flakePresets.vscode-remote-fix.enable = lib.mkEnableOption "flake vscode remote fixer preset";
+  options.flakeMods.vscode-remote-fix.enable = lib.mkEnableOption "flake vscode remote fixer preset";
 
   config = lib.mkIf cfg.enable {
-    flakePresets.nix-ld.enable = true;
+    flakeMods.nix-ld.enable = true;
 
     environment.systemPackages = [pkgs.wget];
 

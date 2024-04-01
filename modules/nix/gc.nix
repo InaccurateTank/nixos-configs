@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.flakePresets.gc;
+  cfg = config.flakeMods.gc;
 in {
-  options.flakePresets.gc.enable =
+  options.flakeMods.gc.enable =
     lib.mkEnableOption "flake garbage collecting preset"
     // {default = true;};
 
