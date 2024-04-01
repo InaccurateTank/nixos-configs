@@ -1,8 +1,11 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }: {
+  sops.secrets."inacctPass".neededForUsers = true;
+
   users.users.inacct = {
     isNormalUser = true;
     shell = pkgs.zsh;
@@ -13,7 +16,7 @@
     openssh.authorizedKeys.keyFiles = [
       ../keys/id_inacct.pub
     ];
-    hashedPasswordFile = "/nix/persist/passwords/inacct";
+    hashedPasswordFile = config.sops.secrets."inacctPass".path;
   };
 
   environment.persistence."/nix/persist".users.inacct = {

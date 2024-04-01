@@ -1,7 +1,14 @@
 {
   lib,
   inputs,
+  flakeRoot,
 }: {
+  # Simple path fetcher for the externally stored secrets
+  fetchSecret = path: "${inputs.secrets}/${path}";
+
+  # Simple fetcher for user public keys for ssh
+  fetchPubKeys = keys: lib.map (k: "${flakeRoot}/users/keys/${k}.pub") keys;
+
   # System builder
   mkSystem = {
     system ? "x86_64-linux",
@@ -15,6 +22,7 @@
       specialArgs = {inherit inputs;};
       modules =
         [
+          inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           {
             networking.hostName = hostname;

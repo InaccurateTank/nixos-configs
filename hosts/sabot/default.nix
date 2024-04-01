@@ -11,6 +11,7 @@
   flakePresets = {
     vscode-remote-fix.enable = true;
     hyprland.enable = true;
+    secrets.enable = true;
   };
 
   boot = {
@@ -33,6 +34,11 @@
       "/etc/nixos" # nixos system config files
       "/var/lib" # system service persistent data
       "/var/log" # the place that journald dumps logs to
+      {
+        # Secret repo ssh
+        directory = "/root/.ssh";
+        mode = "0700";
+      }
     ];
     files = [
       "/etc/ssh/ssh_host_rsa_key"

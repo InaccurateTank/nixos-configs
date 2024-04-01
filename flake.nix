@@ -2,10 +2,8 @@
   description = "Tonks NixOS system configs";
 
   inputs = {
-    # Packages
+    ###### Core ######
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # Core
     impermanence.url = "github:nix-community/impermanence";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -19,8 +17,12 @@
       url = "github:nix-community/nix-ld-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # WM
+    ###### Hyprland Stuff ######
     ags = {
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +38,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Other
+    ###### Other Flakes ######
     nix-flatpak.url = "github:gmodena/nix-flatpak/v0.3.0";
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
@@ -47,13 +49,13 @@
       flake = false;
     };
 
-    # Formatter
+    ###### Formatter ######
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Custom
+    ###### Personal ######
     pterodactyl = {
       url = "github:InaccurateTank/pterodactyl-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,6 +63,10 @@
     crowdsec = {
       url = "github:InaccurateTank/crowdsec-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    secrets = {
+      url = "git+ssh://git@git.inaccuratetank.gay/inaccuratetank/nix-secrets.git?ref=main&shallow=1";
+      flake = false;
     };
   };
 
@@ -79,9 +85,11 @@
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
+    flakeRoot = ./.;
+
     flakeLib = import ./lib.nix {
       inherit (nixpkgs) lib;
-      inherit inputs;
+      inherit inputs flakeRoot;
     };
   in {
     # Formatter for nix fmt

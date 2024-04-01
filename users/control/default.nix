@@ -1,11 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
+  sops.secrets."controlPass".neededForUsers = true;
+
   users.users.control = {
     isNormalUser = true;
     extraGroups = ["wheel"];
     openssh.authorizedKeys.keyFiles = [
       ../keys/id_inacct.pub
     ];
-    hashedPasswordFile = "/nix/persist/passwords/control";
+    hashedPasswordFile = config.sops.secrets."controlPass".path;
     packages = with pkgs; [
       git
     ];

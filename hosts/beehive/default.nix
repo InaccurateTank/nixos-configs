@@ -10,7 +10,13 @@
     ./hardware-configuration.nix
   ];
 
-  flakePresets.vscode-remote-fix.enable = true;
+  flakePresets = {
+    vscode-remote-fix.enable = true;
+    secrets = {
+      enable = true;
+      useSshKey = true;
+    };
+  };
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -36,9 +42,15 @@
     directories = [
       "/etc/nixos" # nixos system config files
       "/etc/crowdsec"
+      "/etc/sops"
       "/srv" # service data
       "/var/lib" # system service persistent data
       "/var/log" # the place that journald dumps logs to
+      {
+        # Secret repo ssh
+        directory = "/root/.ssh";
+        mode = "0700";
+      }
     ];
     files = [
       "/etc/ssh/ssh_host_rsa_key"
