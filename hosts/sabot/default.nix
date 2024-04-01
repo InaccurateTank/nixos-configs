@@ -11,7 +11,10 @@
   flakeMods = {
     vscode-remote-fix.enable = true;
     hyprland.enable = true;
-    secrets.enable = true;
+    secrets = {
+      enable = true;
+      useSshKey = true;
+    };
   };
 
   boot = {
