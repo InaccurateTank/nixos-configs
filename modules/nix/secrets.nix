@@ -23,7 +23,7 @@ in {
       validateSopsFiles = false;
       age =
         {
-          keyFile = /etc/sops-nix/key.txt;
+          keyFile = "/var/lib/sops-nix/key.txt";
         }
         // lib.optionalAttrs cfg.useSshKey {
           sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
