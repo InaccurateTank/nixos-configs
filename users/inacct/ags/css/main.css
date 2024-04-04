@@ -1,0 +1,13 @@
+* {
+  font-family: 'Iosevka Tonk';
+}
+
+label {
+    color: @theme_fg_color;
+    font-weight: bold;
+}
+
+/* WIDGET IMPORTS */
+@import "launcher-button.css";
+@import "bar.css";
+@import "clock.css";

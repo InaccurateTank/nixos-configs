@@ -90,7 +90,7 @@ const Applauncher = ({ width = 500, height = 500, spacing = 12 }) => {
 }
 
 // there needs to be only one instance
-export const launcher = Widget.Window({
+const launcher = Widget.Window({
     name: WINDOW_NAME,
     setup: self => self.keybind("Escape", () => {
         App.closeWindow(WINDOW_NAME)
@@ -103,3 +103,5 @@ export const launcher = Widget.Window({
         spacing: 12,
     }),
 })
+
+export default launcher

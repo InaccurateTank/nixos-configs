@@ -1,0 +1,13 @@
+.clock {
+  padding: 0 8px;
+}
+
+.clock-date {
+  font-size: 0.8rem;
+  color: @theme_fg_color;
+}
+
+.clock-time {
+  font-size: 1rem;
+  color: @theme_fg_color;
+}

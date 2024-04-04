@@ -1,0 +1,29 @@
+@keyframes spin {
+  to { -gtk-icon-transform: rotate(1turn); }
+}
+
+.launcher-button {
+  background: @theme_bg_color;
+  padding-right: 8px;
+}
+
+.launcher-button button {
+  all: unset;
+  padding: 4px 8px;
+
+  background-image: linear-gradient(transparent 50%, @theme_selected_bg_color 50%);
+  background-size: 100% 200%;
+  background-position: right top;
+  transition: .2s ease-out;
+}
+
+.launcher-button button:active image {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.launcher-button button:hover {
+  background-position: right bottom;
+}
