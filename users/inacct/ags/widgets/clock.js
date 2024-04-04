@@ -1,5 +1,5 @@
 const timeVar = Variable("", {
-  poll: [1000, ["date", "+%H:%M %p"]]
+  poll: [1000, ["date", "+%l:%M %p"]]
 })
 
 const dateVar = Variable("", {
@@ -12,14 +12,14 @@ const Clock = Widget.EventBox({
     vertical: true,
     children: [
       Widget.Label({
+          class_name: "clock-time",
+          hpack: "end",
+          label: timeVar.bind()
+      }),
+      Widget.Label({
         class_name: "clock-date",
         hpack: "end",
         label: dateVar.bind()
-      }),
-      Widget.Label({
-        class_name: "clock-time",
-        hpack: "end",
-        label: timeVar.bind()
       }),
     ],
   })

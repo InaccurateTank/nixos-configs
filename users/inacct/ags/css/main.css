@@ -8,6 +8,6 @@ label {
 }
 
 /* WIDGET IMPORTS */
-@import "launcher-button.css";
 @import "bar.css";
 @import "clock.css";
+@import "title.css";

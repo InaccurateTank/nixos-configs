@@ -1,11 +1,8 @@
 import Gtk from "gi://Gtk?version=3.0"
 import Clock from "./clock.js"
 import SysTray from "./systray.js"
-
-const label = Widget.Label({
-    class_name: "bar-widget",
-    label: 'center widget'
-})
+import Workspaces from "./workspaces.js"
+import WindowTitle from "./title.js"
 
 const BarCorner = (place) => Widget.DrawingArea({
     class_name: "bar-widget",
@@ -80,6 +77,7 @@ const launcherButton = Widget.Box({
 const StartBox = Widget.Box({
     children: [
         launcherButton,
+        Workspaces,
         BarCorner("right"),
     ],
 })
@@ -87,7 +85,7 @@ const StartBox = Widget.Box({
 const CenterBox = Widget.Box({
     children: [
         BarCorner("left"),
-        label,
+        WindowTitle,
         BarCorner("right"),
     ],
 })
@@ -101,7 +99,7 @@ const EndBox = Widget.Box({
     ],
 })
 
-const bar = Widget.Window({
+const Bar = Widget.Window({
   name: 'bar',
   class_name: "bar",
   anchor: ['top', 'left', 'right'],
@@ -113,4 +111,4 @@ const bar = Widget.Window({
   }),
 })
 
-export default bar
+export default Bar

@@ -1,13 +1,9 @@
-.clock {
-  padding: 0 8px;
-}
-
-.clock-time {
+.title-window {
   font-size: 1rem;
   color: @theme_fg_color;
 }
 
-.clock-date {
+.title-program {
   font-size: 0.8rem;
   color: @theme_fg_color;
 }

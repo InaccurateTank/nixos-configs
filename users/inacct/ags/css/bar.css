@@ -1,3 +1,7 @@
+@keyframes spin {
+  to { -gtk-icon-transform: rotate(1turn); }
+}
+
 .bar {
   background-color: transparent;
   color: @theme_selected_bg_color;
@@ -7,4 +11,29 @@
   min-width: 0;
   background: @theme_bg_color;
   border-bottom: 1px solid @theme_selected_bg_color;
+}
+
+.bar button {
+  all: unset;
+  padding: 4px 8px;
+
+  background-image: linear-gradient(transparent 50%, @theme_selected_bg_color 50%);
+  background-size: 100% 200%;
+  background-position: right top;
+  transition: .2s ease-out;
+}
+
+.bar button:active image {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.bar button:hover {
+  background-position: right bottom;
+}
+
+.launcher-button {
+  padding-right: 8px;
 }
