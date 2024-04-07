@@ -1,3 +1,5 @@
+import { BarBox } from "../utils.js";
+
 const systemtray = await Service.import("systemtray")
 
 const SysTrayItem = item => Widget.Button({
@@ -7,9 +9,6 @@ const SysTrayItem = item => Widget.Button({
     onSecondaryClick: (_, event) => item.openMenu(event),
 });
 
-const SysTray = Widget.Box({
-    class_name: "bar-widget",
-    children: systemtray.bind('items').as(i => i.map(SysTrayItem))
-})
+const SysTray = BarBox(systemtray.bind('items').as(i => i.map(SysTrayItem)))
 
 export default SysTray

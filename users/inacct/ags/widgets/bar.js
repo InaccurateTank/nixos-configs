@@ -1,4 +1,5 @@
 import Gtk from "gi://Gtk?version=3.0"
+import { BarBox } from "../utils.js"
 import Clock from "./clock.js"
 import SysTray from "./systray.js"
 import Workspaces from "./workspaces.js"
@@ -62,21 +63,29 @@ const BarCorner = (place) => Widget.DrawingArea({
     }
 })
 
-const launcherButton = Widget.Box({
-    class_names: ["bar-widget", "launcher-button"],
-    child: Widget.Button({
+const LauncherButton = BarBox([
+    Widget.Button({
         child: Widget.Icon({
             icon: 'nixos-symbolic',
             size: 20,
-            css: 'color: #d5d8da; border: 0;'
           }),
         onClicked: () => App.toggleWindow("launcher"),
     })
-})
+])
+
+const QuickSettingsButton = BarBox([
+    Widget.Button({
+        child: Widget.Icon({
+            icon: 'view-sidetree',
+            size: 12,
+          }),
+        onClicked: () => App.toggleWindow("quicksettings"),
+    })
+])
 
 const StartBox = Widget.Box({
     children: [
-        launcherButton,
+        LauncherButton,
         Workspaces,
         BarCorner("right"),
     ],
@@ -95,6 +104,7 @@ const EndBox = Widget.Box({
     children: [
         BarCorner("left"),
         SysTray,
+        QuickSettingsButton,
         Clock,
     ],
 })

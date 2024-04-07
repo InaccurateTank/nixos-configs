@@ -3,8 +3,12 @@
 }
 
 .bar {
-  background-color: transparent;
+  background: transparent;
   color: @theme_selected_bg_color;
+}
+
+.bar image {
+  color: @theme_fg_color;
 }
 
 .bar-widget {
@@ -13,6 +17,7 @@
   border-bottom: 1px solid @theme_selected_bg_color;
 }
 
+/* Standard Button */
 .bar button {
   all: unset;
   padding: 4px 8px;
@@ -34,6 +39,22 @@
   background-position: right bottom;
 }
 
-.launcher-button {
-  padding-right: 8px;
+/* Workspace Button */
+.bar button.ws-button {
+  min-height: 0.8rem;
+  min-width: 0.8rem;
+  padding: 0;
+  margin: 0 4px;
+  border-radius: 0.8rem;
+  background: @theme_fg_color;
+}
+
+.bar button.ws-button:active,
+.bar button.ws-button:hover,
+.bar button.ws-current {
+  min-height: 1.5rem;
+}
+
+.bar button.ws-occupied {
+  background: @success_color;
 }

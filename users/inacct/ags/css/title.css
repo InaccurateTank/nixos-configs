@@ -5,5 +5,5 @@
 
 .title-program {
   font-size: 0.8rem;
-  color: @theme_fg_color;
+  color: @theme_unfocused_fg_color;
 }
