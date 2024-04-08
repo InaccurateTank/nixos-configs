@@ -23,10 +23,10 @@ in {
       validateSopsFiles = false;
       age =
         {
-          keyFile = "/var/lib/sops-nix/key.txt";
+          keyFile = "/nix/persist/var/lib/sops-nix/key.txt";
         }
         // lib.optionalAttrs cfg.useSshKey {
-          sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+          sshKeyPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
           generateKey = true;
         };
     };
