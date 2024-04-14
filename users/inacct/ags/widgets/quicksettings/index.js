@@ -1,93 +1,81 @@
 import { icons } from "../../utils.js"
-import { AudioMenu, VolumeEntry } from "./audio.js"
+import Popup from "../popupwindow.js"
+import AudioWidgets from "./audio.js"
+import NetworkWidgets from "./network.js"
+import NotificationWidgets from "./notifications.js"
 
-const WINDOW_NAME = "quicksettings"
-const state = Variable("Notifications")
+const qs_state = Variable("Notifications")
 
 // Menu Constructors
-const QSMenuButton = (icon, pane) => {
-    return Widget.Button({
-        class_name: "qs-button",
-        child: Widget.Icon({
-            icon: icon,
-            size: 20
+const QSPage = ({title, content = {}, scrollable = true}) => {
+    const children = [
+        Widget.Label({
+            class_name: "header",
+            label: title
         }),
-        onClicked: () => state.value = pane,
-    })
-}
+        Widget.Separator({}),
+        Widget.Box({
+            vertical: true,
+            spacing: 16,
+            ...content,
+        }),
+    ]
 
-const QSPage = ({title, content = Widget.Box({})}) => Widget.Scrollable({
-    class_name: "qs-page",
-    vexpand: true,
-    hexpand: true,
-    hscroll: "never",
-    vscroll: "automatic",
-    child: Widget.Box({
-        vertical: true,
-        spacing: 10,
-        children: [
-            Widget.Label({
-                class_name: "header",
-                label: title
-            }),
-            Widget.Separator({}),
-            content
-        ]
-    })
-})
+    if (scrollable) {
+        return Widget.Scrollable({
+            class_name: "stack-pane",
+            hscroll: "never",
+            vscroll: "automatic",
+            child: Widget.Box({
+                vertical: true,
+                spacing: 8,
+                children
+            })
+        })
+    } else {
+        return Widget.Box({
+            class_name: "stack-pane",
+            vertical: true,
+            spacing: 8,
+            children
+        })
+    }
+}
 
 const NotificationsPage = QSPage({
     title: "Notifications",
+    content: {
+        children: [
+            NotificationWidgets.NoteList(),
+            Widget.Separator(),
+            NotificationWidgets.NoteButtons(),
+        ]
+    },
+    scrollable: false,
 })
 const AudioPage = QSPage({
     title: "Audio",
-    content: Widget.Box({
-        vertical: true,
-        spacing: 8,
+    content: {
         children: [
-            VolumeEntry("sink"),
-            VolumeEntry("source"),
-            AudioMenu("sink"),
-            AudioMenu("source")
+            AudioWidgets.VolumeEntry("sink"),
+            AudioWidgets.VolumeEntry("source"),
+            AudioWidgets.AudioMenu("sink"),
+            AudioWidgets.AudioMenu("source"),
+            AudioWidgets.MixerMenu(),
         ]
-    })
+    },
 })
 const NetworkPage = QSPage({
     title: "Network",
+    content: {
+        children: [
+            NetworkWidgets.PrimaryNetwork(),
+            NetworkWidgets.WifiMenu(),
+        ]
+    },
 })
 const PowerPage = QSPage({
     title: "Power",
-})
-
-const NotificationsButton = QSMenuButton(icons.notification, "Notifications")
-const AudioButton = QSMenuButton(icons.audio.volume.high, "Audio")
-const NetworkButton = QSMenuButton(icons.network.wired, "Network")
-const PowerButton = QSMenuButton(icons.power.shutdown, "Power", true)
-
-const SidebarButtons = Widget.Box({
-    vertical: true,
-    vexpand: true,
-    children: [
-        // Actual Quick Settings
-        Widget.Box({
-            vexpand: true,
-            vpack: "center",
-            vertical: true,
-            children: [
-                NotificationsButton,
-                AudioButton,
-                NetworkButton,
-            ]
-        }),
-
-        // Other Buttons
-        Widget.Box({
-            vertical: true,
-            children: [
-                PowerButton
-            ]
-        })
-    ]
 })
 
 const Stack = Widget.Stack({
@@ -98,40 +86,29 @@ const Stack = Widget.Stack({
         Network: NetworkPage,
         Power: PowerPage,
     },
-    shown: state.bind()
+    shown: qs_state.bind()
 })
 
-const QSContent = Widget.Box({
-    class_name: "qs-content",
-    children: [
-        Stack,
-        SidebarButtons,
-    ]
-})
-
-const QSRevealer = Widget.Revealer({
-    transition: "slide_left",
-    transition_duration: 500,
-    setup: self => self.hook(App, (_, wname, visible) => {
-        if (wname === WINDOW_NAME)
-            self.reveal_child = visible
-    }),
-    child: QSContent
-})
-
-const QuickSettings = Widget.Window({
-    class_name: "popup-window",
-    keymode: "on-demand",
-    visible: false,
-    anchor: ["right", "top", "bottom"],
-    name: WINDOW_NAME,
-    margins: [6, 0],
-    child: Widget.Box({
-        css: "padding: 1px;",
-        child: QSRevealer
-    }),
-    setup: self => {
-        self.keybind("Escape", () => App.closeWindow(self.name))
+// Export
+const QuickSettings = Popup.Window({
+    name: "quicksettings",
+    margins: [5, 0],
+    layout: "right",
+    childBox: {
+        children: [
+            Stack,
+            Popup.Bar({
+                layout: "right",
+                centerButtons: [
+                    Popup.BarButton(qs_state, icons.notification, "Notifications"),
+                    Popup.BarButton(qs_state, icons.audio.volume.high, "Audio"),
+                    Popup.BarButton(qs_state, icons.network.wired, "Network"),
+                ],
+                endButtons: [
+                    Popup.BarButton(qs_state, icons.power.shutdown, "Power"),
+                ],
+            }),
+        ]
     }
 })
 

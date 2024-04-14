@@ -1,3 +1,4 @@
+// Misc Utility Functions
 import GLib from "gi://GLib"
 
 /**
@@ -12,6 +13,12 @@ export const BarBox = (children, props = {}) => Widget.Box({
 })
 
 /**
+ * Capitalize first letter of word
+ * @param {String} str
+ */
+export function Capitalize(str) {return str.charAt(0).toUpperCase() + str.slice(1)}
+
+/**
  * Current distro
  */
 export const distro = GLib.get_os_info("ID")
@@ -19,8 +26,13 @@ export const distro = GLib.get_os_info("ID")
 /**
  * Standardized array of icons
  */
-export const icons = {
+export const icons = Object.freeze({
+    configure: "configure",
+    tick: "object-select-symbolic",
+    exit: "window-close-symbolic",
+    trash: "user-trash-symbolic",
     notification: "notification-symbolic",
+    notification_empty: "notifications-disabled-symbolic",
     network: {
         offline: "network-wired-offline",
         wired: "network-wired-symbolic",
@@ -44,9 +56,10 @@ export const icons = {
             medium: "audio-volume-medium-symbolic",
             high: "audio-volume-high-symbolic",
         },
-        headphones: "audio-headphones-symbolic"
+        headphones: "audio-headphones-symbolic",
+        equalizer: "view-media-equalizer"
     },
     power: {
         shutdown: "system-shutdown-symbolic",
     }
-}
+})

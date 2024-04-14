@@ -12,42 +12,10 @@ label.header {
     font-size: 1.2rem;
 }
 
-.popup-window {
-    border-top: 1px solid @theme_selected_bg_color;
-    border-bottom: 1px solid @theme_selected_bg_color;
-    border-left: 1px solid @theme_selected_bg_color;
-    background: @theme_bg_color;
-    color: @theme_fg_color;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-}
-
-.qs-page {
-    background: @theme_bg_color;
-    padding: 8px;
-    padding-right: 0;
-}
-
-.qs-submenu {
-    padding-right: 1rem;
-}
-
-.qs-button {
-    all: unset;
-    padding: 4px 8px;
-
-    background-image: linear-gradient(to right, transparent 50%, @theme_selected_bg_color 50%);
-    background-size: 200% 100%;
-    background-position: left bottom;
-    transition: 0.2s ease-out;
-}
-
-.qs-button:active,
-.qs-button:hover {
-    background-position: right bottom;
-}
-
 /* WIDGET IMPORTS */
+@import "audio.css";
 @import "bar.css";
 @import "clock.css";
+@import "notification.css";
+@import "popupwindow.css";
 @import "title.css";

@@ -1,0 +1,33 @@
+.notification {
+  border-left: 1px solid @theme_fg_color;
+  padding: 8px;
+}
+
+/* Urgencies */
+.notification.low {
+  border-left-color: @success_color;
+  color: @success_color;
+}
+.notification.critical {
+  border-left-color: @destructive_color;
+  color: @destructive_color;
+}
+
+/* Urgency Parts */
+.notification .low {
+  color: @success_color;
+}
+.notification .critical {
+  color: @destructive_color;
+}
+
+/* Min Height */
+.notification .ns-body {
+  min-height: 40px;
+}
+
+.notification button.dismiss {
+  all: unset;
+  color: @destructive_bg_color;
+  background: transparent;
+}

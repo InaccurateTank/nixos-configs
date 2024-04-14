@@ -1,0 +1,23 @@
+/* Volume Entry */
+.volume-entry scale {
+  margin: 0 8px;
+}
+
+.volume-entry label {
+  min-width: 2.5rem;
+  font-weight: bold;
+}
+
+/* Program Mixer Entry */
+.mixer-entry scale {
+  margin-right: 8px;
+}
+
+.mixer-entry label {
+  min-width: 2.5rem;
+  font-weight: bold;
+}
+
+.mixer-entry image {
+  margin-right: 8px;
+}

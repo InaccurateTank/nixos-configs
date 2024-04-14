@@ -4,7 +4,7 @@
 
 .bar {
   background: transparent;
-  color: @theme_selected_bg_color;
+  color: @dialog_bg_color;
 }
 
 .bar image {
@@ -14,7 +14,7 @@
 .bar-widget {
   min-width: 0;
   background: @theme_bg_color;
-  border-bottom: 1px solid @theme_selected_bg_color;
+  border-bottom: 1px solid @dialog_bg_color;
 }
 
 /* Standard Button */
@@ -22,7 +22,7 @@
   all: unset;
   padding: 4px 8px;
 
-  background-image: linear-gradient(transparent 50%, @theme_selected_bg_color 50%);
+  background-image: linear-gradient(transparent 50%, @dialog_bg_color 50%);
   background-size: 100% 200%;
   background-position: right top;
   transition: .2s ease-out;

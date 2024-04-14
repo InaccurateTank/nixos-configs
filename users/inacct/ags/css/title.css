@@ -1,5 +1,6 @@
 .title-window {
   font-size: 1rem;
+  font-weight: bold;
   color: @theme_fg_color;
 }
 

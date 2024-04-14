@@ -55,6 +55,7 @@
   environment.systemPackages = with pkgs; [
     xdg-terminal-exec
     xdg-utils
+    networkmanagerapplet
   ];
 
   networking.networkmanager.enable = true;

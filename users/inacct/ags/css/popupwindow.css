@@ -1,0 +1,73 @@
+.popup-window {
+  background: transparent;
+}
+
+.popup-content {
+  background: @theme_bg_color;
+  color: @theme_fg_color;
+  min-width: 300px;
+}
+.popup-content.left {
+  border-top: 1px solid @dialog_bg_color;
+  border-bottom: 1px solid @dialog_bg_color;
+  border-right: 1px solid @dialog_bg_color;
+}
+.popup-content.right {
+  border-top: 1px solid @dialog_bg_color;
+  border-bottom: 1px solid @dialog_bg_color;
+  border-left: 1px solid @dialog_bg_color;
+}
+.popup-content.center {
+  border: 1px solid @dialog_bg_color;
+}
+
+/* Popup Window Bar */
+.popup-bar {
+  background: @dialog_bg_color;
+}
+
+/* Popup Window Bar Buttons */
+.popup-bar button {
+  all: unset;
+  padding: 8px;
+  transition: 0.2s ease-out;
+}
+
+.popup-bar.left button {
+  background-image: linear-gradient(to left, @theme_bg_color 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: left bottom;
+}
+.popup-bar.left button:active,
+.popup-bar.left button:hover,
+.popup-bar.left button.current {
+  background-position: right bottom;
+}
+
+.popup-bar.right button {
+  background-image: linear-gradient(to right, @theme_bg_color 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+.popup-bar.right button:active,
+.popup-bar.right button:hover,
+.popup-bar.right button.current {
+  background-position: left bottom;
+}
+
+.popup-bar.center button {
+  background-image: linear-gradient(to top, @theme_bg_color 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: right bottom;
+}
+.popup-bar.center button:active,
+.popup-bar.center button:hover,
+.popup-bar.center button.current {
+  background-position: right top;
+}
+
+
+.stack-pane {
+  background: @theme_bg_color;
+  padding: 0.8rem;
+}
