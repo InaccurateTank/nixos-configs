@@ -3,6 +3,7 @@ import Popup from "../popupwindow.js"
 import AudioWidgets from "./audio.js"
 import NetworkWidgets from "./network.js"
 import NotificationWidgets from "./notifications.js"
+import PowerStack from "./power.js"
 
 const qs_state = Variable("Notifications")
 
@@ -76,9 +77,14 @@ const NetworkPage = QSPage({
 })
 const PowerPage = QSPage({
     title: "Power",
+    content: {
+        children: [
+            PowerStack(),
+        ]
+    },
 })
 
-const Stack = Widget.Stack({
+const Stack = () => Widget.Stack({
     transition: "over_left",
     children: {
         Notifications: NotificationsPage,
@@ -92,11 +98,11 @@ const Stack = Widget.Stack({
 // Export
 const QuickSettings = Popup.Window({
     name: "quicksettings",
-    margins: [5, 0],
+    margins: [4, 0],
     layout: "right",
-    childBox: {
+    child_box: {
         children: [
-            Stack,
+            Stack(),
             Popup.Bar({
                 layout: "right",
                 centerButtons: [

@@ -14,7 +14,7 @@ const Layout = Object.freeze({
   center: {
       anchor: [],
       class_name: "center",
-      transition: "slide_down",
+      transition: "crossfade",
   }
 })
 
@@ -64,8 +64,10 @@ const Window = ({
   name,
   margins,
   layout = "center",
-  childBox = {},
+  child_box = {},
+  extra_props = {},
 }) => Widget.Window({
+  ...extra_props,
   name,
   anchor: Layout[layout].anchor,
   margins,
@@ -76,15 +78,16 @@ const Window = ({
   child: Widget.Box({
       css: "padding: 1px;",
       child: Widget.Revealer({
+          reveal_child: false,
           transition: Layout[layout].transition,
-          transition_duration: 500,
+          transition_duration: 350,
           setup: self => self.hook(App, (_, wname, visible) => {
               if (wname === name)
                   self.reveal_child = visible
           }, "window-toggled"),
           child: Widget.Box({
               class_names: ["popup-content", Layout[layout].class_name],
-              ...childBox
+              ...child_box
           }),
       })
   }),

@@ -8,6 +8,9 @@ App.config({
     windows: [
       Bar,
       Launcher,
-      QuickSettings
+      QuickSettings,
     ],
+    closeWindowDelay: {
+        quicksettings: 350,
+    }
 })
