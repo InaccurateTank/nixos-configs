@@ -17,7 +17,7 @@ const QSPage = ({title, content = {}, scrollable = true}) => {
         Widget.Separator({}),
         Widget.Box({
             vertical: true,
-            spacing: 16,
+            spacing: 8,
             ...content,
         }),
     ]
@@ -96,7 +96,7 @@ const Stack = () => Widget.Stack({
 })
 
 // Export
-const QuickSettings = Popup.Window({
+const QuickSettings = () => Popup.Window({
     name: "quicksettings",
     margins: [4, 0],
     layout: "right",

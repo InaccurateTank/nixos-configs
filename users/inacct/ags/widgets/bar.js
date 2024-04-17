@@ -109,7 +109,7 @@ const EndBox = Widget.Box({
     ],
 })
 
-const Bar = Widget.Window({
+const Bar = () => Widget.Window({
   name: 'bar',
   class_name: "bar",
   anchor: ['top', 'left', 'right'],

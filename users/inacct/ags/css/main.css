@@ -16,6 +16,7 @@ label.header {
 @import "audio.css";
 @import "bar.css";
 @import "clock.css";
+@import "launcher.css";
 @import "notification.css";
 @import "popupwindow.css";
 @import "title.css";

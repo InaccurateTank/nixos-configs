@@ -33,6 +33,7 @@ export const icons = Object.freeze({
     trash: "user-trash-symbolic",
     notification: "notification-symbolic",
     notification_empty: "notifications-disabled-symbolic",
+    search: "folder-saved-search-symbolic",
     network: {
         offline: "network-wired-offline",
         wired: "network-wired-symbolic",
