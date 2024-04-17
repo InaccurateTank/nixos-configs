@@ -1,9 +1,13 @@
-import { icons } from "../../utils.js"
+import { icons, settings } from "../../utils.js"
 import Popup from "../popupwindow.js"
 import AudioWidgets from "./audio.js"
 import NetworkWidgets from "./network.js"
 import NotificationWidgets from "./notifications.js"
 import PowerStack from "./power.js"
+
+const Notifications = await Service.import('notifications')
+const Audio = await Service.import('audio')
+const Network = await Service.import('network')
 
 const qs_state = Variable("Notifications")
 
@@ -98,7 +102,7 @@ const Stack = () => Widget.Stack({
 // Export
 const QuickSettings = () => Popup.Window({
     name: "quicksettings",
-    margins: [4, 0],
+    margins: [settings.margin, 0],
     layout: "right",
     child_box: {
         children: [
@@ -106,9 +110,19 @@ const QuickSettings = () => Popup.Window({
             Popup.Bar({
                 layout: "right",
                 centerButtons: [
-                    Popup.BarButton(qs_state, icons.notification, "Notifications"),
-                    Popup.BarButton(qs_state, icons.audio.volume.high, "Audio"),
-                    Popup.BarButton(qs_state, icons.network.wired, "Network"),
+                    Popup.BarButton(qs_state, Notifications.bind("dnd")
+                        .transform(dnd => dnd ? icons.notifications.disabled : icons.notifications.enabled)
+                        , "Notifications"),
+                    Popup.BarButton(qs_state, Audio.speaker.bind("volume")
+                        .transform(v =>
+                            [
+                                [67, icons.audio.volume.high],
+                                [34, icons.audio.volume.medium],
+                                [1, icons.audio.volume.low],
+                                [0, icons.audio.volume.muted]
+                            ].find(([n]) => n <= v * 100)?.[1] || "")
+                        , "Audio"),
+                    Popup.BarButton(qs_state, Network[Network.primary].bind("icon_name"), "Network"),
                 ],
                 endButtons: [
                     Popup.BarButton(qs_state, icons.power.shutdown, "Power"),

@@ -18,7 +18,7 @@ const NetworkEntry = ap => Widget.Box({
 // Export
 const WifiMenu = () => SubMenu({
     title: "Wifi",
-    icon: icons.network.wireless.excellent,
+    icon: Network.wifi.bind("icon_name"),
     content: Widget.Box({
         visible: Network.wifi.bind("enabled"),
         vertical: true,

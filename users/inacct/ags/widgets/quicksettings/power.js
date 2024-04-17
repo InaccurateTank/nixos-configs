@@ -1,14 +1,23 @@
 import PowerService from "../../services/powerservice.js"
+import { icons, settings } from "../../utils.js"
 
 const PowerButton = (label) => Widget.Button({
     hexpand: true,
-    label,
+    child: Widget.Box({
+        spacing: settings.spacing.standard,
+        children: [
+            Widget.Icon({
+                icon: icons.power[label.toLowerCase()]
+            }),
+            Widget.Label(label),
+        ],
+    }),
     onClicked: () => PowerService.action(label.toLowerCase())
 })
 
 const Buttons = () => Widget.Box({
     vertical: true,
-    spacing: 10,
+    spacing: settings.spacing.standard,
     children: [
         PowerButton("Sleep"),
         PowerButton("Logout"),
@@ -21,7 +30,7 @@ const Verify = () => Widget.Box({
     vertical: true,
     vexpand: true,
     vpack: "center",
-    spacing: 10,
+    spacing: settings.spacing.standard,
     children: [
         Widget.Label({
             label: PowerService.bind("title")
@@ -31,7 +40,7 @@ const Verify = () => Widget.Box({
         Widget.Box({
             hexpand: true,
             hpack: "center",
-            spacing: 20,
+            spacing: settings.spacing.major,
             homogeneous: true,
             children: [
                 Widget.Button({

@@ -18,7 +18,7 @@
 }
 
 /* Standard Button */
-.bar button {
+.bar button.bar-button {
   all: unset;
   padding: 4px 8px;
 
@@ -28,15 +28,22 @@
   transition: .2s ease-out;
 }
 
-.bar button:active image {
+.bar button.bar-button:active image {
   animation-name: spin;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
-.bar button:hover {
+.bar button.bar-button:hover {
   background-position: right bottom;
+}
+
+/* QS Button */
+.bar button.qs-button {
+    padding: 4px;
+    margin: 4px;
+    min-height: 16px;
 }
 
 /* Workspace Button */

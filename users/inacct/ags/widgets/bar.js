@@ -1,9 +1,13 @@
 import Gtk from "gi://Gtk?version=3.0"
-import { BarBox } from "../utils.js"
+import { BarBox, icons } from "../utils.js"
 import Clock from "./clock.js"
 import SysTray from "./systray.js"
 import Workspaces from "./workspaces.js"
 import WindowTitle from "./title.js"
+
+const Network = await Service.import('network')
+const Notifications = await Service.import('notifications')
+const Audio = await Service.import('audio')
 
 const BarCorner = (place) => Widget.DrawingArea({
     class_name: "bar-widget",
@@ -65,6 +69,7 @@ const BarCorner = (place) => Widget.DrawingArea({
 
 const LauncherButton = BarBox([
     Widget.Button({
+        class_name: "bar-button",
         child: Widget.Icon({
             icon: 'nixos-symbolic',
             size: 20,
@@ -75,10 +80,33 @@ const LauncherButton = BarBox([
 
 const QuickSettingsButton = BarBox([
     Widget.Button({
-        child: Widget.Icon({
-            icon: 'view-sidetree',
-            size: 12,
-          }),
+        class_name: "qs-button",
+        child: Widget.Box({
+            spacing: 4,
+            children: [
+                Widget.Icon({
+                    icon: Notifications.bind("dnd")
+                    .transform(dnd => dnd ? icons.notifications.disabled : icons.notifications.enabled)
+                }),
+                Widget.Icon({
+                    icon: Audio.speaker.bind("volume")
+                        .transform(v =>
+                            [
+                                [67, icons.audio.volume.high],
+                                [34, icons.audio.volume.medium],
+                                [1, icons.audio.volume.low],
+                                [0, icons.audio.volume.muted]
+                            ].find(([n]) => n <= v * 100)?.[1] || "")
+                }),
+                Widget.Icon({
+                    icon: Network[Network.primary].bind("icon_name")
+                }),
+            ],
+        }),
+        // Widget.Icon({
+        //     icon: 'view-sidetree',
+        //     size: 12,
+        //   }),
         onClicked: () => App.toggleWindow("quicksettings"),
     })
 ])

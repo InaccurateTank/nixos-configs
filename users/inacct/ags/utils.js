@@ -31,8 +31,8 @@ export const icons = Object.freeze({
     tick: "object-select-symbolic",
     exit: "window-close-symbolic",
     trash: "user-trash-symbolic",
-    notification: "notification-symbolic",
-    notification_empty: "notifications-disabled-symbolic",
+    // notification: "notification-symbolic",
+    // notification_empty: "notifications-disabled-symbolic",
     search: "folder-saved-search-symbolic",
     network: {
         offline: "network-wired-offline",
@@ -61,6 +61,25 @@ export const icons = Object.freeze({
         equalizer: "view-media-equalizer"
     },
     power: {
+        sleep: "system-suspend-symbolic",
+        logout: "system-log-out-symbolic",
+        reboot: "system-restart-symbolic",
         shutdown: "system-shutdown-symbolic",
-    }
+    },
+    notifications: {
+        enabled: "notification-symbolic",
+        disabled: "notifications-disabled-symbolic",
+    },
+})
+
+/**
+ * Settings object
+ */
+export const settings = Object.freeze({
+    spacing: {
+        major: 16,
+        standard: 8,
+        minor: 4,
+    },
+    margin: 4,
 })

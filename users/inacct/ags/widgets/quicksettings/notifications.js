@@ -1,5 +1,5 @@
 import GLib from "gi://GLib";
-import { icons } from "../../utils.js"
+import { icons, settings } from "../../utils.js"
 
 const Notifications = await Service.import('notifications')
 
@@ -26,7 +26,7 @@ const Notification = n => {
     return Widget.Box({
         class_names: ["notification", n.urgency],
         vertical: true,
-        spacing: 8,
+        spacing: settings.spacing.standard,
         children: [
             // Notification Header
             Widget.CenterBox({
@@ -46,7 +46,7 @@ const Notification = n => {
             // Content
             Widget.Box({
                 class_name: "ns-body",
-                spacing: 8,
+                spacing: settings.spacing.standard,
                 children: [
                     icon,
                     Widget.Label({
@@ -62,7 +62,7 @@ const Notification = n => {
 
             // Actions
             Widget.Box({
-                spacing: 8,
+                spacing: settings.spacing.standard,
                 children: n.actions.map(action => Widget.Button({
                     hexpand: true,
                     child: Widget.Label(action.label),
@@ -87,43 +87,79 @@ const Notification = n => {
     })
 }
 
-const List = () => Widget.Box({
-    vertical: true,
-    vexpand: true,
-    spacing: 10,
-    setup: self => self.hook(Notifications, self => {
-        self.children = Notifications.notifications.reverse().map(Notification)
-        self.visible = Notifications.notifications.length > 0
-    }),
-})
+// const List = () => Widget.Box({
+//     vertical: true,
+//     vexpand: true,
+//     spacing: settings.spacing,
+//     children: Notifications.bind("notifications")
+//         .transform(n => n.map(Notification).flat().reverse())
+//     // setup: self => self.hook(Notifications, self => {
+//     //     self.children = Notifications.notifications.reverse().map(Notification)
+//     //     self.visible = Notifications.notifications.length > 0
+//     // }),
+// })
 
-const Empty = () => Widget.Box ({
-    vertical: true,
-    vexpand: true,
-    vpack: "center",
-    visible: Notifications.bind("notifications").transform(n => n.length === 0),
-    children: [
-        Widget.Icon(icons.notification_empty),
-        Widget.Label("Inbox is empty"),
-    ]
-})
+// const Empty = () => Widget.Box ({
+//     vertical: true,
+//     vexpand: true,
+//     vpack: "center",
+//     // visible: Notifications.bind("notifications").transform(n => n.length === 0),
+//     children: [
+//         Widget.Icon(icons.notification_empty),
+//         Widget.Label("Inbox is empty"),
+//     ]
+// })
 
 // Export
-const NoteList = () => Widget.Scrollable({
-    hscroll: "never",
-    vscroll: "automatic",
-    child: Widget.Box({
+const NoteList = () => {
+    const list = Widget.Box({
         vertical: true,
+        vexpand: true,
+        spacing: settings.spacing,
+        children: Notifications.bind("notifications")
+            .transform(n => n.map(Notification).flat().reverse())
+    })
+
+    const empty = Widget.Box ({
+        vertical: true,
+        vexpand: true,
+        vpack: "center",
         children: [
-            List(),
-            Empty(),
+            Widget.Icon(icons.notifications.disabled),
+            Widget.Label("Inbox is empty"),
         ]
-    }),
-})
+    })
+
+    return Widget.Scrollable({
+        hscroll: "never",
+        vscroll: "automatic",
+        child: Widget.Stack({
+            transition: "none",
+            children: {
+                List: list,
+                Empty: empty,
+            },
+            shown: Notifications.bind("notifications")
+                .transform(n => n.length === 0 ? "Empty" : "List")
+        }),
+    })
+}
+
+// const NoteList = () => Widget.Scrollable({
+//     hscroll: "never",
+//     vscroll: "automatic",
+//     child: Widget.Box({
+//         vertical: true,
+//         children: [
+//             List(),
+//             Empty(),
+//         ]
+//     }),
+// })
 
 const NoteButtons = () => Widget.Box({
     hpack: "center",
-    spacing: 20,
+    spacing: settings.spacing.major,
     children: [
         Widget.Button({
             class_name: "destructive-action",

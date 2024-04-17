@@ -1,4 +1,4 @@
-import { icons } from "../../utils.js"
+import { icons, settings } from "../../utils.js"
 import Popup from "../popupwindow.js"
 
 const Applications = await Service.import("applications")
@@ -12,27 +12,18 @@ const AppButton = app => Widget.Button({
                 icon: app.icon_name,
                 size: 30,
             }),
-            Widget.Box({
-                vertical: true,
-                children: [
-                    Widget.Label({
-                        hpack: "start",
-                        truncate: "end",
-                        label: app.name
-                    }),
-                    Widget.Label({
-                        hpack: "start",
-                        truncate: "end",
-                        label: app.description || ""
-                    })
-                ],
-            })
+            Widget.Label({
+                hpack: "start",
+                truncate: "end",
+                label: app.name
+            }),
         ],
     }),
     onClicked: () => {
         app.launch()
         App.closeWindow("launcher")
     },
+    tooltip_text: app.description,
 })
 
 // Export
@@ -64,7 +55,7 @@ const Launcher = () => {
 
     return Popup.Window({
         name: "launcher",
-        margins: [4, 0],
+        margins: [settings.margin, 0],
         layout: "left",
         child_box: {
             children: [
