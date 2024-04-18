@@ -106,9 +106,12 @@
         "SUPER, F, exec, thunar"
         "SUPER, W, exec, firefox"
 
+        # Screenshot
+        "SUPER SHIFT, S, exec, ${pkgs.grim}/bin/grim -g \"${pkgs.slurp}/bin/slurp\""
+
         "SUPER, C, killactive,"
         "SUPER, V, togglefloating,"
-        "SUPER, M, exit,"
+        # "SUPER, M, exit,"
 
         # Move Focus
         "SUPER, left, movefocus, l"

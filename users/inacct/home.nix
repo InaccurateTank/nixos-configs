@@ -25,6 +25,7 @@
       loupe # Gnome Image Viewer
       evince # Gnome PDF Viewer
       celluloid # Video Player
+      vesktop # Discord Client
     ];
     file."firefox-gnome-theme" = {
       target = ".mozilla/firefox/default/chrome/firefox-gnome-theme";

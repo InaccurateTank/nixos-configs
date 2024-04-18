@@ -7,6 +7,10 @@
 }: let
   cfg = config.flakeMods.secrets;
 in {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
+
   options.flakeMods.secrets = {
     enable = lib.mkEnableOption "machine secrets management";
 
