@@ -26,6 +26,7 @@
       "Pictures"
       "Documents"
       "Videos"
+      ".cache/swww"
     ];
   };
 

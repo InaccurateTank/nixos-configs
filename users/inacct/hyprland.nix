@@ -11,6 +11,8 @@ in {
     inputs.hyprlock.homeManagerModules.hyprlock
   ];
 
+  flakeMods.swww.enable = true;
+
   services.hypridle = {
     enable = true;
     lockCmd = "hyprlock";
