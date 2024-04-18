@@ -3,7 +3,9 @@
   pkgs,
   ...
 }: let
-  hyprlandConfig = "exec-once = ${inputs.ags.packages.${pkgs.system}.ags}/bin/ags --config ${./greeter.js}; hyprctl dispatch exit";
+  hyprlandConfig = pkgs.writeText "greetd-hyprland.conf" ''
+    exec-once = ${inputs.ags.packages.${pkgs.system}.ags}/bin/ags --config ${./greeter.js}; hyprctl dispatch exit
+  '';
 in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
