@@ -110,7 +110,7 @@
         "SUPER, W, exec, firefox"
 
         # Screenshot
-        "SUPER SHIFT, S, exec, ${pkgs.grim}/bin/grim -g \"${pkgs.slurp}/bin/slurp\""
+        "SUPER SHIFT, S, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\""
 
         "SUPER, C, killactive,"
         "SUPER, V, togglefloating,"
