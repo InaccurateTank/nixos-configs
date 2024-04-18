@@ -93,10 +93,10 @@ in {
     };
     gvfs.enable = true;
     tumbler.enable = true;
-    greetd = {
-      enable = true;
-      settings.default_session.command = "Hyprland --config ${hyprlandConfig}";
-    };
+    # greetd = {
+    #   enable = true;
+    #   settings.default_session.command = "Hyprland --config ${hyprlandConfig}";
+    # };
   };
 
   # Launcher button doesn't work as expected, disable.
