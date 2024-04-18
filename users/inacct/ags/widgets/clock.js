@@ -1,7 +1,7 @@
 import { BarBox } from "../utils.js"
 
 const timeVar = Variable("", {
-    poll: [1000, ["date", "+%l:%M %p"]]
+    poll: [1000, ["date", "+%I:%M %p"]]
   })
 
 const dateVar = Variable("", {

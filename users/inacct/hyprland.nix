@@ -39,24 +39,57 @@ in {
     backgrounds = [
       {
         path = "screenshot";
-        blur_passes = 1;
+        blur_size = 4;
+        blur_passes = 3;
       }
     ];
     input-fields = [
       {
-        fade_on_empty = false;
+        dots_size = 0.2;
+        dots_spacing = 0.64;
+        dots_rounding = 2;
+        rounding = 10;
+        position = {
+          x = 0;
+          y = 70;
+        };
+        valign = "bottom";
       }
     ];
     labels = [
+      # Clock
       {
-        text = "Welcome Back $USER";
+        text = "cmd[update:1000] echo \"<b><big> $(date +"%I:%M") </big></b>\"";
         text_align = "center";
-        font_size = 20;
+        font_size = 64;
         font_family = "Iosevka Tonk";
         position = {
           x = 0;
-          y = 60;
+          y = 16;
         };
+      }
+      # Welcome
+      {
+        text = "Welcome Back $USER";
+        text_align = "center";
+        font_size = 16;
+        font_family = "Iosevka Tonk";
+        position = {
+          x = 0;
+          y = 0;
+        };
+      }
+      # Reminder
+      {
+        text = "Type to Unlock!";
+        text_align = "center";
+        font_size = 16;
+        font_family = "Iosevka Tonk";
+        position = {
+          x = 0;
+          y = 30;
+        };
+        valign = "bottom";
       }
     ];
   };
