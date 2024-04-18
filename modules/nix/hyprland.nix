@@ -29,6 +29,8 @@ in {
       };
     };
 
+    security.pam.services.hyprlock = {}; # For Hyprlock
+
     xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 }

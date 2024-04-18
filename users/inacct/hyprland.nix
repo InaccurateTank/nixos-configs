@@ -2,7 +2,39 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  grim = "${pkgs.grim}/bin/grim";
+  slurp = "${pkgs.slurp}/bin/slurp";
+in {
+  imports = [
+    inputs.hypridle.homeManagerModules.hypridle
+    inputs.hyprlock.homeManagerModules.hyprlock
+  ];
+
+  services.hypridle = {
+    enable = true;
+    lockCmd = "hyprlock";
+    beforeSleepCmd = "loginctl lock-session";
+    afterSleepCmd = "hyprctl dispatch dpms on";
+    listeners = [
+      {
+        # Lockscreen after 5 mins
+        timeout = 300;
+        onTimeout = "loginctl lock-session";
+      }
+      {
+        # Screen off after 10 mins
+        timeout = 600;
+        onTimeout = "hyprctl dispatch dpms off";
+        onResume = "hyprctl dispatch dpms on";
+      }
+    ];
+  };
+
+  programs.hyprlock = {
+    enable = true;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -110,7 +142,7 @@
         "SUPER, W, exec, firefox"
 
         # Screenshot
-        "SUPER SHIFT, S, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\""
+        "SUPER SHIFT, S, exec, ${grim} -g \"$(${slurp})\""
 
         "SUPER, C, killactive,"
         "SUPER, V, togglefloating,"
