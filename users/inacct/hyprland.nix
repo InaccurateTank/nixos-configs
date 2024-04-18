@@ -33,9 +33,11 @@ in {
 
   programs.hyprlock = {
     enable = true;
-    background = {
-      path = "screenshot";
-    };
+    backgrounds = [
+      {
+        path = "screenshot";
+      }
+    ];
   };
 
   wayland.windowManager.hyprland = {
