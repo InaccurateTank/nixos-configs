@@ -21,7 +21,7 @@ in {
     };
   };
 
-# TODO: Swap to persist folder if impermenance is activated
+  # TODO: Swap to persist folder if impermenance is activated
   config = lib.mkIf cfg.enable {
     sops = {
       defaultSopsFile = "${inputs.secrets}/${config.networking.hostName}.yaml";

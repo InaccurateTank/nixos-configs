@@ -12,4 +12,6 @@ Nix(OS):
 |vscode-remote-fix|Fixes VsCode not being able to remote connect to NixOS|:x:|
 
 Home(-Manager):
-None yet...
+|Module|Purpose|Default Enabled?|
+|---|---|:-:|
+|swww|Sets up the swww wallpaper daemon|:x:|

@@ -29,6 +29,7 @@
               useUserPackages = true;
               useGlobalPkgs = true;
               extraSpecialArgs = {inherit inputs;};
+              sharedModules = [./modules/home];
             };
             nixpkgs = {
               config.allowUnfreePredicate = pkg:
