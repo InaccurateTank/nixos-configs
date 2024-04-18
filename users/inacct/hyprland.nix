@@ -73,7 +73,10 @@
       };
 
       misc = {
-        force_default_wallpaper = -1;
+        force_default_wallpaper = 0;
+        focus_on_activate = true;
+        disable_hyprland_logo = 1;
+        disable_splash_rendering = 1;
       };
 
       windowrulev2 = [
