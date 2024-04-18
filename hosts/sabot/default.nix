@@ -2,7 +2,9 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  hyprlandConfig = "exec-once = ${inputs.ags.packages.${pkgs.system}.ags} --config ${./greeter.js}; hyprctl dispatch exit";
+in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     ./hardware-configuration.nix
@@ -89,7 +91,14 @@
     };
     gvfs.enable = true;
     tumbler.enable = true;
+    greetd = {
+      enable = true;
+      settings.default_session.command = "Hyprland --config ${hyprlandConfig}";
+    };
   };
+
+  # Launcher button doesn't work as expected, disable.
+  documentation.nixos.enable = false;
 
   users.mutableUsers = false;
 
