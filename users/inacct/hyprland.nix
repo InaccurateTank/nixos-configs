@@ -42,14 +42,20 @@ in {
         blur_passes = 1;
       }
     ];
+    input-fields = [
+      {
+        fade_on_empty = false;
+      }
+    ];
     labels = [
       {
         text = "Welcome Back $USER";
         text_align = "center";
+        font_size = 20;
         font_family = "Iosevka Tonk";
         position = {
           x = 0;
-          y = 80;
+          y = 60;
         };
       }
     ];
