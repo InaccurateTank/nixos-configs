@@ -33,9 +33,24 @@ in {
 
   programs.hyprlock = {
     enable = true;
+    general = {
+      ignore_empty_input = true;
+    };
     backgrounds = [
       {
         path = "screenshot";
+        blur_passes = 1;
+      }
+    ];
+    labels = [
+      {
+        text = "Welcome Back $USER";
+        text_align = "center";
+        font_family = "Iosevka Tonk";
+        position = {
+          x = 0;
+          y = 80;
+        };
       }
     ];
   };
