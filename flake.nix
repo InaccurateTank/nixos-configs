@@ -56,14 +56,6 @@
     };
 
     ###### Personal ######
-    pterodactyl = {
-      url = "github:InaccurateTank/pterodactyl-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    crowdsec = {
-      url = "github:InaccurateTank/crowdsec-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     secrets = {
       url = "git+ssh://git@git.inaccuratetank.gay/inaccuratetank/nix-secrets.git?ref=main&shallow=1";
       flake = false;

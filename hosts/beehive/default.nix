@@ -5,8 +5,6 @@
 }: {
   imports = [
     inputs.impermanence.nixosModules.impermanence
-    inputs.pterodactyl.nixosModules.pterodactyl-wings
-    inputs.crowdsec.nixosModules.crowdsec
     ./hardware-configuration.nix
   ];
 
@@ -68,18 +66,10 @@
   services = {
     openssh.enable = true;
     qemuGuest.enable = true;
-    crowdsec.enable = true;
-    cs-firewall-bouncer.enable = true;
     caddy = {
       enable = true;
       package = pkgs.flakePkgs.custom-caddy;
     };
-    # pterodactyl = {
-    #   wings = {
-    #     enable = true;
-    #     configuration = "test";
-    #   };
-    # };
   };
 
   programs.zsh.enable = true;

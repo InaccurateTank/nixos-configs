@@ -59,7 +59,7 @@ in {
     labels = [
       # Clock
       {
-        text = "cmd[update:1000] echo \"<b><big> $(date +"%I:%M") </big></b>\"";
+        text = "cmd[update:1000] echo \"<b><big> $(date +\"%I:%M\") </big></b>\"";
         text_align = "center";
         font_size = 64;
         font_family = "Iosevka Tonk";

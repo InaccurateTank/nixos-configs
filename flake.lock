@@ -43,26 +43,6 @@
         "type": "github"
       }
     },
-    "crowdsec": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1707548010,
-        "narHash": "sha256-Hu7XIfpBm46KX0SzKdXNTQ36F8NfchUOoH5hohHhPdA=",
-        "owner": "InaccurateTank",
-        "repo": "crowdsec-flake",
-        "rev": "a8d80924c3198b45125313af6de188b5efbe62c0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "InaccurateTank",
-        "repo": "crowdsec-flake",
-        "type": "github"
-      }
-    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -492,31 +472,10 @@
         "type": "github"
       }
     },
-    "pterodactyl": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1708340454,
-        "narHash": "sha256-mK5xdK9PuljM+zZEuVl9c1Y8wJjDaLZYw5/7aSoWB08=",
-        "owner": "InaccurateTank",
-        "repo": "pterodactyl-flake",
-        "rev": "48f34110f9a154ea95fde4fae3c359c7249c605f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "InaccurateTank",
-        "repo": "pterodactyl-flake",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "ags": "ags",
         "alejandra": "alejandra",
-        "crowdsec": "crowdsec",
         "firefox-gnome-theme": "firefox-gnome-theme",
         "home-manager": "home-manager",
         "hypridle": "hypridle",
@@ -528,7 +487,6 @@
         "nix-ld-rs": "nix-ld-rs",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
-        "pterodactyl": "pterodactyl",
         "secrets": "secrets",
         "sops-nix": "sops-nix"
       }
