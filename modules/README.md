@@ -4,6 +4,7 @@ Nix(OS):
 |Module|Purpose|Default Enabled?|
 |---|---|:-:|
 |auto-upgrade|Enables automatic updates (using the repo flake.lock)|:x:|
+|btrfs-persist|Cleaning BTRFS root script + minimum viable Impermanence|:x:|
 |gc|Nix store garbage collection and optimization|:heavy_check_mark:|
 |hyprland|Hyprland WM base setup|:x:|
 |nix-ld|Library linking using nix-ld-rs|:x:|

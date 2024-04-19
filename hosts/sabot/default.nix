@@ -39,6 +39,7 @@ in {
     hideMounts = true;
     directories = [
       "/etc/nixos" # nixos system config files
+      "/etc/NetworkManager/system-connections" # NetworkManager Passwords
       "/var/lib" # system service persistent data
       "/var/log" # the place that journald dumps logs to
       {

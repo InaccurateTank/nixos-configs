@@ -1,6 +1,7 @@
 {
   imports = [
     ./auto-upgrade.nix
+    ./btrfs-persist.nix
     ./gc.nix
     ./hyprland.nix
     ./nix-ld.nix
