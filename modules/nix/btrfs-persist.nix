@@ -16,7 +16,7 @@ in {
     boot.initrd = {
       postDeviceCommands = lib.mkBefore ''
         mkdir -p /mnt
-        mount -o subvol=/ /dev/disk/by-label/${hostname} /mnt
+        mount -o subvol=/ /dev/disk/by-label/${config.networking.hostName} /mnt
 
         echo "Cleaning subvolume"
         btrfs subvolume list -o /mnt/root | cut -f9 -d ' ' |
