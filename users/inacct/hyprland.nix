@@ -204,8 +204,8 @@
         grim = "${pkgs.grim}/bin/grim";
         slurp = "${pkgs.slurp}/bin/slurp";
         eags = "exec, ags -b hypr";
-        wl-copy = "${wl-clipboard}/bin/wl-copy";
-        wl-paste = "${wl-clipboard}/bin/wl-paste";
+        wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+        wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
       in [
         # Program Hotkeys
         "SUPER, S, ${eags} -t quicksettings"
