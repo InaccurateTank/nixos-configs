@@ -2,16 +2,15 @@
   inputs,
   pkgs,
   ...
-}: let
-  grim = "${pkgs.grim}/bin/grim";
-  slurp = "${pkgs.slurp}/bin/slurp";
-in {
+}: {
   imports = [
     inputs.hypridle.homeManagerModules.hypridle
     inputs.hyprlock.homeManagerModules.hyprlock
   ];
 
-  flakeMods.swww.enable = true;
+  home.packages = [pkgs.swww];
+
+  # flakeMods.swww.enable = true;
 
   services.hypridle = {
     enable = true;
@@ -126,7 +125,7 @@ in {
       };
 
       decoration = {
-        rounding = 4;
+        rounding = 0;
         active_opacity = 1.0;
         inactive_opacity = 0.9;
 
@@ -189,25 +188,37 @@ in {
 
       exec-once = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+        "swww-daemon"
         "ags -b hypr"
+        # "wl-paste --type text --watch cliphist store"
+        # "wl-paste --type image --watch cliphist store"
+      ];
+
+      # Nonconsuming Push-to-Toggle-Talk
+      bindn = [
+        ",KP_Subtract, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ];
 
       # Standard Binds
       bind = let
+        grim = "${pkgs.grim}/bin/grim";
+        slurp = "${pkgs.slurp}/bin/slurp";
         eags = "exec, ags -b hypr";
+        wl-copy = "${wl-clipboard}/bin/wl-copy";
+        wl-paste = "${wl-clipboard}/bin/wl-paste";
       in [
         # Program Hotkeys
-        "SUPER, Q, exec, wezterm"
-        "SUPER, R, ${eags}, -t launcher"
+        "SUPER, S, ${eags} -t quicksettings"
+        "SUPER, R, ${eags} -t launcher"
+        "SUPER, grave, exec, wezterm"
         "SUPER, F, exec, thunar"
         "SUPER, W, exec, firefox"
 
-        # Screenshot
-        "SUPER SHIFT, S, exec, ${grim} -g \"$(${slurp})\""
+        # Screenshot: Probably migrate to grimblast
+        "SUPER SHIFT, S, exec, ${grim} -g \"$(${slurp})\" - | ${wl-copy} && ${wl-paste} > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
 
         "SUPER, C, killactive,"
         "SUPER, V, togglefloating,"
-        # "SUPER, M, exit,"
 
         # Move Focus
         "SUPER, left, movefocus, l"

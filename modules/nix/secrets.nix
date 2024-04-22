@@ -28,10 +28,10 @@ in {
       validateSopsFiles = false;
       age =
         {
-          keyFile = "/nix/persist/var/lib/sops-nix/key.txt";
+          keyFile = "/persist/var/lib/sops-nix/key.txt";
         }
         // lib.optionalAttrs cfg.useSshKey {
-          sshKeyPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
+          sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
           generateKey = true;
         };
     };

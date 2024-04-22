@@ -6,49 +6,59 @@
   ...
 }: {
   imports = [
-    (modulesPath + "/profiles/qemu-guest.nix")
+    (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = [];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "tmpfs";
-    fsType = "tmpfs";
-    options = ["defaults" "size=2G" "mode=755"];
+    device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
+    fsType = "btrfs";
+    options = ["subvol=@root" "compress=zstd"];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/0D66-F75A";
+    device = "/dev/disk/by-uuid/7100-EF19";
     fsType = "vfat";
     options = ["defaults" "umask=0077"];
   };
 
+  fileSystems."/persist" = {
+    device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
+    fsType = "btrfs";
+    options = ["subvol=@persist" "compress=zstd"];
+    neededForBoot = true;
+  };
+
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/c1ebcb8e-71f7-43ac-afec-df09b3606064";
-    fsType = "ext4";
-    options = ["defaults"];
+    device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
+    fsType = "btrfs";
+    options = ["subvol=@nix" "noatime" "compress=zstd"];
   };
 
-  fileSystems."/etc/nixos" = {
-    device = "/nix/persist/etc/nixos";
-    fsType = "none";
-    options = ["bind"];
-  };
-
-  fileSystems."/var/log" = {
-    device = "/nix/persist/var/log";
-    fsType = "none";
-    options = ["bind"];
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
+    fsType = "btrfs";
+    options = ["subvol=@swap" "noatime"];
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/27e3647a-62d7-4481-9ecb-3e35703569f1";}
+    {
+      device = "/swap/swapfile";
+      size = 4096;
+    }
   ];
 
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp8s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

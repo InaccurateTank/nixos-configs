@@ -80,7 +80,11 @@
         '';
       };
     };
-    git.enable = true;
+    git = {
+      enable = true;
+      userName = "InaccurateTank";
+      userEmail = "inaccuratetank@outlook.com";
+    };
     btop = {
       enable = true;
       settings = {

@@ -19,14 +19,19 @@
     hashedPasswordFile = config.sops.secrets."inacctPass".path;
   };
 
-  environment.persistence."/nix/persist".users.inacct = {
+  environment.persistence."/persist".users.inacct = {
     directories = [
       "Downloads"
       "Music"
       "Pictures"
       "Documents"
       "Videos"
+
+      # Program settings
       ".cache/swww"
+      ".config/vesktop"
+      ".vscode"
+      ".mozilla"
     ];
   };
 

@@ -2,22 +2,15 @@
   inputs,
   pkgs,
   ...
-}: let
-  hyprlandConfig = pkgs.writeText "greetd-hyprland.conf" ''
-    exec-once = ${inputs.ags.packages.${pkgs.system}.ags}/bin/ags --config ${./greeter.js}; hyprctl dispatch exit
-  '';
-in {
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
 
   flakeMods = {
-    vscode-remote-fix.enable = true;
     hyprland.enable = true;
-    secrets = {
-      enable = true;
-      useSshKey = true;
-    };
+    secrets.enable = true;
+    btrfs-persist.enable = true;
   };
 
   boot = {
@@ -27,32 +20,22 @@ in {
       themePackages = [pkgs.nixos-bgrt-plymouth];
     };
     loader = {
-      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        devices = ["nodev"];
+        efiSupport = true;
+        useOSProber = true;
+      };
     };
   };
 
   time.timeZone = "America/Los_Angeles";
 
-  environment.persistence."/nix/persist" = {
-    hideMounts = true;
+  environment.persistence."/persist" = {
+    # hideMounts = true;
     directories = [
-      "/etc/nixos" # nixos system config files
       "/etc/NetworkManager/system-connections" # NetworkManager Passwords
-      "/var/lib" # system service persistent data
-      "/var/log" # the place that journald dumps logs to
-      {
-        # Secret repo ssh
-        directory = "/root/.ssh";
-        mode = "0700";
-      }
-    ];
-    files = [
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/machine-id"
     ];
   };
 
@@ -80,8 +63,8 @@ in {
     };
   };
 
+  security.rtkit.enable = true;
   services = {
-    openssh.enable = true;
     pipewire = {
       enable = true;
       alsa = {
@@ -95,7 +78,7 @@ in {
     tumbler.enable = true;
     greetd = {
       enable = true;
-      settings.default_session.command = "Hyprland --config ${hyprlandConfig}";
+      settings.default_session.command = "${pkgs.cage}/bin/cage -ds -m last ${inputs.ags.packages.${pkgs.system}.ags}/bin/ags -- -c ${./greeter.js}";
     };
   };
 

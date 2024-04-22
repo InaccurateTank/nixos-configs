@@ -13,123 +13,128 @@ const qs_state = Variable("Notifications")
 
 // Menu Constructors
 const QSPage = ({title, content = {}, scrollable = true}) => {
-    const children = [
-        Widget.Label({
-            class_name: "header",
-            label: title
-        }),
-        Widget.Separator({}),
-        Widget.Box({
-            vertical: true,
-            spacing: 8,
-            ...content,
-        }),
-    ]
+  const children = [
+    Widget.Label({
+      class_name: "header",
+      label: title
+    }),
+    Widget.Separator({}),
+    Widget.Box({
+      vertical: true,
+      spacing: 8,
+      ...content,
+    }),
+  ]
 
-    if (scrollable) {
-        return Widget.Scrollable({
-            class_name: "stack-pane",
-            hscroll: "never",
-            vscroll: "automatic",
-            child: Widget.Box({
-                vertical: true,
-                spacing: 8,
-                children
-            })
-        })
-    } else {
-        return Widget.Box({
-            class_name: "stack-pane",
-            vertical: true,
-            spacing: 8,
-            children
-        })
-    }
+  if (scrollable) {
+    return Widget.Scrollable({
+      class_name: "stack-pane",
+      hscroll: "never",
+      vscroll: "automatic",
+      child: Widget.Box({
+        vertical: true,
+        spacing: 8,
+        children
+      })
+    })
+  } else {
+    return Widget.Box({
+      class_name: "stack-pane",
+      vertical: true,
+      spacing: 8,
+      children
+    })
+  }
 }
 
 const NotificationsPage = QSPage({
-    title: "Notifications",
-    content: {
-        children: [
-            NotificationWidgets.NoteList(),
-            Widget.Separator(),
-            NotificationWidgets.NoteButtons(),
-        ]
-    },
-    scrollable: false,
+  title: "Notifications",
+  content: {
+    children: [
+      NotificationWidgets.NoteList(),
+      Widget.Separator(),
+      NotificationWidgets.NoteButtons(),
+    ]
+  },
+  scrollable: false,
 })
 const AudioPage = QSPage({
-    title: "Audio",
-    content: {
-        children: [
-            AudioWidgets.VolumeEntry("sink"),
-            AudioWidgets.VolumeEntry("source"),
-            AudioWidgets.AudioMenu("sink"),
-            AudioWidgets.AudioMenu("source"),
-            AudioWidgets.MixerMenu(),
-        ]
-    },
+  title: "Audio",
+  content: {
+    children: [
+      AudioWidgets.VolumeEntry("sink"),
+      AudioWidgets.VolumeEntry("source"),
+      AudioWidgets.AudioMenu("sink"),
+      AudioWidgets.AudioMenu("source"),
+      AudioWidgets.MixerMenu(),
+    ]
+  },
 })
 const NetworkPage = QSPage({
-    title: "Network",
-    content: {
-        children: [
-            NetworkWidgets.PrimaryNetwork(),
-            NetworkWidgets.WifiMenu(),
-        ]
-    },
+  title: "Network",
+  content: {
+    children: [
+      NetworkWidgets.PrimaryNetwork(),
+      NetworkWidgets.WifiMenu(),
+    ]
+  },
 })
 const PowerPage = QSPage({
-    title: "Power",
-    content: {
-        children: [
-            PowerStack(),
-        ]
-    },
+  title: "Power",
+  content: {
+    children: [
+      PowerStack(),
+    ]
+  },
 })
 
 const Stack = () => Widget.Stack({
-    transition: "over_left",
-    children: {
-        Notifications: NotificationsPage,
-        Audio: AudioPage,
-        Network: NetworkPage,
-        Power: PowerPage,
-    },
-    shown: qs_state.bind()
+  transition: "over_left",
+  children: {
+    Notifications: NotificationsPage,
+    Audio: AudioPage,
+    Network: NetworkPage,
+    Power: PowerPage,
+  },
+  shown: qs_state.bind()
 })
 
 // Export
 const QuickSettings = () => Popup.Window({
-    name: "quicksettings",
-    margins: [settings.margin, 0],
-    layout: "right",
-    child_box: {
-        children: [
-            Stack(),
-            Popup.Bar({
-                layout: "right",
-                centerButtons: [
-                    Popup.BarButton(qs_state, Notifications.bind("dnd")
-                        .transform(dnd => dnd ? icons.notifications.disabled : icons.notifications.enabled)
-                        , "Notifications"),
-                    Popup.BarButton(qs_state, Audio.speaker.bind("volume")
-                        .transform(v =>
-                            [
-                                [67, icons.audio.volume.high],
-                                [34, icons.audio.volume.medium],
-                                [1, icons.audio.volume.low],
-                                [0, icons.audio.volume.muted]
-                            ].find(([n]) => n <= v * 100)?.[1] || "")
-                        , "Audio"),
-                    Popup.BarButton(qs_state, Network[Network.primary].bind("icon_name"), "Network"),
-                ],
-                endButtons: [
-                    Popup.BarButton(qs_state, icons.power.shutdown, "Power"),
-                ],
-            }),
-        ]
-    }
+  name: "quicksettings",
+  margins: [settings.margin, 0],
+  layout: "right",
+  child_box: {
+    children: [
+      Stack(),
+      Popup.Bar({
+        layout: "right",
+        centerButtons: [
+          Popup.BarButton(qs_state,
+            {
+              icon: Notifications.bind("dnd")
+                .transform(dnd => dnd ? icons.notifications.disabled : icons.notifications.enabled)
+            }, "Notifications"),
+          Popup.BarButton(qs_state,
+            {
+              setup: self => self.hook(Audio, _ => {
+                self.icon = AudioWidgets.AudioIcon("sink")
+              }, "speaker-changed")
+            }, "Audio"),
+          Popup.BarButton(qs_state,
+            {
+              icon: Network[Network.primary].bind("icon_name")
+            }, "Network"),
+        ],
+        endButtons: [
+          Popup.BarButton(qs_state,
+            {
+              icon: icons.power.shutdown
+            }, "Power"),
+        ],
+      }),
+    ]
+  }
 })
 
 export default QuickSettings
