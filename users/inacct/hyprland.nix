@@ -63,7 +63,7 @@
         text = "cmd[update:1000] echo \"<b><big> $(date +\"%I:%M\") </big></b>\"";
         text_align = "center";
         font_size = 64;
-        font_family = "Iosevka Tonk";
+        font_family = "Iosevka";
         position = {
           x = 0;
           y = 16;
@@ -74,7 +74,7 @@
         text = "Welcome Back $USER";
         text_align = "center";
         font_size = 16;
-        font_family = "Iosevka Tonk";
+        font_family = "Iosevka";
         position = {
           x = 0;
           y = 0;
@@ -85,7 +85,7 @@
         text = "Type to Unlock!";
         text_align = "center";
         font_size = 16;
-        font_family = "Iosevka Tonk";
+        font_family = "Iosevka";
         position = {
           x = 0;
           y = 30;
@@ -196,7 +196,7 @@
 
       # Nonconsuming Push-to-Toggle-Talk
       bindn = [
-        ",KP_Subtract, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ",KP_Subtract, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ];
 
       # Standard Binds

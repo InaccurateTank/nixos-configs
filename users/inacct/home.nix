@@ -19,8 +19,9 @@
       size = 22;
     };
     packages = with pkgs; [
-      flakePkgs.iosevka-tonk
-      flakePkgs.iosevka-tonk-term
+      # flakePkgs.iosevka-tonk
+      # flakePkgs.iosevka-tonk-term
+      iosevka # Font
 
       loupe # Gnome Image Viewer
       evince # Gnome PDF Viewer
@@ -98,10 +99,10 @@
       enable = true;
       userSettings = {
         "workbench.colorTheme" = "Horizon";
-        "editor.fontFamily" = "'Iosevka Tonk Expanded'";
+        "editor.fontFamily" = "'Iosevka Expanded'";
         "editor.fontSize" = 13;
         "editor.fontLigatures" = true;
-        "terminal.integrated.fontFamily" = "'Iosevka Tonk Term'";
+        "terminal.integrated.fontFamily" = "Iosevka";
         "terminal.integrated.fontSize" = 13;
         "terminal.integrated.shellIntegration.enabled" = false;
       };

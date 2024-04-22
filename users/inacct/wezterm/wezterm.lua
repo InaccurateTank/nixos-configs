@@ -32,7 +32,7 @@ local config = {}
 if wez.config_builder then
     config = wez.config_builder()
 end
-config.font = wez.font('Iosevka Tonk Term')
+config.font = wez.font('Iosevka')
 config.font_size = 11.0
 config.color_scheme_dirs = {'$HOME/.config/wezterm/colors'}
 config.color_scheme = "HorizonDark"
