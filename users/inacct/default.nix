@@ -32,6 +32,12 @@
       ".config/vesktop"
       ".vscode"
       ".mozilla"
+
+      # SSH
+      {
+        directory = ".ssh";
+        mode = "0700";
+      }
     ];
   };
 
