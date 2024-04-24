@@ -98,6 +98,10 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      inputs.hy3.packages.${pkgs.system}.hy3
+    ];
     xwayland.enable = true;
     settings = {
       monitor = ",preferred,auto,1";
@@ -118,10 +122,19 @@
         border_size = 1;
         "col.active_border" = "rgba(6C6F93aa)";
         "col.inactive_border" = "rgba(2E303Eaa)";
-        layout = "dwindle";
+        # layout = "dwindle";
+        layout = "hy3";
         resize_on_border = true;
         no_focus_fallback = true;
         allow_tearing = false;
+      };
+
+      plugin = {
+        hy3 = {
+        };
+        hyprexpo = {
+          bg_col = "rgba(6C6F93aa)";
+        };
       };
 
       decoration = {
@@ -210,7 +223,7 @@
         # Program Hotkeys
         "SUPER, S, ${eags} -t quicksettings"
         "SUPER, R, ${eags} -t launcher"
-        "SUPER, grave, exec, wezterm"
+        "SUPER, grave, exec, [float;tile] wezterm start --always-new-process"
         "SUPER, F, exec, thunar"
         "SUPER, W, exec, firefox"
 
@@ -219,6 +232,7 @@
 
         "SUPER, C, killactive,"
         "SUPER, V, togglefloating,"
+        "SUPER, Tab, hyprexpo:expo, toggle" # Hyprexpo used for overview
 
         # Move Focus
         "SUPER, left, movefocus, l"
