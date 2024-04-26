@@ -144,6 +144,14 @@
     thefuck.enable = true;
   };
 
+  gtk.gtk3.bookmarks = [
+    "file:///home/inacct/Downloads"
+    "file:///home/inacct/Documents"
+    "file:///home/inacct/Music"
+    "file:///home/inacct/Pictures"
+    "file:///home/inacct/Videos"
+  ]
+
   xfconf.settings = {
     # Thunar config
     thunar = {
