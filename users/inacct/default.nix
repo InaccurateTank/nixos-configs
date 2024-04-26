@@ -19,27 +19,27 @@
     hashedPasswordFile = config.sops.secrets."inacctPass".path;
   };
 
-  environment.persistence."/persist".users.inacct = {
-    directories = [
-      "Downloads"
-      "Music"
-      "Pictures"
-      "Documents"
-      "Videos"
+  # environment.persistence."/persist".users.inacct = {
+  #   directories = [
+  #     "Downloads"
+  #     "Music"
+  #     "Pictures"
+  #     "Documents"
+  #     "Videos"
 
-      # Program settings
-      ".cache/swww"
-      ".config/vesktop"
-      ".vscode"
-      ".mozilla"
+  #     # Program settings
+  #     ".cache/swww"
+  #     ".config/vesktop"
+  #     ".vscode"
+  #     ".mozilla"
 
-      # SSH
-      {
-        directory = ".ssh";
-        mode = "0700";
-      }
-    ];
-  };
+  #     # SSH
+  #     {
+  #       directory = ".ssh";
+  #       mode = "0700";
+  #     }
+  #   ];
+  # };
 
   home-manager.users.inacct = ./home.nix;
 }

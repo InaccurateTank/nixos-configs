@@ -39,6 +39,12 @@
     options = ["subvol=@nix" "noatime" "compress=zstd" "discard=async"];
   };
 
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
+    fsType = "btrfs";
+    options = ["subvol=@home" "noatime" "compress=zstd" "discard=async"];
+  };
+
   fileSystems."/swap" = {
     device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
     fsType = "btrfs";
@@ -52,10 +58,6 @@
     }
   ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp8s0.useDHCP = lib.mkDefault true;
 
