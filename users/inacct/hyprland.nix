@@ -8,6 +8,7 @@
   eags = "exec, ags -b hypr";
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+  grimblast = "${inputs.hyprland-contrib.packages.${pkgs.system}.grimblast}/bin/grimblast";
   # cliphist = "${pkgs.cliphist}/bin/cliphist";
 in {
   imports = [
@@ -232,7 +233,11 @@ in {
         "SUPER, W, exec, firefox"
 
         # Screenshot: Probably migrate to grimblast
-        "SUPER SHIFT, S, exec, ${grim} -g \"$(${slurp})\" - | ${wl-copy} && ${wl-paste} > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
+        # "SUPER SHIFT, S, exec, ${grim} -g \"$(${slurp})\" - | ${wl-copy} && ${wl-paste} > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png"
+        ",Print, exec, ${grimblast} --notify copy screen"
+        "SHIFT, Print, exec, ${grimblast} --notify copy screen"
+        "SUPER, Print, exec, ${grimblast} --notify save area"
+        "SUPER SHIFT, Print, exec, ${grimblast} --notify save area"
 
         "SUPER, C, killactive,"
         "SUPER, V, togglefloating,"
