@@ -150,7 +150,7 @@
     "file:///home/inacct/Music"
     "file:///home/inacct/Pictures"
     "file:///home/inacct/Videos"
-  ]
+  ];
 
   xfconf.settings = {
     # Thunar config
