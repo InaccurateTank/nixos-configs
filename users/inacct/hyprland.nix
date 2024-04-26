@@ -197,6 +197,9 @@
         "float, title:^(Open)(.*)$"
         "size 50% 70%, title:^(Open)(.*)$"
         "pin, move 50% 30%, title:^(Open)(.*)$"
+
+        # Network Manager
+        "float, class:nm-connection-editor"
       ];
 
       exec-once = [
