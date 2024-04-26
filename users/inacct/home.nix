@@ -67,6 +67,31 @@
       profiles.default = {
         name = "Default";
         id = 0;
+        search = {
+          force = true;
+          default = "DuckDuckGo";
+          order = ["DuckDuckGo"];
+          engines = {
+            "Nix Packages" = {
+              urls = [{
+                template = "https://search.nixos.org/packages";
+                params = [
+                  { name = "type"; value = "packages"; }
+                  { name = "query"; value = "{searchTerms}"; }
+                ];
+              }];
+              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@np" ];
+            };
+            "Rust Docs" = {
+              urls = [{
+                template = "https://docs.rs/releases/search?query={searchTerms}";
+              }];
+              icon = "https://docs.rs/favicon.ico";
+              definedAliases = [ "@rs" ];
+            };
+          };
+        };
         settings = {
           # For Firefox GNOME theme:
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Enable customChrome.cs
