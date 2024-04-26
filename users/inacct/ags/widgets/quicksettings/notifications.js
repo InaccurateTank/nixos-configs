@@ -92,7 +92,7 @@ const NoteList = () => {
   const list = Widget.Box({
     vertical: true,
     vexpand: true,
-    spacing: settings.spacing,
+    spacing: settings.spacing.standard,
     children: Notifications.bind("notifications")
       .as(n => n.map(Notification).flat().reverse())
   })
