@@ -17,7 +17,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
     fsType = "btrfs";
-    options = ["subvol=@root" "compress=zstd"];
+    options = ["subvol=@root" "compress=zstd" "discard=async"];
   };
 
   fileSystems."/boot" = {
@@ -29,20 +29,20 @@
   fileSystems."/persist" = {
     device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
     fsType = "btrfs";
-    options = ["subvol=@persist" "compress=zstd"];
+    options = ["subvol=@persist" "compress=zstd" "discard=async"];
     neededForBoot = true;
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
     fsType = "btrfs";
-    options = ["subvol=@nix" "noatime" "compress=zstd"];
+    options = ["subvol=@nix" "noatime" "compress=zstd" "discard=async"];
   };
 
   fileSystems."/swap" = {
     device = "/dev/disk/by-uuid/1abfef81-4de2-409f-b0c9-180fc71fe4c3";
     fsType = "btrfs";
-    options = ["subvol=@swap" "noatime"];
+    options = ["subvol=@swap" "noatime" "discard=async"];
   };
 
   swapDevices = [
