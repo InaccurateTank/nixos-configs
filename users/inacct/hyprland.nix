@@ -2,7 +2,14 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  grim = "${pkgs.grim}/bin/grim";
+  slurp = "${pkgs.slurp}/bin/slurp";
+  eags = "exec, ags -b hypr";
+  wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+  wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+  # cliphist = "${pkgs.cliphist}/bin/cliphist";
+in {
   imports = [
     inputs.hypridle.homeManagerModules.hypridle
     inputs.hyprlock.homeManagerModules.hyprlock
@@ -206,8 +213,8 @@
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "swww-daemon"
         "ags -b hypr"
-        # "wl-paste --type text --watch cliphist store"
-        # "wl-paste --type image --watch cliphist store"
+        "wl-paste --type text --watch cliphist store"
+        "wl-paste --type image --watch cliphist store"
       ];
 
       # Nonconsuming Push-to-Toggle-Talk
@@ -216,13 +223,7 @@
       ];
 
       # Standard Binds
-      bind = let
-        grim = "${pkgs.grim}/bin/grim";
-        slurp = "${pkgs.slurp}/bin/slurp";
-        eags = "exec, ags -b hypr";
-        wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
-        wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
-      in [
+      bind = [
         # Program Hotkeys
         "SUPER, S, ${eags} -t quicksettings"
         "SUPER, R, ${eags} -t launcher"

@@ -27,6 +27,10 @@
       evince # Gnome PDF Viewer
       celluloid # Video Player
       vesktop # Discord Client
+
+      # Temp Insert
+      wl-clipboard
+      cliphist
     ];
     file."firefox-gnome-theme" = {
       target = ".mozilla/firefox/default/chrome/firefox-gnome-theme";
