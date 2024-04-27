@@ -208,6 +208,9 @@ in {
 
         # Network Manager
         "float, class:nm-connection-editor"
+
+        # Firefox PnP
+        "float, class:firefox, title:Picture-in-Picture"
       ];
 
       exec-once = [
