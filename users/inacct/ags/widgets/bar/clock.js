@@ -1,4 +1,4 @@
-import { BarBox } from "../utils.js"
+import { BarBox } from "../../utils.js"
 
 const timeVar = Variable("", {
   poll: [1000, ["date", "+%I:%M %p"]]

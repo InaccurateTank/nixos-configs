@@ -1,4 +1,4 @@
-import { BarBox } from "../utils.js";
+import { BarBox } from "../../utils.js";
 
 const hyprland = await Service.import('hyprland')
 

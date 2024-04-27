@@ -1,4 +1,4 @@
-import { BarBox, distro } from "../utils.js"
+import { BarBox, distro } from "../../utils.js"
 
 const hyprland = await Service.import('hyprland')
 

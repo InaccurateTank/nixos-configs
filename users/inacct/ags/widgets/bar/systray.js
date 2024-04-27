@@ -1,4 +1,4 @@
-import { BarBox } from "../utils.js";
+import { BarBox } from "../../utils.js";
 
 const systemtray = await Service.import("systemtray")
 

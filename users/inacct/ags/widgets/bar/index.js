@@ -1,10 +1,10 @@
 import Gtk from "gi://Gtk?version=3.0"
-import { BarBox, icons } from "../utils.js"
+import { BarBox, icons } from "../../utils.js"
 import Clock from "./clock.js"
 import SysTray from "./systray.js"
 import Workspaces from "./workspaces.js"
 import WindowTitle from "./title.js"
-import AudioWidgets from "./quicksettings/audio.js"
+import AudioWidgets from "../quicksettings/audio.js"
 
 const Network = await Service.import('network')
 const Notifications = await Service.import('notifications')
