@@ -139,6 +139,16 @@ in {
 
       plugin = {
         hy3 = {
+          tabs = {
+            height = "2";
+            padding = "6";
+            render_text = "false";
+          };
+          autotile = {
+            enable = true;
+            trigger_width = "800";
+            trigger_height = "500";
+          };
         };
         hyprexpo = {
           bg_col = "rgba(6C6F93aa)";
