@@ -4,6 +4,8 @@ in {
   iosevka-tonk = callPackage ./iosevka-tonk {};
   iosevka-tonk-term = callPackage ./iosevka-tonk {set = "term";};
 
+  cs-firewall-bouncer = callPackage ./cs-firewall-bouncer.nix {};
+
   custom-caddy = callPackage ./custom-caddy.nix {
     externalPlugins = [
       {
