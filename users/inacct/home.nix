@@ -155,6 +155,7 @@
     update.auto.enable = true;
     packages = [
       "com.valvesoftware.Steam"
+      "org.freedesktop.Platform.VulkanLayer.gamescope"
       "io.github.Foldex.AdwSteamGtk"
     ];
   };
