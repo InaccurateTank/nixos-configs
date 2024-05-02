@@ -5,6 +5,7 @@
 }: {
   imports = [
     inputs.ags.homeManagerModules.default
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
     ./hyprland.nix
     ./theme
   ];
@@ -146,6 +147,16 @@
       };
     };
     thefuck.enable = true;
+  };
+
+  services.flatpak = {
+    enable = true;
+    uninstallUnmanaged = false;
+    update.auto.enable = true;
+    packages = [
+      "com.valvesoftware.Steam"
+      "io.github.Foldex.AdwSteamGtk"
+    ];
   };
 
   gtk.gtk3.bookmarks = [

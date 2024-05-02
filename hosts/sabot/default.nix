@@ -61,6 +61,7 @@
         thunar-media-tags-plugin
       ];
     };
+    gamemode.enable = true;
   };
 
   security.rtkit.enable = true;
@@ -117,6 +118,13 @@
       enable = true;
       settings.default_session.command = "${pkgs.cage}/bin/cage -ds -m last ${inputs.ags.packages.${pkgs.system}.ags}/bin/ags -- -c ${./greeter.js}";
     };
+    xserver.videoDrivers = ["amdgpu"];
+  };
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
   # Launcher button doesn't work as expected, disable.

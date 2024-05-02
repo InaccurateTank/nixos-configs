@@ -51,7 +51,7 @@
     };
 
     ###### Other Flakes ######
-    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.3.0";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.4.1";
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
