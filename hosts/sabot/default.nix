@@ -119,6 +119,7 @@
       settings.default_session.command = "${pkgs.cage}/bin/cage -ds -m last ${inputs.ags.packages.${pkgs.system}.ags}/bin/ags -- -c ${./greeter.js}";
     };
     xserver.videoDrivers = ["amdgpu"];
+    flatpak.enable = true;
   };
 
   hardware.opengl = {
