@@ -35,6 +35,7 @@
               config.allowUnfreePredicate = pkg:
                 builtins.elem (lib.getName pkg) [
                   "vscode"
+                  "steam"
                 ];
               overlays = [
                 # Flake packages added as overlay

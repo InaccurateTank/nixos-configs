@@ -151,16 +151,16 @@
     thefuck.enable = true;
   };
 
-  services.flatpak = {
-    enable = true;
-    uninstallUnmanaged = false;
-    update.auto.enable = true;
-    packages = [
-      "com.valvesoftware.Steam"
-      "org.freedesktop.Platform.VulkanLayer.gamescope"
-      "io.github.Foldex.AdwSteamGtk"
-    ];
-  };
+  # services.flatpak = {
+  #   enable = true;
+  #   uninstallUnmanaged = false;
+  #   update.auto.enable = true;
+  #   packages = [
+  #     "com.valvesoftware.Steam"
+  #     "org.freedesktop.Platform.VulkanLayer.gamescope"
+  #     "io.github.Foldex.AdwSteamGtk"
+  #   ];
+  # };
 
   gtk.gtk3.bookmarks = [
     "file:///home/inacct/Downloads"
