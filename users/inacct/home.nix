@@ -22,7 +22,9 @@
     packages = with pkgs; [
       # flakePkgs.iosevka-tonk
       # flakePkgs.iosevka-tonk-term
-      iosevka # Font
+      # Fonts
+      iosevka
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
 
       loupe # Gnome Image Viewer
       evince # Gnome PDF Viewer
@@ -129,10 +131,10 @@
       enable = true;
       userSettings = {
         "workbench.colorTheme" = "Horizon";
-        "editor.fontFamily" = "'Iosevka Expanded'";
+        "editor.fontFamily" = "'Iosevka Expanded', 'Symbols Nerd Font'";
         "editor.fontSize" = 13;
         "editor.fontLigatures" = true;
-        "terminal.integrated.fontFamily" = "Iosevka";
+        "terminal.integrated.fontFamily" = "Iosevka, 'Symbols Nerd Font Mono'";
         "terminal.integrated.fontSize" = 13;
         "terminal.integrated.shellIntegration.enabled" = false;
       };
