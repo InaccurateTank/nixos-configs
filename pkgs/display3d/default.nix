@@ -27,6 +27,6 @@ rustPlatform.buildRustPackage rec {
 
   meta = with lib; {
     homepage = "https://github.com/redpenguinyt/display3d";
-    description = "A command line interface for rendering and animating 3D objects ";
+    description = "A command line interface for rendering and animating 3D objects";
   };
 }
