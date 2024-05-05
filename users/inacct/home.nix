@@ -39,6 +39,9 @@
       target = ".mozilla/firefox/default/chrome/firefox-gnome-theme";
       source = inputs.firefox-gnome-theme;
     };
+    shellAliases = {
+      blahaj = "${pkgs.flakePkgs.display3d}/bin/display3d ${pkgs.flakePkgs.display3d}/share/resources/blahaj.obj";
+    };
   };
 
   fonts.fontconfig.enable = true;

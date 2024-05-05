@@ -1,8 +1,15 @@
-{...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   home = {
     username = "inacct";
     homeDirectory = "/home/inacct";
     stateVersion = "23.11";
+    shellAliases = {
+      blahaj = "${pkgs.flakePkgs.display3d}/bin/display3d ${pkgs.flakePkgs.display3d}/share/resources/blahaj.obj";
+    };
   };
 
   programs = {

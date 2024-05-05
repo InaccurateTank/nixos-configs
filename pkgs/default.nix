@@ -22,4 +22,6 @@ in {
     ];
     vendorHash = "sha256-/5fe4jBgiABDW7mj+9iwK/j3E6rcTYscENi15dcGDzc=";
   };
+
+  display3d = callPackage ./display3d {};
 }
