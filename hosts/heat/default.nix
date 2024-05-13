@@ -3,7 +3,10 @@
   pkgs,
   ...
 }: {
-  flakeMods.vscode-remote-fix.enable = true;
+  flakeMods = {
+    shell-prompt.enable = true;
+    vscode-remote-fix.enable = true;
+  };
 
   wsl = {
     enable = true;

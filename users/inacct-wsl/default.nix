@@ -1,9 +1,9 @@
-{pkgs, ...}: {
-  users.users.inacct = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = ["wheel"];
-  };
+# {pkgs, ...}: {
+#   users.users.inacct = {
+#     isNormalUser = true;
+#     shell = pkgs.zsh;
+#     extraGroups = ["wheel"];
+#   };
 
-  home-manager.users.inacct = ./home.nix;
-}
+#   home-manager.users.inacct = ./home.nix;
+# }

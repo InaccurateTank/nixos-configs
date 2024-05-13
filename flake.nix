@@ -109,7 +109,7 @@
         hostname = "heat";
         wsl = true;
         users = [
-          "inacct-wsl"
+          "inacct"
         ];
       };
       # VM
@@ -122,6 +122,7 @@
       # Desktop
       "sabot" = mkSystem {
         hostname = "sabot";
+        userProfile = "full";
         users = [
           "inacct"
         ];

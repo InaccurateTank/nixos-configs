@@ -15,6 +15,7 @@
     hostname ? "nixos",
     wsl ? false,
     users,
+    userProfile ? "minimal",
     extraModules ? [],
   }:
     lib.nixosSystem {
@@ -36,6 +37,8 @@
                 builtins.elem (lib.getName pkg) [
                   "vscode"
                   "steam"
+                  "steam-original"
+                  "steam-run"
                 ];
               overlays = [
                 # Flake packages added as overlay
@@ -53,7 +56,13 @@
           inputs.nixos-wsl.nixosModules.wsl
           {flakeMods.security.apparmor.enable = false;}
         ]
-        ++ builtins.map (x: ./users/${x}) users
+        ++ builtins.map (x:
+          ./users/${x}/${
+            if wsl
+            then "minimal"
+            else userProfile
+          })
+        users
         ++ extraModules;
     };
 }

@@ -2,7 +2,8 @@
   lib,
   fetchFromGitHub,
   buildGoModule,
-}: buildGoModule rec {
+}:
+buildGoModule rec {
   pname = "cs-firewall-bouncer";
   version = "0.0.28";
 

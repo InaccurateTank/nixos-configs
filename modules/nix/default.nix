@@ -7,6 +7,7 @@
     ./nix-ld.nix
     ./secrets.nix
     ./security.nix
+    ./shell-prompt.nix
     ./vscode-remote-fix.nix
   ];
 }
