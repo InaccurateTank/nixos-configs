@@ -19,6 +19,12 @@ export const BarBox = (children, props = {}) => Widget.Box({
 export function Capitalize(str) {return str.charAt(0).toUpperCase() + str.slice(1)}
 
 /**
+ * Use `ls` to search a directory for files and output results as array
+ * @param {String} dir
+ */
+export function SearchDir(dir) {return Utils.exec(`sh -c ls -p ${dir} | grep -v /`).split('\n')}
+
+/**
  * Current distro
  */
 export const distro = GLib.get_os_info("ID")
