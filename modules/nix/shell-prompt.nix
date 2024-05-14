@@ -60,7 +60,7 @@ in {
         };
 
         git_status = {
-          format = "[(\\[$conflicted$untracked$modified$staged$renamed$deleted\\])( $ahead_behind$stashed)]($style) ";
+          format = "[(\\[$conflicted$untracked$modified$staged$renamed$deleted\\] )($ahead_behind$stashed )]($style)";
           style = "bold bright-red";
           stashed = "≡";
         };
