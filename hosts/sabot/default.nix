@@ -10,6 +10,7 @@
   flakeMods = {
     hyprland.enable = true;
     secrets.enable = true;
+    shell-prompt.enable = true;
     btrfs-persist.enable = true;
   };
 

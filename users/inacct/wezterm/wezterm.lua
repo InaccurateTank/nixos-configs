@@ -32,6 +32,10 @@ local config = {}
 if wez.config_builder then
     config = wez.config_builder()
 end
+config.font = wez.font_with_fallback {
+  'Iosevka',
+  { family = 'Symbols Nerd Font Mono', scale = 0.75 },
+}
 config.font = wez.font('Iosevka')
 config.font_size = 11.0
 config.color_scheme_dirs = {'$HOME/.config/wezterm/colors'}

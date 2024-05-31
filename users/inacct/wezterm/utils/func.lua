@@ -12,26 +12,22 @@ local module = {}
 ---local name = fn.basename("C:\\foo\\bar") -- will be "bar"
 ---```
 module.basename = function(path)
-        local res = path:gsub("(.*[/\\])(.*)", "%2")
-        return res
-    end
+  local res = path:gsub("(.*[/\\])(.*)", "%2")
+  return res
+end
 
 ---Pulls an icon for the tab depending on the running process
 ---@param process string Name of the process
 ---@return string str Nerdfont icon with spacing
 module.running_program = function(process)
-        local name = module.basename(process)
-            :gsub("%.exe$", "")
-        if name:match('powershell') or process:match('pwsh') then
-            name = icons.win_shell .. ' '
-        elseif name:match('nu') then
-            name = icons.win_shell .. ' '
-        elseif name:match('cmd') then
-            name = icons.win_shell .. ' '
-        else
-            name = icons.linux_shell .. ' '
-        end
-        return name
-    end
+  local name = module.basename(process)
+    :gsub("%.exe$", "")
+  local icon = icons.programs[name]
+  if icon then
+    return icon
+  else
+    return icons.default_shell
+  end
+end
 
 return module

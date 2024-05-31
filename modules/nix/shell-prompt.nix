@@ -50,7 +50,7 @@ in {
 
         nix_shell = {
           format = "[$symbol$state( \\($name\\))]($style) ";
-          symbol = "[](fg:cyan) ";
+          symbol = "[ ](fg:cyan)";
         };
 
         git_branch = {
@@ -72,7 +72,7 @@ in {
           format = "[\\[$time\\]]($style)";
         };
 
-        directory.read_only = "";
+        directory.read_only = " ";
 
         username = {
           format = "[$user]($style) ";
@@ -95,17 +95,17 @@ in {
         };
 
         os.symbols = {
-          AlmaLinux = "[](fg:blue) ";
-          Alpine = "[](fg:cyan) ";
-          Arch = "[](fg:cyan) ";
-          Debian = "[](fg:red) ";
-          NixOS = "[](fg:cyan) ";
-          openSUSE = "[](fg:bright-green) ";
-          Pop = "[](fg:white) ";
-          Raspbian = "[](fg:red) ";
-          RockyLinux = "[](fg:green) ";
-          Ubuntu = "[](fg:bright-red) ";
-          Windows = "[](fg:cyan) ";
+          AlmaLinux = "[ ](fg:blue)";
+          Alpine = "[ ](fg:cyan)";
+          Arch = "[ ](fg:cyan)";
+          Debian = "[ ](fg:red)";
+          NixOS = "[ ](fg:cyan)";
+          openSUSE = "[ ](fg:bright-green)";
+          Pop = "[ ](fg:white)";
+          Raspbian = "[ ](fg:red)";
+          RockyLinux = "[ ](fg:green)";
+          Ubuntu = "[ ](fg:bright-red)";
+          Windows = "[ ](fg:cyan)";
         };
       };
     };
