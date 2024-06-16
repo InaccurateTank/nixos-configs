@@ -11,10 +11,10 @@
   grimblast = "${inputs.hyprland-contrib.packages.${pkgs.system}.grimblast}/bin/grimblast";
   # cliphist = "${pkgs.cliphist}/bin/cliphist";
 in {
-  imports = [
-    inputs.hypridle.homeManagerModules.hypridle
-    inputs.hyprlock.homeManagerModules.hyprlock
-  ];
+  # imports = [
+  #   inputs.hypridle.homeManagerModules.hypridle
+  #   inputs.hyprlock.homeManagerModules.hyprlock
+  # ];
 
   home.packages = [pkgs.swww];
 
@@ -22,85 +22,91 @@ in {
 
   services.hypridle = {
     enable = true;
-    lockCmd = "hyprlock";
-    beforeSleepCmd = "loginctl lock-session";
-    afterSleepCmd = "hyprctl dispatch dpms on";
-    listeners = [
-      {
-        # Lockscreen after 5 mins
-        timeout = 300;
-        onTimeout = "loginctl lock-session";
-      }
-      {
-        # Screen off after 10 mins
-        timeout = 600;
-        onTimeout = "hyprctl dispatch dpms off";
-        onResume = "hyprctl dispatch dpms on";
-      }
-    ];
+    settings = {
+      general = {
+        beforeSleepCmd = "loginctl lock-session";
+        afterSleepCmd = "hyprctl dispatch dpms on";
+        lockCmd = "hyprlock";
+      };
+      listener = [
+        {
+          # Lockscreen after 5 mins
+          timeout = 300;
+          onTimeout = "loginctl lock-session";
+        }
+        {
+          # Screen off after 10 mins
+          timeout = 600;
+          onTimeout = "hyprctl dispatch dpms off";
+          onResume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
   };
 
   programs.hyprlock = {
     enable = true;
-    general = {
-      ignore_empty_input = true;
+    settings = {
+      general = {
+        ignore_empty_input = true;
+      };
+      background = [
+        {
+          path = "screenshot";
+          blur_size = 4;
+          blur_passes = 3;
+        }
+      ];
+      input-field = [
+        {
+          dots_size = 0.2;
+          dots_spacing = 0.64;
+          dots_rounding = 2;
+          rounding = 10;
+          position = {
+            x = 0;
+            y = 70;
+          };
+          valign = "bottom";
+        }
+      ];
+      label = [
+        # Clock
+        {
+          text = "cmd[update:1000] echo \"<b><big> $(date +\"%I:%M\") </big></b>\"";
+          text_align = "center";
+          font_size = 64;
+          font_family = "Iosevka";
+          position = {
+            x = 0;
+            y = 16;
+          };
+        }
+        # Welcome
+        {
+          text = "Welcome Back $USER";
+          text_align = "center";
+          font_size = 16;
+          font_family = "Iosevka";
+          position = {
+            x = 0;
+            y = 0;
+          };
+        }
+        # Reminder
+        {
+          text = "Type to Unlock!";
+          text_align = "center";
+          font_size = 16;
+          font_family = "Iosevka";
+          position = {
+            x = 0;
+            y = 30;
+          };
+          valign = "bottom";
+        }
+      ];
     };
-    backgrounds = [
-      {
-        path = "screenshot";
-        blur_size = 4;
-        blur_passes = 3;
-      }
-    ];
-    input-fields = [
-      {
-        dots_size = 0.2;
-        dots_spacing = 0.64;
-        dots_rounding = 2;
-        rounding = 10;
-        position = {
-          x = 0;
-          y = 70;
-        };
-        valign = "bottom";
-      }
-    ];
-    labels = [
-      # Clock
-      {
-        text = "cmd[update:1000] echo \"<b><big> $(date +\"%I:%M\") </big></b>\"";
-        text_align = "center";
-        font_size = 64;
-        font_family = "Iosevka";
-        position = {
-          x = 0;
-          y = 16;
-        };
-      }
-      # Welcome
-      {
-        text = "Welcome Back $USER";
-        text_align = "center";
-        font_size = 16;
-        font_family = "Iosevka";
-        position = {
-          x = 0;
-          y = 0;
-        };
-      }
-      # Reminder
-      {
-        text = "Type to Unlock!";
-        text_align = "center";
-        font_size = 16;
-        font_family = "Iosevka";
-        position = {
-          x = 0;
-          y = 30;
-        };
-        valign = "bottom";
-      }
-    ];
   };
 
   wayland.windowManager.hyprland = {

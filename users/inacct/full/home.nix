@@ -21,8 +21,8 @@
       # flakePkgs.iosevka-tonk
       # flakePkgs.iosevka-tonk-term
       # Fonts
-      iosevka
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      # iosevka
+      # (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
 
       loupe # Gnome Image Viewer
       evince # Gnome PDF Viewer
@@ -39,7 +39,7 @@
     };
   };
 
-  fonts.fontconfig.enable = true;
+  # fonts.fontconfig.enable = true;
 
   programs = {
     ags = {

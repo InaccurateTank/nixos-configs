@@ -3,12 +3,36 @@
   pkgs,
   ...
 }: {
+  home.packages = with pkgs; [
+    cantarell-fonts
+    iosevka
+    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+  ];
+
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      monospace = [
+        "Iosevka"
+        "Symbols Nerd Font Mono"
+      ];
+      sansSerif = [
+        "Cantarell"
+        "Symbols Nerd Font"
+      ];
+      serif = [
+        "DejaVu Serif"
+        "Symbols Nerd Font"
+      ];
+    };
+  };
+
   #GTK Theme
   gtk = {
     enable = true;
     font = {
       name = "Cantarell";
-      package = pkgs.cantarell-fonts;
+      # package = pkgs.cantarell-fonts;
     };
     iconTheme = {
       name = "Papirus-Dark";
