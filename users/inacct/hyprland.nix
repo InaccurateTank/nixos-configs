@@ -3,20 +3,19 @@
   pkgs,
   ...
 }: let
-  grim = "${pkgs.grim}/bin/grim";
-  slurp = "${pkgs.slurp}/bin/slurp";
+  # grim = "${pkgs.grim}/bin/grim";
+  # slurp = "${pkgs.slurp}/bin/slurp";
   eags = "exec, ags -b hypr";
-  wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
-  wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+  # wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+  # wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
   grimblast = "${inputs.hyprland-contrib.packages.${pkgs.system}.grimblast}/bin/grimblast";
   # cliphist = "${pkgs.cliphist}/bin/cliphist";
 in {
-  # imports = [
-  #   inputs.hypridle.homeManagerModules.hypridle
-  #   inputs.hyprlock.homeManagerModules.hyprlock
-  # ];
-
-  home.packages = [pkgs.swww];
+  home.packages = with pkgs; [
+    swww
+    wl-clipboard
+    cliphist
+  ];
 
   # flakeMods.swww.enable = true;
 
