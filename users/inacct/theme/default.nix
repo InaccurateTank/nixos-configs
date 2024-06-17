@@ -3,11 +3,21 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    cantarell-fonts
-    iosevka
-    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-  ];
+  home = {
+    packages = with pkgs; [
+      cantarell-fonts
+      iosevka
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+
+      # flakePkgs.iosevka-tonk
+      # flakePkgs.iosevka-tonk-term
+    ];
+    pointerCursor = {
+      name = "catppuccin-mocha-dark-cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
+      size = 22;
+    };
+  };
 
   fonts.fontconfig = {
     enable = true;

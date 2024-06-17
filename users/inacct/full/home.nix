@@ -12,18 +12,7 @@
   ];
 
   home = {
-    pointerCursor = {
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
-      size = 22;
-    };
     packages = with pkgs; [
-      # flakePkgs.iosevka-tonk
-      # flakePkgs.iosevka-tonk-term
-      # Fonts
-      # iosevka
-      # (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-
       loupe # Gnome Image Viewer
       evince # Gnome PDF Viewer
       celluloid # Video Player
@@ -38,8 +27,6 @@
       source = inputs.firefox-gnome-theme;
     };
   };
-
-  # fonts.fontconfig.enable = true;
 
   programs = {
     ags = {
