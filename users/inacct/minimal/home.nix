@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   home = {
@@ -10,9 +11,13 @@
     shellAliases = {
       blahaj = "${pkgs.flakePkgs.display3d}/bin/display3d ${pkgs.flakePkgs.display3d}/share/resources/blahaj.obj";
     };
+    packages = with pkgs; [
+      ouch
+    ];
   };
 
   programs = {
+    starship.enable = true;
     zsh = {
       enable = true;
       autosuggestion.enable = true;
@@ -36,5 +41,44 @@
       userEmail = "inaccuratetank@outlook.com";
     };
     thefuck.enable = true;
+    yazi = {
+      enable = true;
+      package = inputs.yazi.packages.${pkgs.system}.yazi;
+      settings = {
+        plugin = {
+          prepend_previewers = [
+            {
+              mime = "application/*zip";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-tar";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-bzip2";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-7z-compressed";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-rar";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-xz";
+              run = "ouch";
+            }
+          ];
+        };
+      };
+      plugins = {
+        "starship.yazi" = inputs.starship-yazi;
+        "ouch.yazi" = inputs.ouch-yazi;
+      };
+      initLua = ./yazi.lua;
+    };
   };
 }

@@ -52,6 +52,18 @@
 
     ###### Other Flakes ######
     nix-flatpak.url = "github:gmodena/nix-flatpak/v0.4.1";
+    yazi = {
+      url = "github:sxyazi/yazi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    starship-yazi = {
+      url = "github:Rolv-Apneseth/starship.yazi";
+      flake = false;
+    };
+    ouch-yazi = {
+      url = "github:ndtoan96/ouch.yazi";
+      flake = false;
+    };
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
