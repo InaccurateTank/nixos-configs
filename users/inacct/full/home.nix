@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ../minimal/home.nix
+    ../home.nix
     inputs.ags.homeManagerModules.default
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     ../hyprland.nix

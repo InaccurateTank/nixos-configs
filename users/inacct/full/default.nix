@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ../minimal
+    ../default.nix
   ];
 
   sops.secrets."inacctPass".neededForUsers = true;

@@ -15,7 +15,7 @@
     hostname ? "nixos",
     wsl ? false,
     users,
-    userProfile ? "minimal",
+    userProfile ? "",
     extraModules ? [],
   }:
     lib.nixosSystem {
@@ -57,11 +57,7 @@
           {flakeMods.security.apparmor.enable = false;}
         ]
         ++ builtins.map (x:
-          ./users/${x}/${
-            if wsl
-            then "minimal"
-            else userProfile
-          })
+          ./users/${x} + lib.optionalString (!wsl && userProfile != "") "/${userProfile}")
         users
         ++ extraModules;
     };
