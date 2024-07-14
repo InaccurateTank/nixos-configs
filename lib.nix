@@ -23,6 +23,7 @@
       specialArgs = {inherit inputs;};
       modules =
         [
+          inputs.lix-module.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
           {
             networking.hostName = hostname;
