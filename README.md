@@ -3,9 +3,9 @@ Because copying the configs through ssh officially is too much work now
 
 |Host|Purpose|
 |---|---|
-|heat|WSL Testbed. Explodes frequently|
-|beehive|Evaluation VM|
-|sabot|Personal Desktop. Dual boots with Windows|
+|[heat](./hosts/heat)|WSL Testbed. Explodes frequently|
+|[beehive](./hosts/beehive)|Evaluation VM|
+|[sabot](./hosts/sabot)|Personal Desktop. Dual boots with Windows|
 
 ## Known Issues
 - Microphones refuse to switch for some reason

@@ -109,15 +109,6 @@
         "terminal.integrated.shellIntegration.enabled" = false;
       };
     };
-    hyfetch = {
-      enable = true;
-      settings = {
-        preset = "nonbinary";
-        mode = "rgb";
-        brightness = "0.50";
-        color_align.mode = "horizontal";
-      };
-    };
   };
 
   # services.flatpak = {

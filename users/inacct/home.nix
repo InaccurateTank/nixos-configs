@@ -80,5 +80,125 @@
       };
       initLua = ./yazi.lua;
     };
+
+    hyfetch = {
+      enable = true;
+      settings = {
+        preset = "nonbinary";
+        mode = "rgb";
+        brightness = "0.50";
+        color_align.mode = "horizontal";
+      };
+    };
   };
+
+  xdg.configFile."neofetch/config.conf".text = ''
+    print_info() {
+      prin "────────────── NixOS ──────────────"
+      info " " kernel
+      info " " wm
+      info " " shell
+      info " " term
+      info "󰏖 " packages
+      info " " cpu
+      info " " memory
+      info "󰔛 " uptime
+      prin " \n \n \n \n \n \n \n $(color 1) \n $(color 2) \n $(color 3) \n $(color 4) \n $(color 5) \n $(color 6) \n $(color 7) \n $(color 0)"
+    }
+
+    title_fqdn="off"
+
+    kernel_shorthand="on"
+
+    distro_shorthand="off"
+    os_arch="on"
+
+    uptime_shorthand="on"
+
+    memory_percent="on"
+    memory_unit="gib"
+    mem_precision=2
+
+    package_managers="on"
+    package_separate="on"
+
+    shell_path="off"
+    shell_version="on"
+
+    editor_path="off"
+    editor_version="on"
+
+    speed_type="bios_limit"
+    speed_shorthand="on"
+
+    cpu_brand="on"
+    cpu_speed="on"
+    cpu_cores="logical"
+    cpu_temp="off"
+
+    gpu_brand="on"
+    gpu_type="all"
+    refresh_rate="on"
+
+    gtk_shorthand="off"
+    gtk2="on"
+    gtk3="on"
+    qt="on"
+
+    public_ip_host="http://ident.me"
+    public_ip_timeout=2
+    local_ip_interface=('auto')
+
+    de_version="on"
+
+    disk_show=('/')
+    disk_subtitle="mount"
+    disk_percent="on"
+
+    music_player="auto"
+    song_format="%artist% - %album% - %title%"
+    song_shorthand="off"
+    mpc_args=()
+
+    colors=(distro)
+    bold="on"
+    underline_enabled="on"
+    underline_char="-"
+    separator=":"
+    block_range=(0 15)
+    color_blocks="on"
+    block_width=3
+    block_height=1
+    col_offset="auto"
+    bar_char_elapsed="-"
+    bar_char_total="="
+    bar_border="on"
+    bar_length=15
+    bar_color_elapsed="distro"
+    bar_color_total="distro"
+
+    memory_display="off"
+    battery_display="off"
+    disk_display="off"
+
+    image_backend="ascii"
+    image_source="auto"
+
+    ascii_distro="nixos_small"
+    ascii_colors=(distro)
+    ascii_bold="on"
+
+    image_loop="off"
+    thumbnail_dir="$\{XDG_CACHE_HOME:-$\{HOME}/.cache}/thumbnails/neofetch"
+    crop_mode="normal"
+    crop_offset="center"
+    image_size="auto"
+    catimg_size="2"
+    gap=3
+    yoffset=0
+    xoffset=0
+    background_color=
+
+    stdout="auto"
+  '';
 }

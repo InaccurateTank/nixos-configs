@@ -44,6 +44,7 @@
 
     ###### Other Flakes ######
     nix-flatpak.url = "github:gmodena/nix-flatpak/v0.4.1";
+    # Yazi main repo only present until the v0.3.0 release due to mouse support
     yazi = {
       url = "github:sxyazi/yazi";
       inputs.nixpkgs.follows = "nixpkgs";
