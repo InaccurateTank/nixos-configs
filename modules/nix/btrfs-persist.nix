@@ -10,7 +10,21 @@ in {
     inputs.impermanence.nixosModules.impermanence
   ];
 
-  options.flakeMods.btrfs-persist.enable = lib.mkEnableOption "flake btrfs impermenance preset";
+  options.flakeMods.btrfs-persist = {
+    enable = lib.mkEnableOption "flake btrfs impermenance preset";
+
+    extraDirs = lib.mkOption {
+      type = with lib.types; listOf (coercedTo str (f: {directory = f;}) attrs);
+      default = [];
+      description = "Extra directories to pass to impermenance.";
+    };
+
+    extraFiles = lib.mkOption {
+      type = with lib.types; listOf (coercedTo str (f: {file = f;}) attrs);
+      default = [];
+      description = "Extra files to pass to impermenance.";
+    };
+  };
 
   config = lib.mkIf cfg.enable {
     boot.initrd = {
@@ -41,6 +55,7 @@ in {
           "/var/lib" # system service persistent data
           "/var/log" # the place that journald dumps logs to
         ]
+        ++ cfg.extraDirs
         ++ lib.optionals config.flakeMods.secrets.enable [
           {
             # Secrets repo ssh
@@ -52,6 +67,7 @@ in {
         [
           "/etc/machine-id"
         ]
+        ++ cfg.extraFiles
         ++ lib.optionals config.services.openssh.enable [
           "/etc/ssh/ssh_host_rsa_key"
           "/etc/ssh/ssh_host_rsa_key.pub"

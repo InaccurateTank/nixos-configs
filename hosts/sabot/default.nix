@@ -11,7 +11,12 @@
     hyprland.enable = true;
     secrets.enable = true;
     shell-prompt.enable = true;
-    btrfs-persist.enable = true;
+    btrfs-persist = {
+      enable = true;
+      extraDirs = [
+        "/etc/NetworkManager/system-connections"
+      ];
+    };
   };
 
   boot = {
@@ -50,12 +55,12 @@
     hardwareClockInLocalTime = true;
   };
 
-  environment.persistence."/persist" = {
-    # hideMounts = true;
-    directories = [
-      "/etc/NetworkManager/system-connections" # NetworkManager Passwords
-    ];
-  };
+  # environment.persistence."/persist" = {
+  #   # hideMounts = true;
+  #   directories = [
+  #     "/etc/NetworkManager/system-connections" # NetworkManager Passwords
+  #   ];
+  # };
 
   environment.systemPackages = with pkgs; [
     xdg-terminal-exec

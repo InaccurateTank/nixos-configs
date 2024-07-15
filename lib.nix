@@ -55,7 +55,7 @@
         ]
         ++ lib.optionals wsl [
           inputs.nixos-wsl.nixosModules.wsl
-          {flakeMods.security.apparmor.enable = false;}
+          {flakeMods.security.apparmor.enable = lib.mkForce false;}
         ]
         ++ builtins.map (x:
           ./users/${x} + lib.optionalString (!wsl && userProfile != "") "/${userProfile}")
