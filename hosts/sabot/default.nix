@@ -149,11 +149,16 @@
     # flatpak.enable = true;
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
+
+  # hardware.opengl = {
+  #   enable = true;
+  #   driSupport = true;
+  #   driSupport32Bit = true;
+  # };
 
   # Launcher button doesn't work as expected, disable.
   documentation.nixos.enable = false;

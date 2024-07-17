@@ -75,10 +75,11 @@
         };
       };
       plugins = {
-        "starship.yazi" = inputs.starship-yazi;
-        "ouch.yazi" = inputs.ouch-yazi;
+        "starship" = inputs.starship-yazi;
+        "ouch" = inputs.ouch-yazi;
+        "custom-border" = ./yazi/custom-border;
       };
-      initLua = ./yazi.lua;
+      initLua = ./yazi/init.lua;
     };
 
     hyfetch = {
