@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   users.users.inacct = {
+    initialPassword = "transrights";
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = ["wheel"];
