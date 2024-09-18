@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -49,10 +49,6 @@
     ###### Other Flakes ######
     nix-flatpak.url = "github:gmodena/nix-flatpak/v0.4.1";
     # Yazi main repo only present until the v0.3.0 release due to mouse support
-    yazi = {
-      url = "github:sxyazi/yazi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     starship-yazi = {
       url = "github:Rolv-Apneseth/starship.yazi";
       flake = false;

@@ -43,7 +43,6 @@
     thefuck.enable = true;
     yazi = {
       enable = true;
-      package = inputs.yazi.packages.${pkgs.system}.yazi;
       settings = {
         plugin = {
           prepend_previewers = [
