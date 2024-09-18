@@ -9,9 +9,9 @@ in {
   options.flakeMods.vscode-remote-fix.enable = lib.mkEnableOption "flake vscode remote fixer preset";
 
   config = lib.mkIf cfg.enable {
-    flakeMods.nix-ld.enable = true;
-
     environment.systemPackages = [pkgs.wget];
+
+    programs.nix-ld.enable = lib.mkForce true;
 
     system.activationScripts.vscodeFixUsers = with lib; let
       fixFile = pkgs.writeText "vscodeRemoteFix" ''
