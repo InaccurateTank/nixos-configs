@@ -40,6 +40,7 @@
                   "steam"
                   "steam-original"
                   "steam-run"
+                  "steam-unwrapped"
                 ];
               overlays = [
                 # Flake packages added as overlay

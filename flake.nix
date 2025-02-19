@@ -18,13 +18,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ###### Hyprland Stuff ######
     ags = {
-      url = "github:Aylur/ags";
+      url = "github:aylur/ags/v1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-contrib = {

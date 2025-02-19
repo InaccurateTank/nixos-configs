@@ -7,10 +7,7 @@
     packages = with pkgs; [
       cantarell-fonts
       iosevka
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-
-      # flakePkgs.iosevka-tonk
-      # flakePkgs.iosevka-tonk-term
+      nerd-fonts.symbols-only
     ];
     pointerCursor = {
       name = "catppuccin-mocha-dark-cursors";
