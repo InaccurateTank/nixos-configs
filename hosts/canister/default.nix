@@ -14,7 +14,7 @@
 
   boot.loader.grub = {
     enable = true;
-    boot.loader.grub.device = "/dev/sda";
+    device = "/dev/sda";
   };
 
   time.timeZone = "America/Los_Angeles";
