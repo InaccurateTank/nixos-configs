@@ -11,7 +11,7 @@ in {
   ];
 
   options.flakeMods.impermanence = {
-    enable = lib.mkEnableOption "flake impermenance preset";
+    enable = lib.mkEnableOption "flake impermanence preset";
 
     btrfs = lib.mkOption {
       type = with lib.types; bool;
@@ -22,13 +22,13 @@ in {
     extraDirs = lib.mkOption {
       type = with lib.types; listOf (coercedTo str (f: {directory = f;}) attrs);
       default = [];
-      description = "Extra directories to pass to impermenance.";
+      description = "Extra directories to pass to impermanence.";
     };
 
     extraFiles = lib.mkOption {
       type = with lib.types; listOf (coercedTo str (f: {file = f;}) attrs);
       default = [];
-      description = "Extra files to pass to impermenance.";
+      description = "Extra files to pass to impermanence.";
     };
   };
 
