@@ -11,8 +11,9 @@
     hyprland.enable = true;
     secrets.enable = true;
     shell-prompt.enable = true;
-    btrfs-persist = {
+    impermanence = {
       enable = true;
+      btrfs = true;
       extraDirs = [
         "/etc/NetworkManager/system-connections"
       ];

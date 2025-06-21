@@ -114,6 +114,13 @@
           "control"
         ];
       };
+      # Media Server VM
+      "canister" = mkSystem {
+        hostname = "canister";
+        users = [
+          "control"
+        ];
+      };
       # Desktop
       "sabot" = mkSystem {
         hostname = "sabot";
