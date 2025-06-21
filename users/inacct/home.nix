@@ -21,7 +21,7 @@
     zsh = {
       enable = true;
       autosuggestion.enable = true;
-      initExtra = ''
+      initContent = ''
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
 
@@ -94,7 +94,7 @@
 
   xdg.configFile."neofetch/config.conf".text = ''
     print_info() {
-      prin "────────────── NixOS ──────────────"
+      prin "────────────── $(grep -oP '(?<=^VERSION_ID="|^NAME=)(.+[^"])' /etc/os-release | tr "\n" " ")──────────────"
       info " " kernel
       info " " wm
       info " " shell
