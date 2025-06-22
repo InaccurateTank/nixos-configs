@@ -9,6 +9,10 @@
 
   flakeMods = {
     vscode-remote-fix.enable = true;
+    secrets = {
+      enable = true;
+      useSshKey = true;
+    };
     impermanence.enable = true;
   };
 
