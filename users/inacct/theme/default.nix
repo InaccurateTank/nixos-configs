@@ -6,7 +6,7 @@
   home = {
     packages = with pkgs; [
       cantarell-fonts
-      iosevka
+      aporetic
       nerd-fonts.symbols-only
     ];
     pointerCursor = {
@@ -20,7 +20,7 @@
     enable = true;
     defaultFonts = {
       monospace = [
-        "Iosevka"
+        "Aporetic Sans Mono"
         "Symbols Nerd Font Mono"
       ];
       sansSerif = [

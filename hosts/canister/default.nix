@@ -19,6 +19,7 @@
       enable = true;
       useSshKey = true;
     };
+    # Nerd fonts make things weird on the host, but 99% of the time we're interacting via ssh anyway.
     shell-prompt.enable = true;
     vscode-remote-fix.enable = true;
   };
@@ -47,6 +48,6 @@
   };
 
   system = {
-    stateVersion = "23.11";
+    stateVersion = "25.05";
   };
 }

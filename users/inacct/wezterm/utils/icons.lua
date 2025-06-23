@@ -12,17 +12,23 @@ module.seperators = {
   block = '█',
 }
 
+module.decorations = {
+  hide = wez.nerdfonts.md_window_minimize .. ' ',
+  max = wez.nerdfonts.md_window_maximize .. ' ',
+  close = wez.nerdfonts.md_close .. ' '
+}
+
 module.programs = {
   -- Special Shells
-  fish = '󰈺 ',
-  powershell = ' ',
-  pwsh = ' ',
+  fish = wez.nerdfonts.md_fish .. ' ',
+  powershell = wez.nerdfonts.seti_powershell .. ' ',
+  pwsh = wez.nerdfonts.seti_powershell .. ' ',
   -- File Managers
-  yazi = '󰉋 ',
+  yazi = wez.nerdfonts.md_folder .. ' ',
 }
 
 -- Misc
-module.default_shell = ' '
-module.admin = '󰦝 '
+module.default_shell = wez.nerdfonts.seti_shell .. ' ',
+module.admin = wez.nerdfonts.md_shield_lock .. ' ',
 
 return module
