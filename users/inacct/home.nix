@@ -40,7 +40,7 @@
       userName = "InaccurateTank";
       userEmail = "inaccuratetank@outlook.com";
     };
-    thefuck.enable = true;
+    pay-respects.enable = true;
     yazi = {
       enable = true;
       settings = {
