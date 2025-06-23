@@ -61,12 +61,6 @@
       flake = false;
     };
 
-    ###### Formatter ######
-    alejandra = {
-      url = "github:kamadorueda/alejandra/3.1.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ###### Personal ######
     secrets = {
       url = "git+ssh://git@git.inaccuratetank.gay/inaccuratetank/nix-secrets.git?ref=main&shallow=1";
@@ -77,7 +71,6 @@
   outputs = {
     self,
     nixpkgs,
-    alejandra,
     ...
   } @ inputs: let
     systems = [
