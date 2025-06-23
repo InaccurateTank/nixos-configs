@@ -2,7 +2,6 @@
   config,
   lib,
   inputs,
-  flakeRoot,
   ...
 }: let
   cfg = config.flakeMods.secrets;

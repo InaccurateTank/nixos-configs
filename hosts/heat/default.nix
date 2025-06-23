@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{...}: {
   flakeMods = {
     shell-prompt.enable = true;
     vscode-remote-fix.enable = true;
