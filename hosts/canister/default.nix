@@ -8,6 +8,11 @@
   ];
 
   flakeMods = {
+    auto-upgrade = {
+      enable = true;
+      reboot = true;
+      maxJobs = 1;
+    };
     vscode-remote-fix.enable = true;
     secrets = {
       enable = true;
