@@ -41,8 +41,8 @@
         id = 0;
         search = {
           force = true;
-          default = "DuckDuckGo";
-          order = ["DuckDuckGo"];
+          default = "ddg";
+          order = ["ddg"];
           engines = {
             "Nix Packages" = {
               urls = [
@@ -99,7 +99,7 @@
     };
     vscode = {
       enable = true;
-      userSettings = {
+      profiles.default.userSettings = {
         "workbench.colorTheme" = "Horizon";
         "editor.fontFamily" = "'Iosevka Expanded', 'Symbols Nerd Font'";
         "editor.fontSize" = 13;

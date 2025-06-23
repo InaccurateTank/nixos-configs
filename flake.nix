@@ -107,13 +107,6 @@
           "inacct"
         ];
       };
-      # VM
-      "beehive" = mkSystem {
-        hostname = "beehive";
-        users = [
-          "control"
-        ];
-      };
       # Media Server VM
       "canister" = mkSystem {
         hostname = "canister";
