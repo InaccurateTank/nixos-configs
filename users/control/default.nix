@@ -12,7 +12,6 @@
       ../keys/id_inacct.pub
     ];
 
-    # initialPassword = "transrights";
     hashedPasswordFile = config.sops.secrets."controlPass".path;
 
     packages = with pkgs; [

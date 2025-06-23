@@ -636,22 +636,6 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz"
       }
     },
-    "nix-flatpak": {
-      "locked": {
-        "lastModified": 1711997201,
-        "narHash": "sha256-J71xzQlVYsjagA4AsVwRazhBh2rZrPpKvxTgs6UzL7c=",
-        "owner": "gmodena",
-        "repo": "nix-flatpak",
-        "rev": "b76fa31346db7fc958a9898f3c594696ca71c4fd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gmodena",
-        "ref": "v0.4.1",
-        "repo": "nix-flatpak",
-        "type": "github"
-      }
-    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -757,7 +741,6 @@
         "impermanence": "impermanence",
         "kvlibadwaita": "kvlibadwaita",
         "lix-module": "lix-module",
-        "nix-flatpak": "nix-flatpak",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
         "ouch-yazi": "ouch-yazi",

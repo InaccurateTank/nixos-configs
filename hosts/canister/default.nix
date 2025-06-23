@@ -11,14 +11,16 @@
     auto-upgrade = {
       enable = true;
       reboot = true;
+      # The VMs are relatively small...
       maxJobs = 1;
     };
-    vscode-remote-fix.enable = true;
+    impermanence.enable = true;
     secrets = {
       enable = true;
       useSshKey = true;
     };
-    impermanence.enable = true;
+    shell-prompt.enable = true;
+    vscode-remote-fix.enable = true;
   };
 
   boot.loader.grub = {

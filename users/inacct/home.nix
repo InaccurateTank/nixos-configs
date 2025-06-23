@@ -17,7 +17,7 @@
   };
 
   programs = {
-    starship.enable = true;
+    # starship.enable = true;
     zsh = {
       enable = true;
       autosuggestion.enable = true;
