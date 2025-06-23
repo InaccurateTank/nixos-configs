@@ -43,7 +43,7 @@
     };
 
     ###### Other Flakes ######
-    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.4.1";
+    # nix-flatpak.url = "github:gmodena/nix-flatpak/v0.4.1";
     starship-yazi = {
       url = "github:Rolv-Apneseth/starship.yazi";
       flake = false;
