@@ -15,9 +15,12 @@
     hostname ? "nixos",
     wsl ? false,
     users,
-    userProfile ? "",
     extraModules ? [],
-  }:
+  }: let
+    userImports = builtins.map (x: let
+      split = lib.strings.splitString "." x;
+    in ./users/${lib.strings.concatStringsSep "/" split}${lib.strings.optionalString (builtins.length split > 1) ".nix"}) users;
+  in
     lib.nixosSystem {
       system = system;
       specialArgs = {inherit inputs;};
@@ -58,9 +61,7 @@
           inputs.nixos-wsl.nixosModules.wsl
           {flakeMods.security.apparmor.enable = lib.mkForce false;}
         ]
-        ++ builtins.map (x:
-          ./users/${x} + lib.optionalString (!wsl && userProfile != "") "/${userProfile}")
-        users
+        ++ userImports
         ++ extraModules;
     };
 }

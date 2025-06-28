@@ -110,9 +110,8 @@
       # Desktop
       "sabot" = mkSystem {
         hostname = "sabot";
-        userProfile = "full";
         users = [
-          "inacct"
+          "inacct.desktop"
         ];
       };
     };

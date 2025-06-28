@@ -9,5 +9,5 @@
     ];
   };
 
-  home-manager.users.inacct = ./home.nix;
+  home-manager.users.inacct = ./home;
 }

@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ../default.nix
+    ./default.nix
   ];
 
   sops.secrets."inacctPass".neededForUsers = true;
@@ -16,5 +16,5 @@
     hashedPasswordFile = config.sops.secrets."inacctPass".path;
   };
 
-  home-manager.users.inacct = ./home.nix;
+  home-manager.users.inacct = ./home/desktop.nix;
 }
