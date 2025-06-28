@@ -1,6 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
+    inputs.quadlet-nix.nixosModules.quadlet
   ];
 
   flakeMods = {
@@ -34,6 +39,11 @@
   services = {
     openssh.enable = true;
     qemuGuest.enable = true;
+    # Caddy on the host to do the routing.
+    caddy = {
+      enable = true;
+      package = pkgs.flakePkgs.custom-caddy;
+    };
   };
 
   programs.zsh.enable = true;

@@ -19,7 +19,9 @@
   }: let
     userImports = builtins.map (x: let
       split = lib.strings.splitString "." x;
-    in ./users/${lib.strings.concatStringsSep "/" split}${lib.strings.optionalString (builtins.length split > 1) ".nix"}) users;
+    in
+      ./users/${lib.strings.concatStringsSep "/" split}${lib.strings.optionalString (builtins.length split > 1) ".nix"})
+    users;
   in
     lib.nixosSystem {
       system = system;

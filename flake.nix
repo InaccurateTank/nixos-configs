@@ -22,6 +22,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ###### Server Stuff ######
+    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
+
     ###### Hyprland Stuff ######
     ags = {
       url = "github:aylur/ags/v1";
@@ -104,7 +107,7 @@
       "canister" = mkSystem {
         hostname = "canister";
         users = [
-          "control"
+          "control.canister"
         ];
       };
       # Desktop
