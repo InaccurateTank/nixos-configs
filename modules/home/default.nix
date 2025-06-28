@@ -1,5 +1,6 @@
 {
   imports = [
+    ./quadlets
     ./swww.nix
   ];
 }
