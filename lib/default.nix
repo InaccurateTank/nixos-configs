@@ -2,30 +2,28 @@
   lib,
   inputs,
   self,
-}: {
-  # Simple path fetcher for the externally stored secrets
-  fetchSecret = path: "${inputs.secrets}/${path}";
-
-  # Simple fetcher for user public keys for ssh
-  fetchPubKeys = keys: lib.map (k: "${self}/users/keys/${k}.pub") keys;
-
+}: let
+  internal = import ./internal.nix {inherit lib inputs self;};
   # System builder
-  mkSystem = {
-    system ? "x86_64-linux",
-    hostname ? "nixos",
-    wsl ? false,
+  mkSystem = hostname: {
+    system,
     users,
+    wsl ? false,
     extraModules ? [],
+    unfree ? [],
   }: let
     userImports = builtins.map (x: let
       split = lib.strings.splitString "." x;
     in
-      ./users/${lib.strings.concatStringsSep "/" split}${lib.strings.optionalString (builtins.length split > 1) ".nix"})
+      "${self}/users/${lib.strings.concatStringsSep "/" split}${lib.strings.optionalString (builtins.length split > 1) ".nix"}")
     users;
   in
     lib.nixosSystem {
       system = system;
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+        inherit inputs;
+        flakeLib = internal;
+      };
       modules =
         [
           inputs.lix-module.nixosModules.default
@@ -36,28 +34,22 @@
               useUserPackages = true;
               useGlobalPkgs = true;
               extraSpecialArgs = {inherit inputs;};
-              sharedModules = [./modules/home];
+              sharedModules = ["${self}/modules/home"];
             };
             nixpkgs = {
-              config.allowUnfreePredicate = pkg:
-                builtins.elem (lib.getName pkg) [
-                  "vscode"
-                  "steam"
-                  "steam-original"
-                  "steam-run"
-                  "steam-unwrapped"
-                ];
+              config.allowUnfreePredicate = lib.mkIf (unfree != []) (pkg:
+                builtins.elem (lib.getName pkg) unfree);
               overlays = [
                 # Flake packages added as overlay
                 (final: prev: {
-                  flakePkgs = import ./pkgs prev;
+                  flakePkgs = import "${self}/pkgs" prev;
                 })
               ];
             };
             nix.settings.experimental-features = ["nix-command" "flakes"];
           }
-          ./modules/nix
-          ./hosts/${hostname}
+          "${self}/modules/nix"
+          "${self}/hosts/${hostname}"
         ]
         ++ lib.optionals wsl [
           inputs.nixos-wsl.nixosModules.wsl
@@ -66,4 +58,6 @@
         ++ userImports
         ++ extraModules;
     };
+in {
+  loadSystems = builtins.mapAttrs (name: value: (mkSystem name value));
 }

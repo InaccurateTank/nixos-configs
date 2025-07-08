@@ -1,12 +1,10 @@
-{pkgs, ...}: {
+{flakeLib, pkgs, ...}: {
   users.users.inacct = {
     initialPassword = "transrights";
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = ["wheel"];
-    openssh.authorizedKeys.keyFiles = [
-      ../keys/id_inacct.pub
-    ];
+    openssh.authorizedKeys.keyFiles = flakeLib.fetchPubKeys ["id_inacct"];
   };
 
   home-manager.users.inacct = ./home;

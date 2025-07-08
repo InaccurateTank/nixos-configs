@@ -82,7 +82,7 @@
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    flakeLib = import ./lib.nix {
+    flakeLib = import ./lib {
       inherit (nixpkgs) lib;
       inherit inputs self;
     };
@@ -94,27 +94,34 @@
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
     # Actual NixOs configs
-    nixosConfigurations = with flakeLib; {
+    nixosConfigurations = flakeLib.loadSystems {
       # WSL
-      "heat" = mkSystem {
-        hostname = "heat";
+      "heat" = {
+        system = "x86_64-linux";
         wsl = true;
         users = [
           "inacct"
         ];
       };
       # Media Server VM
-      "canister" = mkSystem {
-        hostname = "canister";
+      "canister" = {
+        system = "x86_64-linux";
         users = [
           "control.canister"
         ];
       };
       # Desktop
-      "sabot" = mkSystem {
-        hostname = "sabot";
+      "sabot" = {
+        system = "x86_64-linux";
         users = [
           "inacct.desktop"
+        ];
+        unfree = [
+          "vscode"
+          "steam"
+          "steam-original"
+          "steam-run"
+          "steam-unwrapped"
         ];
       };
     };

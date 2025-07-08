@@ -1,4 +1,5 @@
 {
+  flakeLib,
   pkgs,
   config,
   ...
@@ -8,9 +9,7 @@
   users.users.control = {
     isNormalUser = true;
     extraGroups = ["wheel"];
-    openssh.authorizedKeys.keyFiles = [
-      ../keys/id_inacct.pub
-    ];
+    openssh.authorizedKeys.keyFiles = flakeLib.fetchPubKeys ["id_inacct"];
 
     hashedPasswordFile = config.sops.secrets."controlPass".path;
 
