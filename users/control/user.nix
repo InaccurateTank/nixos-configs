@@ -1,9 +1,12 @@
 {
+  lib,
   flakeLib,
   pkgs,
   config,
   ...
 }: {
+  flakeMods.secrets.enable = lib.mkForce true;
+
   sops.secrets."controlPass".neededForUsers = true;
 
   users.users.control = {

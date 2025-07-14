@@ -4,11 +4,10 @@
   ...
 }: {
   imports = [
-    ./default.nix
     inputs.ags.homeManagerModules.default
     # inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    ../hyprland.nix
-    ../theme
+    ./hyprland.nix
+    ./theme
   ];
 
   home = {
@@ -31,7 +30,7 @@
   programs = {
     ags = {
       enable = true;
-      configDir = ../ags;
+      configDir = ./ags;
     };
     wezterm.enable = true;
     firefox = {
@@ -149,7 +148,7 @@
     configFile."wezterm" = {
       enable = true;
       recursive = true;
-      source = ../wezterm;
+      source = ./wezterm;
     };
   };
 }

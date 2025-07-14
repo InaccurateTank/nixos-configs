@@ -8,7 +8,7 @@
     homeDirectory = "/home/inacct";
     stateVersion = "23.11";
     shellAliases = {
-      blahaj = "${pkgs.display3d}/bin/display3d ${../blahaj}/blahaj.obj";
+      blahaj = "${pkgs.display3d}/bin/display3d ${./blahaj}/blahaj.obj";
     };
     packages = with pkgs; [
       ouch
@@ -75,9 +75,9 @@
       plugins = {
         "starship" = inputs.starship-yazi;
         "ouch" = inputs.ouch-yazi;
-        "custom-border" = ../yazi/custom-border;
+        "custom-border" = ./yazi/custom-border;
       };
-      initLua = ../yazi/init.lua;
+      initLua = ./yazi/init.lua;
     };
 
     hyfetch = {

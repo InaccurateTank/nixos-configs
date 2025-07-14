@@ -5,6 +5,7 @@
 }: let
   internal = import ./internal.nix {inherit lib inputs self;};
 
+  # Recursively searches a folder for module files.
   allModulesIn = let
     searchFiles = path:
       builtins.mapAttrs
@@ -27,19 +28,58 @@
         (file: lib.hasSuffix ".nix" file && file != "default.nix")
         (files path));
 
+  # Gets all users in designated folder.
+  userSearch = path:
+    assert lib.assertMsg (builtins.pathExists path) "Users folder path ${path} does not exist"; (lib.mapAttrs'
+      (file: type:
+        lib.nameValuePair
+        (lib.removeSuffix ".nix" file)
+        {
+          files =
+            if type == "directory"
+            then path + "/${file}/user.nix"
+            else path + "/${file}";
+          homeFiles =
+            if type == "directory"
+            then
+              if builtins.pathExists (path + "/${file}/home.nix")
+              then path + "/${file}/home.nix"
+              else if builtins.pathExists (path + "/${file}/home/home.nix")
+              then path + "/${file}/home/home.nix"
+              else null
+            else null;
+        })
+      (lib.filterAttrs
+        (file: type:
+          if type == "directory"
+          then builtins.pathExists (path + "/${file}/user.nix")
+          else lib.hasSuffix ".nix" file && file != "default.nix")
+        (builtins.readDir path)));
+
   # System builder
   mkSystem = hostname: {
     system,
-    users,
+    # users,
     wsl ? false,
     extraModules ? [],
     unfree ? [],
   }: let
-    userImports = builtins.map (x: let
-      split = lib.strings.splitString "." x;
+    # Host path in flake
+    systemFolder = self + "/hosts/${hostname}";
+    #  Get both per-system and common user configs
+    systemUsers = let
+      users = userSearch (systemFolder + "/users");
     in
-      self + "/users/${lib.strings.concatStringsSep "/" split}${lib.strings.optionalString (builtins.length split > 1) ".nix"}")
-    users;
+      lib.zipAttrsWithNames
+      (builtins.attrNames users)
+      (name: values:
+        lib.zipAttrsWith
+        (name: values: builtins.filter (file: file != null) values)
+        values)
+      [
+        users
+        (userSearch (self + /users))
+      ];
   in
     lib.nixosSystem {
       system = system;
@@ -58,6 +98,11 @@
               useGlobalPkgs = true;
               extraSpecialArgs = {inherit inputs;};
               sharedModules = allModulesIn (self + /modules/home);
+              users =
+                builtins.mapAttrs (name: value: {
+                  imports = value.homeFiles;
+                })
+                systemUsers;
             };
             nixpkgs = {
               config.allowUnfreePredicate =
@@ -72,15 +117,14 @@
             };
             nix.settings.experimental-features = ["nix-command" "flakes"];
           }
-          # (self + "/modules/nix")
-          (self + "/hosts/${hostname}")
+          (systemFolder + "/configuration.nix")
         ]
         ++ allModulesIn (self + /modules/nix)
         ++ lib.optionals wsl [
           inputs.nixos-wsl.nixosModules.wsl
           {flakeMods.security.apparmor.enable = lib.mkForce false;}
         ]
-        ++ userImports
+        ++ lib.flatten (lib.mapAttrsToList (name: value: value.files) systemUsers)
         ++ extraModules;
     };
 in {

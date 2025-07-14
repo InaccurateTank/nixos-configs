@@ -99,23 +99,14 @@
       "heat" = {
         system = "x86_64-linux";
         wsl = true;
-        users = [
-          "inacct"
-        ];
       };
       # Media Server VM
       "canister" = {
         system = "x86_64-linux";
-        users = [
-          "control.canister"
-        ];
       };
       # Desktop
       "sabot" = {
         system = "x86_64-linux";
-        users = [
-          "inacct.desktop"
-        ];
         unfree = [
           "vscode"
           "steam"

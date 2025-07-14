@@ -1,4 +1,8 @@
-{lib, inputs, self}: {
+{
+  lib,
+  inputs,
+  self,
+}: {
   # Simple path fetcher for the externally stored secrets
   fetchSecret = path: "${inputs.secrets}/${path}";
 
