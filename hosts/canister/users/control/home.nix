@@ -7,7 +7,9 @@
 
   systemd.user.startServices = "sd-switch";
 
-  flakeMods.quadlets.jellyfin.enable = true;
+  flakeMods.quadlets = {
+    mediaserver.enable = true;
+  };
 
   virtualisation.quadlet.autoUpdate.enable = true;
 }
