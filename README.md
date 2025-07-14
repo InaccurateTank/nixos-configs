@@ -33,4 +33,3 @@ Because copying the configs through ssh officially is too much work now
 - Persist more data (Mostly firefox, discord, vscode)
 - Add a clipboard
 - Get steam working
-- Shuffle some folders around
