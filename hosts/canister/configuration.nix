@@ -56,6 +56,11 @@
         }
       '';
       environmentFile = config.sops.secrets."caddyEnv".path;
+      virtualHosts.":3001".extraConfig = ''
+        reverse_proxy http://localhost:3000 {
+          header_up X-Real-Ip {remote_host}
+        }
+      '';
     };
   };
 
