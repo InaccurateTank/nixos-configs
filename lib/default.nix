@@ -89,7 +89,7 @@
       };
       modules =
         [
-          inputs.lix-module.nixosModules.default
+          # inputs.lix-module.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
           {
             networking.hostName = hostname;
@@ -113,9 +113,18 @@
                 (final: prev: {
                   flakePkgs = import "${self}/pkgs" prev;
                 })
+                (final: prev: {
+                  inherit (final.lixPackageSets.stable)
+                    nixpkgs-review
+                    nix-direnv
+                    nix-eval-jobs
+                    nix-fast-build
+                    colmena;
+                })
               ];
             };
             nix.settings.experimental-features = ["nix-command" "flakes"];
+            nix.package = inputs.nixpkgs.legacyPackages.${system}.lixPackageSets.stable.lix;
           }
           (systemFolder + "/configuration.nix")
         ]
