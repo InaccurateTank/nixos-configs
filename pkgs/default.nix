@@ -1,6 +1,6 @@
 pkgs: {
   custom-caddy = pkgs.caddy.withPlugins {
-    plugins = ["github.com/caddy-dns/porkbun@v0.2.1"];
-    hash = "sha256-ayd1WnjBjQOIXtiCkR/aWML2Nc4eRyuTugsjHXOU5uQ=";
+    plugins = ["github.com/caddy-dns/porkbun@v0.3.1"];
+    hash = "sha256-YZ4Bq0hfOJpa0C2lKipEY4fqwzJbEFM7ci5ys9S3uAo=";
   };
 }

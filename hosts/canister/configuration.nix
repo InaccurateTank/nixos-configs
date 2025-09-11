@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   imports = [
@@ -36,6 +37,11 @@
     Defaults lecture = never
   '';
 
+  sops.secrets."caddyEnv" = {
+    format = "dotenv";
+    sopsFile = "${inputs.secrets}/canister/caddy.env";
+  };
+
   services = {
     openssh.enable = true;
     qemuGuest.enable = true;
@@ -43,6 +49,13 @@
     caddy = {
       enable = true;
       package = pkgs.flakePkgs.custom-caddy;
+      globalConfig = ''
+        acme_dns porkbun {
+          api_key {env.PORKBUN_API_KEY}
+          api_secret_key {env.PORKBUN_API_SECRET_KEY}
+        }
+      '';
+      environmentFile = config.sops.secrets."caddyEnv".path;
     };
   };
 
