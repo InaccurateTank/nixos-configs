@@ -42,6 +42,8 @@
     sopsFile = "${inputs.secrets}/canister/caddy.env";
   };
 
+  virtualisation.quadlet.enable = true;
+
   services = {
     openssh.enable = true;
     qemuGuest.enable = true;
