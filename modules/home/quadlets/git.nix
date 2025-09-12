@@ -29,8 +29,9 @@ in {
         autoStart = true;
         podConfig = {
           publishPorts = [
-            "127.0.0.1:8923:8923/tcp" # Anubis instance
-            "127.0.0.1:222:22/tcp" # Forgejo SSH
+            "127.0.0.1:3000:3000/tcp" # Forgejo
+            # "127.0.0.1:8923:8923/tcp" # Anubis instance
+            "127.0.0.1:2222:2222/tcp" # Forgejo SSH
           ];
         };
       };
@@ -52,8 +53,6 @@ in {
             volumes = [
               "/srv/containers/git/data/forgejo:/var/lib/gitea:Z"
               "/srv/containers/git/config/forgejo:/etc/gitea:Z"
-              "/etc/timezone:/etc/timezone:ro"
-              "/etc/localtime:/etc/localtime:ro"
             ];
           };
         };
@@ -78,16 +77,16 @@ in {
             pod = pods.git.ref;
           };
         };
-        git-anubis = {
-          containerConfig = {
-            image = "ghcr.io/techarohq/anubis:latest";
-            autoUpdate = "registry";
-            pod = pods.git.ref;
-            environments = {
-              TARGET = "http://127.0.0.1:3000"; # Forgejo
-            };
-          };
-        };
+        # git-anubis = {
+        #   containerConfig = {
+        #     image = "ghcr.io/techarohq/anubis:latest";
+        #     autoUpdate = "registry";
+        #     pod = pods.git.ref;
+        #     environments = {
+        #       TARGET = "http://127.0.0.1:3000"; # Forgejo
+        #     };
+        #   };
+        # };
       };
     };
   };

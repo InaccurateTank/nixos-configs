@@ -42,8 +42,8 @@ in {
         };
         ms-sonarr = {
           unitConfig = {
-            After = [containers.ms-jellyfin.ref "network-online.target"];
-            Requires = [containers.ms-jellyfin.ref "network-online.target"];
+            After = [containers.ms-jellyfin.ref];
+            Requires = [containers.ms-jellyfin.ref];
           };
           containerConfig = {
             image = "lscr.io/linuxserver/sonarr:latest";
@@ -62,8 +62,8 @@ in {
         };
         ms-radarr = {
           unitConfig = {
-            After = [containers.ms-jellyfin.ref "network-online.target"];
-            Requires = [containers.ms-jellyfin.ref "network-online.target"];
+            After = [containers.ms-jellyfin.ref];
+            Requires = [containers.ms-jellyfin.ref];
           };
           containerConfig = {
             image = "lscr.io/linuxserver/radarr:latest";
@@ -82,8 +82,8 @@ in {
         };
         ms-prowlarr = {
           unitConfig = {
-            After = [containers.ms-sonarr.ref containers.ms-radarr.ref "network-online.target"];
-            Requires = [containers.ms-sonarr.ref containers.ms-radarr.ref "network-online.target"];
+            After = [containers.ms-sonarr.ref containers.ms-radarr.ref];
+            Requires = [containers.ms-sonarr.ref containers.ms-radarr.ref];
           };
           containerConfig = {
             image = "lscr.io/linuxserver/prowlarr:latest";
@@ -101,8 +101,8 @@ in {
         };
         ms-bazarr = {
           unitConfig = {
-            After = [containers.ms-sonarr.ref containers.ms-radarr.ref "network-online.target"];
-            Requires = [containers.ms-sonarr.ref containers.ms-radarr.ref "network-online.target"];
+            After = [containers.ms-sonarr.ref containers.ms-radarr.ref];
+            Requires = [containers.ms-sonarr.ref containers.ms-radarr.ref];
           };
           containerConfig = {
             image = "lscr.io/linuxserver/bazarr:latest";
