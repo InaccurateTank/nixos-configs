@@ -64,7 +64,7 @@ in {
               # FORGEJO__server__ROOT_URL = "${cfg.protocol}://${cfg.domain}";
               # FORGEJO__server__SSH_DOMAIN = "${cfg.domain}";
               FORGEJO__cache__ADAPTER = "twoqueue";
-              FORGEJO__cache__HOST = "{"size":100, "recent_ratio":0.25, "ghost_ratio":0.5}";
+              FORGEJO__cache__HOST = "{\"size\":100, \"recent_ratio\":0.25, \"ghost_ratio\":0.5}";
             };
             environmentFiles = lib.singleton cfg.environmentFile;
             volumes = [
