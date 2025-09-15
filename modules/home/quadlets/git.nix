@@ -19,6 +19,18 @@ in {
       default = "gitrepos";
       description = "The name of the database for forgejo.";
     };
+
+    # protocol = lib.mkOption {
+    #   type = lib.types.str;
+    #   default = "http";
+    #   description = "The protocol used for access to the instance.";
+    # };
+
+    # domain = lib.mkOption {
+    #   type = lib.types.str;
+    #   default = "127.0.0.1:3000";
+    #   description = "The FQDN of the instance.";
+    # };
   };
 
   config = lib.mkIf cfg.enable {
@@ -48,11 +60,15 @@ in {
               FORGEJO__database__DB_TYPE = "postgres";
               FORGEJO__database__HOST = "127.0.0.1:5432";
               FORGEJO__database__NAME = cfg.dbName;
+              # FORGEJO__server__ROOT_URL = "${cfg.protocol}://${cfg.domain}";
+              # FORGEJO__server__SSH_DOMAIN = "${cfg.domain}";
+              FORGEJO__cache__ADAPTER = "twoqueue";
+              FORGEJO__cache__HOST = "{\"size\":100, \"recent_ratio\":0.25, \"ghost_ratio\":0.5}";
             };
             environmentFiles = lib.singleton cfg.environmentFile;
             volumes = [
               "/srv/containers/git/data/forgejo:/var/lib/gitea:Z"
-              "/srv/containers/git/config/forgejo:/etc/gitea:Z"
+              # "/srv/containers/git/config/forgejo:/etc/gitea:Z"
             ];
           };
         };
@@ -70,13 +86,13 @@ in {
             ];
           };
         };
-        git-redis = {
-          containerConfig = {
-            image = "docker.io/valkey/valkey:8";
-            autoUpdate = "registry";
-            pod = pods.git.ref;
-          };
-        };
+        # git-redis = {
+        #   containerConfig = {
+        #     image = "docker.io/valkey/valkey:8";
+        #     autoUpdate = "registry";
+        #     pod = pods.git.ref;
+        #   };
+        # };
         # git-anubis = {
         #   containerConfig = {
         #     image = "ghcr.io/techarohq/anubis:latest";
