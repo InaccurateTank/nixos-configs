@@ -44,6 +44,8 @@
 
   virtualisation.quadlet.enable = true;
 
+  networking.firewall.allowedTCPPorts = [3001];
+
   services = {
     openssh.enable = true;
     qemuGuest.enable = true;
