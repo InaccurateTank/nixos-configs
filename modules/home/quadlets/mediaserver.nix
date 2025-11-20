@@ -21,8 +21,10 @@ in {
             # "127.0.0.1:5690:5690/tcp" Wizarr
             # "127.0.0.1:5055:5055/tcp" Jellyseer
             "127.0.0.1:9696:9696/tcp" # Prowlarr
-            "127.0.0.1:8191:8191/tcp" # Flaresalverr
+            "127.0.0.1:8191:8191/tcp" # Flaresolverr
             "127.0.0.1:6767:6767/tcp" # Bazarr
+            "127.0.0.1:9091:9091/tcp" # Transmission Web
+            "51413:51413/udp" # Transmission Connection Port
           ];
         };
       };
@@ -99,6 +101,20 @@ in {
             ];
           };
         };
+        ms-flaresolverr = {
+          unitConfig = {
+            After = [containers.ms-sonarr.ref containers.ms-radarr.ref];
+            Requires = [containers.ms-sonarr.ref containers.ms-radarr.ref];
+          };
+          containerConfig = {
+            image = "ghcr.io/flaresolverr/flaresolverr:latest";
+            autoUpdate = "registry";
+            pod = pods.mediaserver.ref;
+            environments = {
+              LOG_LEVEL = "info"
+            };
+          };
+        };
         ms-bazarr = {
           unitConfig = {
             After = [containers.ms-sonarr.ref containers.ms-radarr.ref];
@@ -116,6 +132,28 @@ in {
             volumes = [
               "/srv/containers/mediaserver/config/bazarr:/config:Z"
               "/mnt/data/mediaserver:/data:z"
+            ];
+          };
+        };
+        ms-transmission = {
+          unitConfig = {
+            After = [containers.ms-sonarr.ref containers.ms-radarr.ref];
+            Requires = [containers.ms-sonarr.ref containers.ms-radarr.ref];
+          };
+          containerConfig = {
+            image = "lscr.io/linuxserver/transmission:latest";
+            autoUpdate = "registry";
+            pod = pods.mediaserver.ref;
+            environments = {
+              TZ = "America/Los_Angeles";
+              PUID = "633";
+              PGID = "633";
+              TRANSMISSION_WEB_HOME = "/config/flood-for-transmission";
+            };
+            volumes = [
+              "/srv/containers/mediaserver/config/transmission:/config:Z"
+              "/mnt/data/mediaserver/torrents:/downloads:z"
+              "/srv/containers/mediaserver/watch:/watch:Z"
             ];
           };
         };

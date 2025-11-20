@@ -44,7 +44,7 @@
 
   virtualisation.quadlet.enable = true;
 
-  networking.firewall.allowedTCPPorts = [3001];
+  networking.firewall.allowedTCPPorts = [51413];
 
   services = {
     openssh.enable = true;
@@ -58,13 +58,58 @@
           api_key {env.PORKBUN_API_KEY}
           api_secret_key {env.PORKBUN_API_SECRET_KEY}
         }
-      '';
-      environmentFile = config.sops.secrets."caddyEnv".path;
-      virtualHosts.":3001".extraConfig = ''
-        reverse_proxy http://localhost:3000 {
-          header_up X-Real-Ip {remote_host}
+
+        @local_only {
+          remote_ip 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8 127.0.0.1/8
         }
       '';
+      environmentFile = config.sops.secrets."caddyEnv".path;
+      virtualHosts = {
+        "git.inaccuratetank.gay".extraConfig = ''
+          reverse_proxy 127.0.0.1:3000 {
+            header_up X-Real-Ip {remote_host}
+          }
+        '';
+
+        "media.inaccuratetank.gay".extraConfig = ''
+          reverse_proxy 127.0.0.1:8096
+        '';
+
+        "*.inaccuratetank.gay".extraConfig = ''
+          handle @local_only {
+            @sonarr host sonarr.inaccuratetank.gay
+            handle @sonarr {
+              reverse_proxy 127.0.0.1:8989
+            }
+
+            @radarr host radarr.inaccuratetank.gay
+            handle @radarr {
+              reverse_proxy 127.0.0.1:7878
+            }
+
+            @prowlarr host prowlarr.inaccuratetank.gay
+            handle @prowlarr {
+              reverse_proxy 127.0.0.1:9696
+            }
+
+            @flaresolverr host flaresolverr.inaccuratetank.gay
+            handle @flaresolverr {
+              reverse_proxy 127.0.0.1:8191
+            }
+
+            @bazarr host bazarr.inaccuratetank.gay
+            handle @bazarr {
+              reverse_proxy 127.0.0.1:6767
+            }
+
+            @transmission host transmission.inaccuratetank.gay
+            handle @transmission {
+              reverse_proxy 127.0.0.1:9091
+            }
+          }
+          abort
+        '';
+      };
     };
   };
 
