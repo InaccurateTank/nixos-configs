@@ -111,7 +111,7 @@ in {
             autoUpdate = "registry";
             pod = pods.mediaserver.ref;
             environments = {
-              LOG_LEVEL = "info"
+              LOG_LEVEL = "info";
             };
           };
         };
