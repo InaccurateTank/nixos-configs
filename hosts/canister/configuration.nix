@@ -62,10 +62,6 @@
           api_key {env.PORKBUN_API_KEY}
           api_secret_key {env.PORKBUN_API_SECRET_KEY}
         }
-
-        @local_only {
-          remote_ip 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8 127.0.0.1/8
-        }
       '';
       environmentFile = config.sops.secrets."caddyEnv".path;
       virtualHosts = {
@@ -80,6 +76,9 @@
         '';
 
         "*.inaccuratetank.gay".extraConfig = ''
+          @local_only {
+            remote_ip 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8 127.0.0.1/8
+          }
           handle @local_only {
             @sonarr host sonarr.inaccuratetank.gay
             handle @sonarr {
