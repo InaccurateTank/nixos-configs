@@ -36,8 +36,10 @@
     };
     git = {
       enable = true;
-      userName = "InaccurateTank";
-      userEmail = "inaccuratetank@outlook.com";
+      settings.user = {
+        name = "InaccurateTank";
+        email = "inaccuratetank@outlook.com";
+      };
     };
     pay-respects.enable = true;
     yazi = {
