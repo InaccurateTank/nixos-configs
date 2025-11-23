@@ -1,0 +1,69 @@
+/**
+ * @name system24
+ * @description A tui-style discord theme.
+ * @author refact0r
+ * @version 1.0.0
+ * @invite nz87hXyvcy
+ * @website https://github.com/refact0r/system24
+ * @source https://github.com/refact0r/system24/blob/master/system24.theme.css
+ * @authorId 508863359777505290
+ * @authorLink https://www.refact0r.dev
+*/
+
+@import url('https://refact0r.github.io/system24/system24.css');
+
+/* customize things here */
+:root {
+	--font: 'Iosevka Expanded';
+	letter-spacing: -0.05ch;
+	font-weight: 300;
+	--label-font-weight: 500;
+
+	--corner-text: 'system24';
+
+	--pad: 16px;
+	--txt-pad: 10px;
+
+	--bg-0: #1C1E26;
+	--bg-1: #232530;
+	--bg-2: #6C6F93;
+	--bg-3: var(--bg-0);
+
+	--hover: #232530;
+	--active: var(--hover);
+	--selected: var(--active);
+
+	--txt-dark: var(--bg-0);
+	--txt-link: var(--cyan);
+	--txt-0: oklch(88.05% 0.004 236.5);
+	--txt-1: oklch(79.21% 0 0);
+	--txt-2: oklch(79.21% 0 0 / 75%);
+	--txt-3: oklch(79.21% 0 0 / 50%);
+
+	--mention-txt: var(--purple);
+	--mention-bg: color-mix(in srgb, var(--purple), transparent 90%);
+	--mention-overlay: color-mix(in srgb, var(--purple), transparent 90%);
+	--mention-hover-overlay: color-mix(in srgb, var(--purple), transparent 95%);
+	--reply-overlay: var(--active);
+	--reply-hover-overlay: var(--hover);
+
+	--border-width: 1px;
+	--border-color: var(--bg-3);
+	--border-hover-color: #f43e5c;
+	--border-transition: 0.2s ease;
+
+	--online-dot: var(--green);
+	--dnd-dot: #F43E5C;
+	--idle-dot: var(--yellow);
+	--streaming-dot: var(--purple);
+
+	--pink: oklch(69.65% 0.187 349.72);
+	--pink-1: oklch(59.65% 0.187 349.72);
+	--pink-2: oklch(49.65% 0.187 349.72);
+	--purple: oklch(67.57% 0.157 312.81);
+	--purple-1: oklch(57.57% 0.157 312.81);
+	--purple-2: oklch(47.57% 0.157 312.81);
+	--cyan: #25B2BC;
+	--yellow: #FAC29A;
+	--green: #27D796;
+}

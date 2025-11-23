@@ -13,25 +13,28 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-ld-rs = {
-      url = "github:nix-community/nix-ld-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # lix-module = {
+    #   url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    ###### Server Stuff ######
+    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
     ###### Hyprland Stuff ######
     ags = {
-      url = "github:Aylur/ags";
+      url = "github:aylur/ags/v1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # hyprland.inputs.nixpkgs.follows = "nixpkgs";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
@@ -41,17 +44,17 @@
       url = "github:outfoxxed/hy3";
       inputs.hyprland.follows = "hyprland";
     };
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     ###### Other Flakes ######
-    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.4.1";
+    # nix-flatpak.url = "github:gmodena/nix-flatpak/v0.4.1";
+    starship-yazi = {
+      url = "github:Rolv-Apneseth/starship.yazi";
+      flake = false;
+    };
+    ouch-yazi = {
+      url = "github:ndtoan96/ouch.yazi";
+      flake = false;
+    };
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
@@ -59,12 +62,6 @@
     kvlibadwaita = {
       url = "github:GabePoel/KvLibadwaita";
       flake = false;
-    };
-
-    ###### Formatter ######
-    alejandra = {
-      url = "github:kamadorueda/alejandra/3.0.0";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ###### Personal ######
@@ -77,23 +74,17 @@
   outputs = {
     self,
     nixpkgs,
-    alejandra,
     ...
   } @ inputs: let
     systems = [
       "aarch64-linux"
-      "i686-linux"
       "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    flakeRoot = ./.;
-
-    flakeLib = import ./lib.nix {
+    flakeLib = import ./lib {
       inherit (nixpkgs) lib;
-      inherit inputs flakeRoot;
+      inherit inputs self;
     };
   in {
     # Formatter for nix fmt
@@ -103,28 +94,25 @@
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
     # Actual NixOs configs
-    nixosConfigurations = with flakeLib; {
+    nixosConfigurations = flakeLib.loadSystems {
       # WSL
-      "heat" = mkSystem {
-        hostname = "heat";
+      "heat" = {
+        system = "x86_64-linux";
         wsl = true;
-        users = [
-          "inacct"
-        ];
       };
-      # VM
-      "beehive" = mkSystem {
-        hostname = "beehive";
-        users = [
-          "control"
-        ];
+      # Media Server VM
+      "canister" = {
+        system = "x86_64-linux";
       };
       # Desktop
-      "sabot" = mkSystem {
-        hostname = "sabot";
-        userProfile = "full";
-        users = [
-          "inacct"
+      "sabot" = {
+        system = "x86_64-linux";
+        unfree = [
+          "vscode"
+          "steam"
+          "steam-original"
+          "steam-run"
+          "steam-unwrapped"
         ];
       };
     };

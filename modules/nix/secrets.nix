@@ -2,7 +2,6 @@
   config,
   lib,
   inputs,
-  flakeRoot,
   ...
 }: let
   cfg = config.flakeMods.secrets;
@@ -21,14 +20,13 @@ in {
     };
   };
 
-  # TODO: Swap to persist folder if impermenance is activated
   config = lib.mkIf cfg.enable {
     sops = {
       defaultSopsFile = "${inputs.secrets}/${config.networking.hostName}.yaml";
       validateSopsFiles = false;
       age =
         {
-          keyFile = "/persist/var/lib/sops-nix/key.txt";
+          keyFile = "${lib.optionalString config.flakeMods.impermanence.enable "/persist"}/var/lib/sops-nix/key.txt";
         }
         // lib.optionalAttrs cfg.useSshKey {
           sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
