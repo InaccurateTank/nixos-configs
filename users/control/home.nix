@@ -2,7 +2,7 @@
   home = {
     username = "control";
     homeDirectory = "/home/control";
-    stateVersion = "25.11";
+    stateVersion = "25.05";
   };
 
   flakeMods.zsh-inits = {

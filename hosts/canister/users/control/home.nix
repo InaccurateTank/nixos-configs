@@ -6,11 +6,6 @@
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
-  home = {
-    username = "control";
-    homeDirectory = "/home/control";
-    stateVersion = "25.05";
-  };
 
   sops = {
     age.keyFile = "/home/control/.config/sops/age/keys.txt";
