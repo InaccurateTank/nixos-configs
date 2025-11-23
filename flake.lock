@@ -637,10 +637,10 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1757900815,
-        "narHash": "sha256-GBE+Ui2UyvDEHEY7CKC9LJrKZfoKGbq2cH4bO0N5pdc=",
+        "lastModified": 1763857728,
+        "narHash": "sha256-v2ZUs9iTEx/3zZp51JPBVxh5hqUbusO6BkdLMgWzMto=",
         "ref": "main",
-        "rev": "9bd5e2d04722f898ea67c45cf750ea7ab7a02f47",
+        "rev": "77b5c869dd000284c8de265eead22299db70c5ac",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@git.inaccuratetank.gay/inaccuratetank/nix-secrets.git"
