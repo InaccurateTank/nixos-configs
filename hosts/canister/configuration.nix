@@ -44,7 +44,11 @@
 
   virtualisation.quadlet.enable = true;
 
-  networking.firewall.allowedTCPPorts = [51413];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+    51413
+  ];
 
   services = {
     openssh.enable = true;
