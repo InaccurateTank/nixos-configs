@@ -15,7 +15,7 @@ pkgs: {
       };
 
       config = {
-        Cmd = [ "node" "/pkg/resources/app/main.js" "--headless" "--dataPath=/data" ];
+        Cmd = [ "node" "/pkg/main.js" "--dataPath=/data" ];
         WorkingDir = "/pkg";
         Volumes = {
           "/pkg" = {};
