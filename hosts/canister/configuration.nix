@@ -45,8 +45,12 @@
   virtualisation.quadlet.enable = true;
 
   networking.firewall.allowedTCPPorts = [
+    # Caddy
     80
     443
+    # Forgejo SSH
+    2222
+    # Transmission
     51413
   ];
 
@@ -113,6 +117,61 @@
           abort
         '';
       };
+    };
+    # Crowdsec for log
+    crowdsec = {
+      enable = false;
+      settings = {
+        general = {
+          api.server.enable = true;
+        };
+        #lapi.credentialsFile = ;
+        #capi.credentialsFile = ;
+        #console.tokenFile = ;
+        collections = [
+          "crowdsecurity/linux"
+          "crowdsecurity/caddy"
+          "LePresidente/gitea"
+        ];
+      };
+      localConfig.
+      localConfig.acquisitions = [
+        # SSH
+        {
+          journalctl_filter = [
+            "_SYSTEMD_UNIT=sshd.service"
+          ];
+          labels = {
+            type = "syslog";
+          };
+          source = "journalctl";
+        }
+
+        # Caddy
+        {
+          filenames = [
+            "/var/log/caddy/*.log"
+          ];
+          labels = {
+            type = "caddy";
+          };
+        }
+        # Container Logs
+        # These can be ingested with journalctl due to podman quadlets.
+        # Forgejo
+        {
+          journalctl_filter = [
+            "_SYSTEMD_USER_UNIT=git-forgejo.service"
+          ];
+          # filenames = [
+          #   "/srv/containers/git/data/forgejo/data/log/*.log"
+          # ];
+          labels = {
+            type = "gitea";
+          };
+          source = "journalctl";
+        }
+      ];
     };
   };
 
