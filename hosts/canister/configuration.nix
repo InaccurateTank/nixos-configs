@@ -173,6 +173,13 @@
         }
       ];
     };
+    crowdsec-firewall-bouncer = {
+      enable = false;
+      registerBouncer = {
+        enable = true;
+        bouncerName = "canister-firewall";
+      };
+    };
   };
 
   programs.zsh.enable = true;
