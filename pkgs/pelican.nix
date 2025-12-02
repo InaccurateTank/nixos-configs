@@ -99,7 +99,7 @@ in {
     vendorHash = "sha256-ozwgBvyu3Hnw0Zs54QnDUUBVuI+Hai8b7Yq9EWzqdfI=";
 
     meta = {
-      description = "Wings";
+      description = "Pelican Wings";
       homepage = "https://pelican.dev/";
       license = lib.licenses.agpl3Only;
       platforms = lib.platforms.linux;
