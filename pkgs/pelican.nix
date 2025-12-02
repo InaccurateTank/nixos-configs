@@ -22,16 +22,21 @@
   };
 
   pelican-php = php.buildEnv {
-    extensions = { enabled, all }: enabled ++ (with all; [
-      gd
-      mysqli
-      mbstring
-      bcmath
-      curl
-      zip
-      intl
-      sqlite3
-    ]);
+    extensions = {
+      enabled,
+      all,
+    }:
+      enabled
+      ++ (with all; [
+        gd
+        mysqli
+        mbstring
+        bcmath
+        curl
+        zip
+        intl
+        sqlite3
+      ]);
   };
 
   composeBuild = pelican-php.buildComposerProject2 {

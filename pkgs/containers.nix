@@ -10,12 +10,12 @@
 
     copyToRoot = buildEnv {
       name = "image-root";
-      paths = [ nodejs-slim_24 ];
-      pathsToLink = [ "/bin" ];
+      paths = [nodejs-slim_24];
+      pathsToLink = ["/bin"];
     };
 
     config = {
-      Cmd = [ "node" "/pkg/main.js" "--dataPath=/data" ];
+      Cmd = ["node" "/pkg/main.js" "--dataPath=/data"];
       WorkingDir = "/pkg";
       Volumes = {
         "/pkg" = {};
