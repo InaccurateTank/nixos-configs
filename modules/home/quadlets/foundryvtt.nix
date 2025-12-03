@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.flakeMods.quadlets.foundryvtt;
@@ -16,7 +17,7 @@ in {
       containers = {
         foundryvtt = {
           containerConfig = {
-            image = "docker-archive:${pkgs.flakePkgs.container-images.fvttNode}";
+            image = "docker-archive:${pkgs.flakePkgs.container-fvttNode}";
             volumes = [
               "/srv/containers/foundryvtt/pkg:/pkg:Z"
               "/srv/containers/foundryvtt/data:/data:Z"

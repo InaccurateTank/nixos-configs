@@ -105,16 +105,16 @@
         system = "x86_64-linux";
       };
       # Desktop
-      "sabot" = {
-        system = "x86_64-linux";
-        unfree = [
-          "vscode"
-          "steam"
-          "steam-original"
-          "steam-run"
-          "steam-unwrapped"
-        ];
-      };
+      # "sabot" = {
+      #   system = "x86_64-linux";
+      #   unfree = [
+      #     "vscode"
+      #     "steam"
+      #     "steam-original"
+      #     "steam-run"
+      #     "steam-unwrapped"
+      #   ];
+      # };
     };
   };
 }
