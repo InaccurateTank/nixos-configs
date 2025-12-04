@@ -3,6 +3,7 @@
 Nix(OS):
 |Module|Purpose|Default Enabled?|
 |---|---|:-:|
+|pelican|Experimental module for the Pelican game server management tool|:x:|
 |auto-upgrade|Enables automatic updates (using the repo flake.lock)|:x:|
 |gc|Nix store garbage collection and optimization|:heavy_check_mark:|
 |hyprland|Hyprland WM base setup|:x:|
