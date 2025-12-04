@@ -109,68 +109,117 @@ in {
         "d ${cfg.runtimeDir}/cache   0755 ${user} ${group} - -"
       ];
 
-      services.pelican-panel.after = [ "pelican-panel-deploy.service" ];
-      services.pelican-panel-deploy = {
-        description = "Pelican panel setup, migrations and updating.";
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
-        path = with pkgs; [
-          bash
-          rsync
-          pelican-panel-artisan
-        ];
+      services = {
+        phpfpm-pelican-panel.after = [ "pelican-panel-deploy.service" ];
 
-        script = ''
-          # Before running any PHP program, cleanup the code cache.
-          # It's necessary if you upgrade the application otherwise you might
-          # try to import non-existent modules.
-          rm -f ${cfg.runtimeDir}/app.php
-          rm -f ${cfg.runtimeDir}/providers.php
-          rm -rf ${cfg.runtimeDir}/cache/*
+        pelican-panel-deploy = {
+          description = "Pelican panel setup, migrations and updating.";
+          after = [ "network.target" ];
+          wantedBy = [ "multi-user.target" ];
+          path = with pkgs; [
+            bash
+            rsync
+            pelican-panel-artisan
+          ];
+          script = ''
+            # Before running any PHP program, cleanup the code cache.
+            # It's necessary if you upgrade the application otherwise you might
+            # try to import non-existent modules.
+            rm -f ${cfg.runtimeDir}/app.php
+            rm -f ${cfg.runtimeDir}/providers.php
+            rm -rf ${cfg.runtimeDir}/cache/*
 
-          # Copy env example if no env file
-          [[ ! -f ${cfg.dataDir}/.env ]] && echo "Copying example env" && cp ${pelican-panel}/.env.example ${cfg.dataDir}/.env && chmod 640 ${cfg.dataDir}/.env
+            # Copy env example if no env file
+            [[ ! -f ${cfg.dataDir}/.env ]] && echo "Copying example env" && cp ${pelican-panel}/.env.example ${cfg.dataDir}/.env && chmod 640 ${cfg.dataDir}/.env
 
-          # Link the static storage (package provided) to the runtime storage
-          echo "Linking storage"
-          mkdir -p ${cfg.dataDir}/storage/{avatars,fonts}
-          rsync -av --no-perms ${pelican-panel}/storage-static/ ${cfg.dataDir}/storage
+            # Link the static storage (package provided) to the runtime storage
+            echo "Linking storage"
+            mkdir -p ${cfg.dataDir}/storage/{avatars,fonts}
+            rsync -av --no-perms ${pelican-panel}/storage-static/ ${cfg.dataDir}/storage
 
-          # Files shouldn't have execute
-          chmod -R 755 ${cfg.dataDir}/storage
-          find ${cfg.dataDir}/storage -type f -exec chmod 644 {} +
+            # Files shouldn't have execute
+            chmod -R 755 ${cfg.dataDir}/storage
+            find ${cfg.dataDir}/storage -type f -exec chmod 644 {} +
 
-          # Link the app.php and providers.php in the runtime folder.
-          # We cannot link the cache folder only because bootstrap folder needs to be writeable.
-          echo "Linking runtime"
-          ln -sf ${pelican-panel}/bootstrap-static/app.php ${cfg.runtimeDir}/app.php
-          ln -sf ${pelican-panel}/bootstrap-static/providers.php ${cfg.runtimeDir}/providers.php
+            # Link the app.php and providers.php in the runtime folder.
+            # We cannot link the cache folder only because bootstrap folder needs to be writeable.
+            echo "Linking runtime"
+            ln -sf ${pelican-panel}/bootstrap-static/app.php ${cfg.runtimeDir}/app.php
+            ln -sf ${pelican-panel}/bootstrap-static/providers.php ${cfg.runtimeDir}/providers.php
 
-          # https://laravel.com/docs/10.x/filesystem#the-public-disk
-          # Creating the public/storage → storage/app/public link
-          # is unnecessary as it's part of the installPhase.
+            # https://laravel.com/docs/10.x/filesystem#the-public-disk
+            # Creating the public/storage → storage/app/public link
+            # is unnecessary as it's part of the installPhase.
 
-          # Generate key if it doesn't exist
-          [[ ! -f ${cfg.dataDir}/.key-generated ]] && echo "Generating key" && pelican-panel-artisan key:generate --force && touch ${cfg.dataDir}/.key-generated
+            # Generate key if it doesn't exist
+            [[ ! -f ${cfg.dataDir}/.key-generated ]] && echo "Generating key" && pelican-panel-artisan key:generate --force && touch ${cfg.dataDir}/.key-generated
 
-          echo "Optimizing"
-          pelican-panel-artisan optimize:clear
-          pelican-panel-artisan filament:optimize
+            echo "Optimizing"
+            pelican-panel-artisan optimize:clear
+            pelican-panel-artisan filament:optimize
 
-          # Link the static database (package provided) to the runtime database
-          echo "Database tasks"
-          mkdir -p ${cfg.dataDir}/database
-          rsync -av --no-perms ${pelican-panel}/database-static/ ${cfg.dataDir}/database
-          [[ -f ${cfg.dataDir}/database/database.sqlite ]] && pelican-panel-artisan migrate --seed --force
-          echo "Done"
-        '';
+            # Link the static database (package provided) to the runtime database
+            echo "Database tasks"
+            mkdir -p ${cfg.dataDir}/database
+            rsync -av --no-perms ${pelican-panel}/database-static/ ${cfg.dataDir}/database
+            [[ -f ${cfg.dataDir}/database/database.sqlite ]] && pelican-panel-artisan migrate --seed --force
+            echo "Done"
+          '';
+          serviceConfig = {
+            Type = "oneshot";
+            User = user;
+            Group = group;
+            StateDirectory = lib.mkIf (cfg.dataDir == "/var/lib/pelican/panel") "pelican/panel";
+            UMask = "077";
+          };
+        };
 
-        serviceConfig = {
-          Type = "oneshot";
-          User = user;
-          Group = group;
-          StateDirectory = lib.mkIf (cfg.dataDir == "/var/lib/pelican/panel") "pelican/panel";
-          UMask = "077";
+        pelican-queue = {
+          description = "Pelican queue worker";
+          after = [
+            "network.target"
+            config.systemd.services.pelican-panel-deploy.name
+          ];
+          requires = [ config.systemd.services.pelican-panel-deploy.name ];
+          wantedBy = [ "multi-user.target" ];
+          serviceConfig = {
+            Type = "simple";
+            User = user;
+            Group = group;
+            Restart = "always";
+            StateDirectory = lib.mkIf (cfg.dataDir == "/var/lib/pelican/panel") "pelican/panel";
+            ExecStart = "${pelican-panel-artisan}/bin/pelican-panel-artisan queue:work --tries=3";
+            RestartSec = 5;
+          };
+          unitConfig = {
+            StartLimitIntervalSec = 180;
+            StartLimitBurst = 30;
+          };
+        };
+
+        pelican-cron = {
+          description = "Pelican periodic tasks";
+          serviceConfig = {
+            Type = "simple";
+            User = user;
+            Group = group;
+            StateDirectory = lib.mkIf (cfg.dataDir == "/var/lib/pelican/panel") "pelican/panel";
+            ExecStart = "${pelican-panel-artisan}/bin/pelican-panel-artisan schedule:run";
+          };
+          wantedBy = [ "multi-user.target" ];
+        };
+      };
+
+      timers = {
+        pelican-cron = {
+          description = "Pelican periodic tasks timer";
+          after = [ config.systemd.services.pelican-panel-deploy.name ];
+          requires = [ "phpfpm-pelican-panel.service" ];
+          wantedBy = [ "timers.target" ];
+          timerConfig = {
+            OnBootSec = "1m";
+            OnUnitActiveSec = "1m";
+          };
         };
       };
     };
