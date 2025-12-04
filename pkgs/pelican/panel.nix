@@ -56,12 +56,13 @@ in stdenv.mkDerivation {
     echo "creating static folders"
     mv $out/bootstrap $out/bootstrap-static
     mv $out/storage $out/storage-static
+    mv $out/database $out/database-static
 
     echo "linking deployment folders"
     ln -s ${dataDir}/.env $out/.env
-    ln -s ${dataDir}/database/database.sqlite $out/database/database.sqlite
-    ln -s ${dataDir}/storage $out/
     ln -s ${runtimeDir} $out/bootstrap
+    ln -s ${dataDir}/storage $out/
+    ln -s ${dataDir}/database $out/
 
     echo "linking storage"
     ln -sf ${dataDir}/storage/app/public $out/public/storage

@@ -105,10 +105,11 @@ in {
 
     systemd = {
       tmpfiles.rules = [
-        "d ${cfg.runtimeDir}/        0700 ${user} ${group} - -"
-        "d ${cfg.runtimeDir}/cache   0700 ${user} ${group} - -"
+        "d ${cfg.runtimeDir}/        0755 ${user} ${group} - -"
+        "d ${cfg.runtimeDir}/cache   0755 ${user} ${group} - -"
       ];
 
+      services.pelican-panel.after = [ "pelican-panel-deploy.service" ];
       services.pelican-panel-deploy = {
         description = "Pelican panel setup, migrations and updating.";
         after = [ "network.target" ];
@@ -128,15 +129,20 @@ in {
           rm -rf ${cfg.runtimeDir}/cache/*
 
           # Copy env example if no env file
-          [[ ! -f ${cfg.dataDir}/.env ]] && cp ${pelican-panel}/.env-example ${cfg.dataDir}/.env && chmod 700 ${cfg.dataDir}/.env
+          [[ ! -f ${cfg.dataDir}/.env ]] && echo "Copying example env" && cp ${pelican-panel}/.env.example ${cfg.dataDir}/.env && chmod 640 ${cfg.dataDir}/.env
 
           # Link the static storage (package provided) to the runtime storage
-          mkdir -p ${cfg.dataDir}/storage ${cfg.dataDir}/storage/avatars ${cfg.dataDir}/storage/fonts
+          echo "Linking storage"
+          mkdir -p ${cfg.dataDir}/storage/{avatars,fonts}
           rsync -av --no-perms ${pelican-panel}/storage-static/ ${cfg.dataDir}/storage
-          chmod -R 755 ${cfg.dataDir}/storage/*
+
+          # Files shouldn't have execute
+          chmod -R 755 ${cfg.dataDir}/storage
+          find ${cfg.dataDir}/storage -type f -exec chmod 644 {} +
 
           # Link the app.php and providers.php in the runtime folder.
           # We cannot link the cache folder only because bootstrap folder needs to be writeable.
+          echo "Linking runtime"
           ln -sf ${pelican-panel}/bootstrap-static/app.php ${cfg.runtimeDir}/app.php
           ln -sf ${pelican-panel}/bootstrap-static/providers.php ${cfg.runtimeDir}/providers.php
 
@@ -144,16 +150,19 @@ in {
           # Creating the public/storage → storage/app/public link
           # is unnecessary as it's part of the installPhase.
 
-          # Generate key if one doesn't exist
-          [[ ! -f ${cfg.dataDir}/.key-generated ]] && pelican-panel-artisan key:generate --force && touch ${cfg.dataDir}/.key-generated
+          # Generate key if it doesn't exist
+          [[ ! -f ${cfg.dataDir}/.key-generated ]] && echo "Generating key" && pelican-panel-artisan key:generate --force && touch ${cfg.dataDir}/.key-generated
 
-          # Optimize
+          echo "Optimizing"
           pelican-panel-artisan optimize:clear
           pelican-panel-artisan filament:optimize
 
-          # Migrate sqlite if exists
+          # Link the static database (package provided) to the runtime database
+          echo "Database tasks"
           mkdir -p ${cfg.dataDir}/database
+          rsync -av --no-perms ${pelican-panel}/database-static/ ${cfg.dataDir}/database
           [[ -f ${cfg.dataDir}/database/database.sqlite ]] && pelican-panel-artisan migrate --seed --force
+          echo "Done"
         '';
 
         serviceConfig = {
@@ -182,7 +191,7 @@ in {
 
         file_server
 
-        php_fastcgi unix/${config.services.phpfpm.pools.pixelfed.socket} {
+        php_fastcgi unix/${config.services.phpfpm.pools.pelican-panel.socket} {
             root ${pelican-panel}/public
             index index.php
 
