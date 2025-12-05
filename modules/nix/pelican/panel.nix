@@ -46,15 +46,31 @@ in {
     package = mkPackageOption pkgs.flakePkgs "pelican-panel" { };
     phpPackage = mkPackageOption pkgs.flakePkgs "pelican-php" { };
 
-    user = lib.mkOption {
-      description = "The user Pelican Panel should run as.";
-      type = lib.types.str;
+    user = mkOption {
+      description = ''
+        The user Pelican Panel should run under.
+
+        ::: {.note}
+        If left as the default value this user will automatically be created
+        on system activation, otherwise you are responsible for
+        ensuring the user exists before the application starts.
+        :::
+      '';
+      type = types.str;
       default = "pelican-panel";
     };
 
-    group = lib.mkOption {
-      description = "The group Pelican Panel should run as.";
-      type = lib.types.str;
+    group = mkOption {
+      description = ''
+        The group Pelican Panel should run under.
+
+        ::: {.note}
+        If left as the default value this group will automatically be created
+        on system activation, otherwise you are responsible for
+        ensuring the group exists before the application starts.
+        :::
+      '';
+      type = types.str;
       default = "pelican-panel";
     };
 
