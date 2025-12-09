@@ -22,24 +22,6 @@
     fi
     $sudo ${cfg.phpPackage}/bin/php artisan "$@"
   '';
-
-  pelican-php = pkgs.php.buildEnv {
-    extensions = {
-      enabled,
-      all,
-    }:
-      enabled
-      ++ (with all; [
-        gd
-        mysqli
-        mbstring
-        bcmath
-        curl
-        zip
-        intl
-        sqlite3
-      ]);
-  };
 in {
   options.flakeMods.pelican.panel = {
     enable = mkEnableOption "Pelican Panel service";
@@ -222,7 +204,6 @@ in {
             StateDirectory = lib.mkIf (cfg.dataDir == "/var/lib/pelican/panel") "pelican/panel";
             ExecStart = "${pelican-panel-artisan}/bin/pelican-panel-artisan schedule:run";
           };
-          wantedBy = [ "multi-user.target" ];
         };
       };
 

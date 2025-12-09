@@ -8,23 +8,23 @@ in {
 
   container-fvttNode = containers.fvttNode;
 
-  # pelican-php = pkgs.php.buildEnv {
-  #   extensions = {
-  #     enabled,
-  #     all,
-  #   }:
-  #     enabled
-  #     ++ (with all; [
-  #       gd
-  #       mysqli
-  #       mbstring
-  #       bcmath
-  #       curl
-  #       zip
-  #       intl
-  #       sqlite3
-  #     ]);
-  # };
+  pelican-php = pkgs.php.buildEnv {
+    extensions = {
+      enabled,
+      all,
+    }:
+      enabled
+      ++ (with all; [
+        gd
+        mysqli
+        mbstring
+        bcmath
+        curl
+        zip
+        intl
+        sqlite3
+      ]);
+  };
   pelican-panel = pkgs.callPackage ./pelican/panel.nix {};
   pelican-wings = pkgs.callPackage ./pelican/wings.nix {};
 }
