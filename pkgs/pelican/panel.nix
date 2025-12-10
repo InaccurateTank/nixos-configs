@@ -11,19 +11,19 @@
   runtimeDir ? "/run/pelican-panel"
 }: let
   pname = "pelican-panel";
-  version = "1.0.0-beta28";
+  version = "1.0.0-beta29";
 
   src = fetchFromGitHub {
     owner = "pelican-dev";
     repo = "panel";
     tag = "v${version}";
-    hash = "sha256-uDpvElX+udlevUnncRepK8Vb71+TDsCTmlom1odHB70=";
+    hash = "sha256-JS2MFxfN1GKn7hAuUL8ieC0Wan1UPljI/TWysqLuD1o=";
   };
 
   composeBuild = php.buildComposerProject2 {
     inherit version src;
     pname = "${pname}-composer";
-    vendorHash = "sha256-NLTq+9VcnnIdYNkIhn/SQwR2ayytLSGFRJzBqL4WEXU=";
+    vendorHash = "sha256-v0VLqOdpA6xS8QxVqeLnJvEoroN0eBOTywgdGmDnLE0=";
   };
 in stdenv.mkDerivation {
   inherit pname version;
