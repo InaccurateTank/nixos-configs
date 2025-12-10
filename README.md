@@ -4,7 +4,7 @@ Because copying the configs through ssh officially is too much work now
 |Host|Purpose|
 |---|---|
 |[canister](./hosts/canister)|Mediaserver VM|
-|hesh|Pelican game server VM (Planned)|
+|[hesh](./hosts/hesh)|Pelican game server VM (Planned)|
 |[heat](./hosts/heat)|Personal WSL instance|
 |[sabot](./hosts/sabot)|Personal desktop dual booted with Windows|
 

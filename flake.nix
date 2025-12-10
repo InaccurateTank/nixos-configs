@@ -104,6 +104,10 @@
       "canister" = {
         system = "x86_64-linux";
       };
+      # Game Server VM
+      "hesh" = {
+        system = "x86_64-linux";
+      };
       # Desktop
       # "sabot" = {
       #   system = "x86_64-linux";
