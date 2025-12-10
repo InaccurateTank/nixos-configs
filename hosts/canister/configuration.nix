@@ -134,7 +134,6 @@
           "LePresidente/gitea"
         ];
       };
-      localConfig.
       localConfig.acquisitions = [
         # SSH
         {
