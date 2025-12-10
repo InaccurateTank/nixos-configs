@@ -24,6 +24,8 @@
     git = {
       enable = true;
       environmentFile = config.sops.secrets."gitEnv".path;
+      protocol = "https";
+      domain = "git.inaccuratetank.gay";
     };
   };
 
