@@ -17,5 +17,6 @@ Home(-Manager):
 |Module|Purpose|Default Enabled?|
 |---|---|:-:|
 |quadlets|Predefined podman quadlets for use with [quadlet-nix](https://github.com/SEIAROTg/quadlet-nix)|:x:|
+|gc|Nix store garbage collection|:heavy_check_mark:|
 |swww|Sets up the swww wallpaper daemon|:x:|
 |zsh-inits|Applies some minor QOL for zsh|:x:|
