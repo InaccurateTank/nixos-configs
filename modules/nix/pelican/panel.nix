@@ -68,6 +68,17 @@ in {
       default = "/run/pelican-panel";
     };
 
+    http = mkOption {
+      description = "Whether or not to serve the panel over http instead of https.";
+      type = types.bool;
+      default = true;
+    };
+
+    domain = mkOption {
+      description = "Domain to serve the panel from.";
+      type = types.str;
+    };
+
     # maxFilesize = mkOption {
     #   description = "Maximum size of files in the panel.";
     #   type = types.int;
@@ -232,7 +243,7 @@ in {
           }
         }
       '';
-      virtualHosts.":80".extraConfig = ''
+      virtualHosts."${lib.optionalString cfg.http "http://"}${cfg.domain}".extraConfig = ''
         root * ${pelican-panel}/public
 
         file_server

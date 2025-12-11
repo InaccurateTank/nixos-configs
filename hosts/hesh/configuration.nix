@@ -27,6 +27,8 @@
     pelican = {
       panel = {
         enable = true;
+        http = true;
+        domain = "gpanel.inaccuratetank.gay";
       };
       wings = {
         enable = true;
