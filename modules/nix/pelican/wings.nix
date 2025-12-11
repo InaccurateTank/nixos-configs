@@ -59,7 +59,6 @@ in {
     users.users.pelican = {
       group = "pelican";
       isSystemUser = true;
-      extraGroups = [ "docker" ];
     };
     users.groups.pelican = { };
 
@@ -81,8 +80,7 @@ in {
       # '';
       serviceConfig = {
         Type = "simple";
-        User = "pelican";
-        Group = "pelican";
+        User = "root";
         Restart = "on-failure";
         WorkingDirectory = "/var/lib/pelican/wings";
         LogsDirectory = "pelican";
