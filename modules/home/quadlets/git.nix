@@ -52,7 +52,7 @@ in {
           publishPorts = [
             "127.0.0.1:3000:3000/tcp" # Forgejo
             # "127.0.0.1:8923:8923/tcp" # Anubis instance
-            "127.0.0.1:2222:2222/tcp" # Forgejo SSH
+            "2222:2222/tcp" # Forgejo SSH
           ];
         };
       };
