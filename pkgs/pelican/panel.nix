@@ -23,7 +23,7 @@
   composeBuild = php.buildComposerProject2 {
     inherit version src;
     pname = "${pname}-composer";
-    vendorHash = "sha256-v0VLqOdpA6xS8QxVqeLnJvEoroN0eBOTywgdGmDnLE0=";
+    vendorHash = "sha256-V1qP7it66oxs3i3bEv3JLkWXXDgJAu6fAyN8fVjYPww=";
   };
 in stdenv.mkDerivation {
   inherit pname version;
