@@ -90,7 +90,7 @@ in {
         StateDirectory =  "pelican/wings";
         ExecStart = "${cfg.package}/bin/wings --config ${cfg.configFile}";
         LimitNOFILE = 4096;
-        PIDFile = "/var/run/wings/daemon.pid";
+        PIDFile = "/run/wings/daemon.pid";
         RestartSec = 5;
         UMask = "077";
       };
