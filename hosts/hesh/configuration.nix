@@ -50,6 +50,7 @@
   networking.firewall.allowedTCPPorts = [
     # Caddy / Pelican Panel
     80
+    443
     # Pelican
     8080
     # Pelican SFTP
