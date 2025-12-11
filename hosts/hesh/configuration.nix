@@ -28,9 +28,9 @@
       panel = {
         enable = true;
       };
-      # wings = {
-      #   enable = true;
-      # };
+      wings = {
+        enable = true;
+      };
     };
   };
 
