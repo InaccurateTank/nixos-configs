@@ -62,7 +62,7 @@
     2022
   ];
 
-  virtualisation.docker.rootless.enable = true;
+  # virtualisation.docker.rootless.enable = true;
 
   services = {
     openssh.enable = true;
