@@ -16,7 +16,12 @@
       # The VMs are relatively small...
       maxJobs = 1;
     };
-    impermanence.enable = true;
+    impermanence = {
+      enable = true;
+      extraFiles = [
+        "/etc/pelican/config.yml"
+      ];
+    };
     secrets = {
       enable = true;
       useSshKey = true;
