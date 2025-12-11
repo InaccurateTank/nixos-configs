@@ -48,6 +48,10 @@
   networking.firewall.allowedTCPPorts = [
     # Caddy / Pelican Panel
     80
+    # Pelican
+    8080
+    # Pelican SFTP
+    2022
   ];
 
   services = {
