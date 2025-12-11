@@ -18,8 +18,8 @@
     };
     impermanence = {
       enable = true;
-      extraFiles = [
-        "/etc/pelican/config.yml"
+      extraDirs = [
+        "/etc/pelican"
       ];
     };
     secrets = {
