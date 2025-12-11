@@ -66,7 +66,7 @@
 
     ###### Personal ######
     secrets = {
-      url = "git+ssh://git@git.inaccuratetank.gay/inaccuratetank/nix-secrets.git?ref=main&shallow=1";
+      url = "git+ssh://git@git.inaccuratetank.gay:2222/inaccuratetank/nix-secrets.git?ref=main&shallow=1";
       flake = false;
     };
   };

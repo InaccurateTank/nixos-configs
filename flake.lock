@@ -667,19 +667,19 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1763857728,
-        "narHash": "sha256-v2ZUs9iTEx/3zZp51JPBVxh5hqUbusO6BkdLMgWzMto=",
+        "lastModified": 1765414647,
+        "narHash": "sha256-806lYjDySAdZKofAgSCLT3ohizOAKTS3w//qOLqZRRw=",
         "ref": "main",
-        "rev": "77b5c869dd000284c8de265eead22299db70c5ac",
+        "rev": "a8df44598688a051615bfa20c97dd0d4d3969416",
         "shallow": true,
         "type": "git",
-        "url": "ssh://git@git.inaccuratetank.gay/inaccuratetank/nix-secrets.git"
+        "url": "ssh://git@git.inaccuratetank.gay:2222/inaccuratetank/nix-secrets.git"
       },
       "original": {
         "ref": "main",
         "shallow": true,
         "type": "git",
-        "url": "ssh://git@git.inaccuratetank.gay/inaccuratetank/nix-secrets.git"
+        "url": "ssh://git@git.inaccuratetank.gay:2222/inaccuratetank/nix-secrets.git"
       }
     },
     "sops-nix": {
