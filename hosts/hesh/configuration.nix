@@ -11,7 +11,8 @@
   flakeMods = {
     auto-upgrade = {
       enable = true;
-      reboot = true;
+      # Game servers being shut down automatically kinda screws things.
+      reboot = false;
       # The VMs are relatively small...
       maxJobs = 1;
     };
@@ -23,6 +24,14 @@
     # Nerd fonts make things weird on the host, but 99% of the time we're interacting via ssh anyway.
     shell-prompt.enable = true;
     vscode-remote-fix.enable = true;
+    pelican = {
+      panel = {
+        enable = true;
+      };
+      # wings = {
+      #   enable = true;
+      # };
+    };
   };
 
   boot.loader.grub = {
@@ -35,6 +44,11 @@
   security.sudo.extraConfig = ''
     Defaults lecture = never
   '';
+
+  networking.firewall.allowedTCPPorts = [
+    # Caddy / Pelican Panel
+    80
+  ];
 
   services = {
     openssh.enable = true;

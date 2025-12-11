@@ -68,11 +68,11 @@ in {
       default = "/run/pelican-panel";
     };
 
-    maxFilesize = mkOption {
-      description = "Maximum size of files in the panel.";
-      type = types.int;
-      default = 2;
-    };
+    # maxFilesize = mkOption {
+    #   description = "Maximum size of files in the panel.";
+    #   type = types.int;
+    #   default = 2;
+    # };
   };
 
   config = mkIf cfg.enable {

@@ -94,13 +94,6 @@ in {
             ];
           };
         };
-        # git-redis = {
-        #   containerConfig = {
-        #     image = "docker.io/valkey/valkey:8";
-        #     autoUpdate = "registry";
-        #     pod = pods.git.ref;
-        #   };
-        # };
         # git-anubis = {
         #   containerConfig = {
         #     image = "ghcr.io/techarohq/anubis:latest";
