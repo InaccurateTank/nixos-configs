@@ -59,6 +59,7 @@ in {
     users.users.pelican = {
       group = "pelican";
       isSystemUser = true;
+      extraGroups = [ "docker" ];
     };
     users.groups.pelican = { };
 
