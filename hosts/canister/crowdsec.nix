@@ -3,6 +3,10 @@
   lib,
   ...
 }: {
+  flakeMods.impermanence.extraDirs = [
+    "/etc/crowdsec"
+  ];
+
   systemd.services.crowdsec-firewall-bouncer.serviceConfig.AmbientCapabilities = lib.mkAfter [
     "CAP_NET_RAW"
   ];
