@@ -121,19 +121,19 @@
     };
     # Crowdsec for log
     crowdsec = {
-      enable = false;
-      settings = {
-        general = {
-          api.server.enable = true;
-        };
-        #lapi.credentialsFile = ;
-        #capi.credentialsFile = ;
-        #console.tokenFile = ;
+      enable = true;
+      hub = {
         collections = [
           "crowdsecurity/linux"
           "crowdsecurity/caddy"
           "LePresidente/gitea"
         ];
+      };
+      settings = {
+        general.api.server.enable = true;
+
+        lapi.credentialsFile = "/var/lib/crowdsec/local_api_credentials.yaml";
+        capi.credentialsFile = "/var/lib/crowdsec/online_api_credentials.yaml";
       };
       localConfig.acquisitions = [
         # SSH
