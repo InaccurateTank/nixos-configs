@@ -5,7 +5,7 @@
 }: {
   systemd.services.crowdsec-firewall-bouncer.serviceConfig.AmbientCapabilities = lib.mkAfter [
     "CAP_NET_RAW"
-  ]
+  ];
 
   systemd.tmpfiles.rules = [
     # See https://github.com/NixOS/nixpkgs/issues/445342
