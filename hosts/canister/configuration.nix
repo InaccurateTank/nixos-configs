@@ -72,6 +72,7 @@
         "git.inaccuratetank.gay".extraConfig = ''
           reverse_proxy 127.0.0.1:3000 {
             header_up X-Real-Ip {remote_host}
+            header_up X-Http-Version {http.request.proto}
           }
         '';
 

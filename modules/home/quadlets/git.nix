@@ -100,6 +100,7 @@ in {
             autoUpdate = "registry";
             pod = pods.git.ref;
             environments = {
+              SERVE_ROBOTS_TXT = "true";
               TARGET = "http://127.0.0.1:3000"; # Forgejo
             };
           };
