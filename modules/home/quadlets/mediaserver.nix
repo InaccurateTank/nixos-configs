@@ -164,7 +164,7 @@ in {
             autoUpdate = "registry";
             pod = pods.git.ref;
             environments = {
-              TARGET = "http://127.0.0.1:3000"; # Forgejo
+              TARGET = "http://127.0.0.1:8096"; # Forgejo
             };
           };
         };
