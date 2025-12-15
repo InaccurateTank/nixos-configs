@@ -50,8 +50,8 @@ in {
         autoStart = true;
         podConfig = {
           publishPorts = [
-            "127.0.0.1:3000:3000/tcp" # Forgejo
-            # "127.0.0.1:8923:8923/tcp" # Anubis instance
+            # "127.0.0.1:3000:3000/tcp" # Forgejo
+            "127.0.0.1:3000:8923/tcp" # Anubis instance
             "2222:2222/tcp" # Forgejo SSH
           ];
         };
@@ -94,16 +94,16 @@ in {
             ];
           };
         };
-        # git-anubis = {
-        #   containerConfig = {
-        #     image = "ghcr.io/techarohq/anubis:latest";
-        #     autoUpdate = "registry";
-        #     pod = pods.git.ref;
-        #     environments = {
-        #       TARGET = "http://127.0.0.1:3000"; # Forgejo
-        #     };
-        #   };
-        # };
+        git-anubis = {
+          containerConfig = {
+            image = "ghcr.io/techarohq/anubis:latest";
+            autoUpdate = "registry";
+            pod = pods.git.ref;
+            environments = {
+              TARGET = "http://127.0.0.1:3000"; # Forgejo
+            };
+          };
+        };
       };
     };
   };
