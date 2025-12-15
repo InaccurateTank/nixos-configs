@@ -25,7 +25,7 @@ in {
     # Would be "root" but that breaks home-manager
     nix.settings.allowed-users = ["@wheel"];
 
-    programs.ssh.kexAlgorithms = config.services.openssh.settings.KexAlgorithms;
+    # programs.ssh.kexAlgorithms = config.services.openssh.settings.KexAlgorithms;
 
     # Basic sudo stuff
     security.sudo = {
@@ -40,11 +40,11 @@ in {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         X11Forwarding = false;
-        KexAlgorithms = [
-          "sntrup761x25519-sha512"
-          "sntrup761x25519-sha512@openssh.com"
-          "mlkem768x25519-sha256"
-        ];
+        # KexAlgorithms = [
+        #   "sntrup761x25519-sha512"
+        #   "sntrup761x25519-sha512@openssh.com"
+        #   "mlkem768x25519-sha256"
+        # ];
       };
       extraConfig = ''
         AllowTcpForwarding yes
