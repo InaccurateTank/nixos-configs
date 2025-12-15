@@ -3,11 +3,9 @@
   lib,
   ...
 }: {
-  systemd.services.crowdsec-firewall-bouncer.serviceConfig.AmbientCapabilities = lib.mkForce [
-    # Needed to be able to manipulate the rulesets
-    "CAP_NET_ADMIN"
+  systemd.services.crowdsec-firewall-bouncer.serviceConfig.AmbientCapabilities = lib.mkAfter [
+    "CAP_NET_RAW"
   ]
-  ++ lib.optional ((config.services.crowdsec.settings.mode == "iptables") || (config.services.crowdsec.settings.mode == "ipset")) "CAP_NET_RAW";
 
   systemd.tmpfiles.rules = [
     # See https://github.com/NixOS/nixpkgs/issues/445342
