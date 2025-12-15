@@ -15,7 +15,8 @@ in {
         autoStart = true;
         podConfig = {
           publishPorts = [
-            "127.0.0.1:8096:8096/tcp" # Jellyfin HTTP
+            # "127.0.0.1:8096:8096/tcp" # Jellyfin HTTP
+            "127.0.0.1:8096:8923/tcp" # Anubis instance
             "127.0.0.1:8989:8989/tcp" # Sonarr
             "127.0.0.1:7878:7878/tcp" # Radarr
             # "127.0.0.1:5690:5690/tcp" Wizarr
@@ -155,6 +156,16 @@ in {
               "/mnt/data/mediaserver/torrents:/downloads:z"
               "/srv/containers/mediaserver/watch:/watch:Z"
             ];
+          };
+        };
+        ms-anubis = {
+          containerConfig = {
+            image = "ghcr.io/techarohq/anubis:latest";
+            autoUpdate = "registry";
+            pod = pods.git.ref;
+            environments = {
+              TARGET = "http://127.0.0.1:3000"; # Forgejo
+            };
           };
         };
       };
