@@ -27,7 +27,6 @@
         collections = [
           "crowdsecurity/linux"
           "crowdsecurity/caddy"
-          "LePresidente/gitea"
         ];
       };
       settings = {
@@ -62,7 +61,6 @@
           # Forgejo
           {
             journalctl_filter = [
-              "_UID=1000"
               "_SYSTEMD_USER_UNIT=git-forgejo.service"
             ];
             labels = {
@@ -71,6 +69,10 @@
             source = "journalctl";
           }
         ];
+        parsers.s01Parse = [
+          (import ./forgejo-logs.nix)
+        ];
+        scenarios = import ./forgejo-bf.nix;
       };
     };
     crowdsec-firewall-bouncer = {

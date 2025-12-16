@@ -7,7 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     inputs.quadlet-nix.nixosModules.quadlet
-    ./crowdsec.nix
+    ./crowdsec
   ];
 
   flakeMods = {
