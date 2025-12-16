@@ -69,9 +69,7 @@
             source = "journalctl";
           }
         ];
-        parsers.s01Parse = [
-          (import ./forgejo-logs.nix)
-        ];
+        parsers.s01Parse = import ./forgejo-logs.nix;
         scenarios = import ./forgejo-bf.nix;
       };
     };

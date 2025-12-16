@@ -19,6 +19,26 @@
     };
   }
   {
+    type = "leaky";
+    name = "inaccuratetank/forgejo-bf_user-enum";
+    description = "Detect Forgejo user enum bruteforce";
+    filter = "evt.Meta.log_type == 'forgejo_failed_auth'";
+    groupby = "evt.Meta.source_ip";
+    distinct = "evt.Meta.user";
+    leakspeed = "10s";
+    capacity = 5;
+    blackhole = "1m";
+    labels = {
+      service = "forgejo";
+      behavior = "vcs:bruteforce";
+      spoofable = 0;
+      confidence = 3;
+      classification = ["attack.T1589" "attack.T1110"];
+      label = "Forgejo User Enumeration";
+      remediation = true;
+    };
+  }
+  {
     name = "inaccuratetank/forgejo-slow-bf";
     description = "Detect slow Forgejo bruteforce";
     filter = "evt.Meta.log_type == 'forgejo_failed_auth'";
@@ -39,13 +59,13 @@
   }
   {
     type = "leaky";
-    name = "inaccuratetank/forgejo-bf_user-enum";
+    name = "inaccuratetank/forgejo-slow-bf_user-enum";
     description = "Detect Forgejo user enum bruteforce";
     filter = "evt.Meta.log_type == 'forgejo_failed_auth'";
     groupby = "evt.Meta.source_ip";
     distinct = "evt.Meta.user";
-    leakspeed = "10s";
-    capacity = 5;
+    leakspeed = "60s";
+    capacity = 10;
     blackhole = "1m";
     labels = {
       service = "forgejo";
@@ -53,7 +73,7 @@
       spoofable = 0;
       confidence = 3;
       classification = ["attack.T1589" "attack.T1110"];
-      label = "Forgejo User Enumeration";
+      label = "Forgejo Slow User Enumeration";
       remediation = true;
     };
   }
