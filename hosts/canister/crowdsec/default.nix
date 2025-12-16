@@ -64,7 +64,7 @@
               "_SYSTEMD_USER_UNIT=git-forgejo.service"
             ];
             labels = {
-              type = "gitea";
+              type = "syslog";
             };
             source = "journalctl";
           }
