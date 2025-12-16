@@ -61,7 +61,7 @@
         # Forgejo
         {
           journalctl_filter = [
-            "_SYSTEMD_USER_UNIT=git-forgejo.service"
+            "_UID=1000 _SYSTEMD_USER_UNIT=git-forgejo.service"
           ];
           labels = {
             type = "gitea";
@@ -71,7 +71,7 @@
       ];
     };
     crowdsec-firewall-bouncer = {
-      enable = false;
+      enable = true;
       registerBouncer = {
         enable = true;
         bouncerName = "canister-firewall";
