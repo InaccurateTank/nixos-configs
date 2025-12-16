@@ -19,10 +19,10 @@
     };
   }
   {
-    type = "leaky";
     name = "inaccuratetank/forgejo-bf_user-enum";
     description = "Detect Forgejo user enum bruteforce";
     filter = "evt.Meta.log_type == 'forgejo_failed_auth'";
+    type = "leaky";
     groupby = "evt.Meta.source_ip";
     distinct = "evt.Meta.user";
     leakspeed = "10s";
@@ -58,10 +58,10 @@
     };
   }
   {
-    type = "leaky";
     name = "inaccuratetank/forgejo-slow-bf_user-enum";
     description = "Detect slow Forgejo user enum bruteforce";
     filter = "evt.Meta.log_type == 'forgejo_failed_auth'";
+    type = "leaky";
     groupby = "evt.Meta.source_ip";
     distinct = "evt.Meta.user";
     leakspeed = "60s";
