@@ -60,7 +60,7 @@
   {
     type = "leaky";
     name = "inaccuratetank/forgejo-slow-bf_user-enum";
-    description = "Detect Forgejo user enum bruteforce";
+    description = "Detect slow Forgejo user enum bruteforce";
     filter = "evt.Meta.log_type == 'forgejo_failed_auth'";
     groupby = "evt.Meta.source_ip";
     distinct = "evt.Meta.user";
