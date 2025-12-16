@@ -4,6 +4,7 @@
   ...
 }: {
   systemd.services.crowdsec-firewall-bouncer.serviceConfig.AmbientCapabilities = lib.mkAfter [
+    "CAP_NET_ADMIN"
     "CAP_NET_RAW"
   ];
 
@@ -32,40 +33,42 @@
         lapi.credentialsFile = "/var/lib/crowdsec/local_api_credentials.yaml";
         capi.credentialsFile = "/var/lib/crowdsec/online_api_credentials.yaml";
       };
-      localConfig.acquisitions = [
-        # SSH
-        {
-          journalctl_filter = [
-            "_SYSTEMD_UNIT=sshd.service"
-          ];
-          labels = {
-            type = "syslog";
-          };
-          source = "journalctl";
-        }
-
-        # Caddy
-        {
-          filenames = [
-            "/var/log/caddy/*.log"
-          ];
-          labels = {
-            type = "caddy";
-          };
-        }
-        # Container Logs
-        # These can be ingested with journalctl due to podman quadlets.
-        # Forgejo
-        {
-          journalctl_filter = [
-            "_UID=1000 _SYSTEMD_USER_UNIT=git-forgejo.service"
-          ];
-          labels = {
-            type = "gitea";
-          };
-          source = "journalctl";
-        }
-      ];
+      localConfig = {
+        acquisitions = [
+          # SSH
+          {
+            journalctl_filter = [
+              "_SYSTEMD_UNIT=sshd.service"
+            ];
+            labels = {
+              type = "syslog";
+            };
+            source = "journalctl";
+          }
+          # Caddy
+          {
+            filenames = [
+              "/var/log/caddy/*.log"
+            ];
+            labels = {
+              type = "caddy";
+            };
+          }
+          # Container Logs
+          # These can be ingested with journalctl due to podman quadlets.
+          # Forgejo
+          {
+            journalctl_filter = [
+              "_UID=1000"
+              "_SYSTEMD_USER_UNIT=git-forgejo.service"
+            ];
+            labels = {
+              type = "gitea";
+            };
+            source = "journalctl";
+          }
+        ];
+      };
     };
     crowdsec-firewall-bouncer = {
       enable = true;
