@@ -3,6 +3,7 @@
   lib,
   ...
 }: {
+  # Temporary until https://github.com/NixOS/nixpkgs/pull/459188
   systemd.services.crowdsec-firewall-bouncer.serviceConfig.AmbientCapabilities = lib.mkAfter [
     "CAP_NET_RAW"
   ];
