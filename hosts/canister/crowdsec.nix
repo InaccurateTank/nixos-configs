@@ -4,7 +4,9 @@
   ...
 }: {
   systemd.services.crowdsec-firewall-bouncer.serviceConfig.AmbientCapabilities = lib.mkAfter [
-    "CAP_NET_ADMIN"
+    "CAP_NET_RAW"
+  ];
+  systemd.services.crowdsec-firewall-bouncer.serviceConfig.CapabilityBoundingSet = lib.mkAfter [
     "CAP_NET_RAW"
   ];
 
