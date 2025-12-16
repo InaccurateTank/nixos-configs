@@ -70,54 +70,75 @@
       '';
       environmentFile = config.sops.secrets."caddyEnv".path;
       virtualHosts = {
-        "git.inaccuratetank.gay".extraConfig = ''
-          reverse_proxy 127.0.0.1:3000 {
-            header_up X-Real-Ip {remote_host}
-            header_up X-Http-Version {http.request.proto}
-          }
-        '';
-
-        "media.inaccuratetank.gay".extraConfig = ''
-          reverse_proxy 127.0.0.1:8096
-        '';
-
-        "*.inaccuratetank.gay".extraConfig = ''
-          @local_only {
-            remote_ip 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8 127.0.0.1/8
-          }
-          handle @local_only {
-            @sonarr host sonarr.inaccuratetank.gay
-            handle @sonarr {
-              reverse_proxy 127.0.0.1:8989
+        "git.inaccuratetank.gay" = {
+          logFormat = ''
+            output file ${config.services.caddy.logDir}/access-git.inaccuratetank.gay.log {
+              mode 644
             }
-
-            @radarr host radarr.inaccuratetank.gay
-            handle @radarr {
-              reverse_proxy 127.0.0.1:7878
+          '';
+          extraConfig = ''
+            reverse_proxy 127.0.0.1:3000 {
+              header_up X-Real-Ip {remote_host}
+              header_up X-Http-Version {http.request.proto}
             }
+          '';
+        };
 
-            @prowlarr host prowlarr.inaccuratetank.gay
-            handle @prowlarr {
-              reverse_proxy 127.0.0.1:9696
+        "media.inaccuratetank.gay" = {
+          logFormat = ''
+            output file ${config.services.caddy.logDir}/access-media.inaccuratetank.gay.log {
+              mode 644
             }
+          '';
+          extraConfig = ''
+            reverse_proxy 127.0.0.1:8096
+          '';
+        };
 
-            @flaresolverr host flaresolverr.inaccuratetank.gay
-            handle @flaresolverr {
-              reverse_proxy 127.0.0.1:8191
+        "*.inaccuratetank.gay" = {
+          logFormat = ''
+            output file ${config.services.caddy.logDir}/access-*.inaccuratetank.gay.log {
+              mode 644
             }
+          '';
+          extraConfig = ''
+            @local_only {
+              remote_ip 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8 127.0.0.1/8
+            }
+            handle @local_only {
+              @sonarr host sonarr.inaccuratetank.gay
+              handle @sonarr {
+                reverse_proxy 127.0.0.1:8989
+              }
 
-            @bazarr host bazarr.inaccuratetank.gay
-            handle @bazarr {
-              reverse_proxy 127.0.0.1:6767
-            }
+              @radarr host radarr.inaccuratetank.gay
+              handle @radarr {
+                reverse_proxy 127.0.0.1:7878
+              }
 
-            @transmission host transmission.inaccuratetank.gay
-            handle @transmission {
-              reverse_proxy 127.0.0.1:9091
+              @prowlarr host prowlarr.inaccuratetank.gay
+              handle @prowlarr {
+                reverse_proxy 127.0.0.1:9696
+              }
+
+              @flaresolverr host flaresolverr.inaccuratetank.gay
+              handle @flaresolverr {
+                reverse_proxy 127.0.0.1:8191
+              }
+
+              @bazarr host bazarr.inaccuratetank.gay
+              handle @bazarr {
+                reverse_proxy 127.0.0.1:6767
+              }
+
+              @transmission host transmission.inaccuratetank.gay
+              handle @transmission {
+                reverse_proxy 127.0.0.1:9091
+              }
             }
-          }
-          abort
-        '';
+            abort
+          '';
+        };
       };
     };
   };
