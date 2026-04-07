@@ -36,6 +36,7 @@
     };
     git = {
       enable = true;
+      signing.format = null;
       settings.user = {
         name = "InaccurateTank";
         email = "inaccuratetank@outlook.com";
@@ -44,6 +45,7 @@
     pay-respects.enable = true;
     yazi = {
       enable = true;
+      shellWrapperName = "y";
       settings = {
         plugin = {
           prepend_previewers = [
