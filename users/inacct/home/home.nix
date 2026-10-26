@@ -45,6 +45,7 @@
     pay-respects.enable = true;
     yazi = {
       enable = true;
+      enableZshIntegration = true;
       shellWrapperName = "y";
       settings = {
         plugin = {
@@ -79,7 +80,7 @@
       plugins = {
         "starship" = inputs.starship-yazi;
         "ouch" = inputs.ouch-yazi;
-        "custom-border" = ./yazi/custom-border;
+        # "custom-border" = ./yazi/custom-border;
       };
       initLua = ./yazi/init.lua;
     };
@@ -91,6 +92,8 @@
         mode = "rgb";
         brightness = "0.50";
         color_align.mode = "horizontal";
+        backend = "neofetch";
+        pride_month_disable = false;
       };
     };
   };

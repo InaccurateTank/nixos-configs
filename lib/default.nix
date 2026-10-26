@@ -105,9 +105,9 @@
                 systemUsers;
             };
             nixpkgs = {
-              config.allowUnfreePredicate =
-                lib.mkIf (unfree != []) (pkg:
-                  builtins.elem (lib.getName pkg) unfree);
+              # config.allowUnfreePredicate =
+              #   lib.mkIf (unfree != []) (pkg:
+              #     builtins.elem (lib.getName pkg) unfree);
               overlays = [
                 # Flake packages added as overlay
                 (final: prev: {

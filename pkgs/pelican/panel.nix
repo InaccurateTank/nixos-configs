@@ -11,7 +11,7 @@
   runtimeDir ? "/run/pelican-panel"
 }: let
   pname = "pelican-panel";
-  version = "1.0.0-beta33";
+  version = "1.0.0-rc2";
 
   src = fetchFromGitHub {
     owner = "pelican-dev";

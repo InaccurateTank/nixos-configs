@@ -59,7 +59,7 @@ in {
       containers = {
         git-forgejo = {
           containerConfig = {
-            image = "codeberg.org/forgejo/forgejo:11-rootless";
+            image = "codeberg.org/forgejo/forgejo:15-rootless";
             autoUpdate = "registry";
             pod = pods.git.ref;
             user = "1000:1000";
