@@ -11,10 +11,10 @@ buildGoModule (finalAttrs: {
     owner = "pelican-dev";
     repo = "wings";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-5nAfzczYUqxZpTfHYpGfQgcue2gzkcOczT9brx6auOY=";
+    hash = "sha256-TErlxIXSlmxPaEQLLqcHUm+Sum+pjI8hYve0CWpc6hc=";
   };
 
-  vendorHash = "sha256-ozwgBvyu3Hnw0Zs54QnDUUBVuI+Hai8b7Yq9EWzqdfI=";
+  vendorHash = "sha256-2Hs1SfCsf5JYIIRC0VHlfVzRx2e+xrSotqrfbCqMogo=";
 
   meta = {
     description = "Pelican Wings";

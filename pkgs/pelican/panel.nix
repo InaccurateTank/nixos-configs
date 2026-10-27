@@ -17,13 +17,13 @@
     owner = "pelican-dev";
     repo = "panel";
     tag = "v${version}";
-    hash = "sha256-UoBnwCHxZ4Mp5ASvDv8a0Biw5Bzzb4hxWfrq1xC8k+4=";
+    hash = "sha256-m2WMlQBdH3M1uBXtIzWtYx+60ho3ZFBH9ssHlEOu2vA=";
   };
 
   composeBuild = php.buildComposerProject2 {
     inherit version src;
     pname = "${pname}-composer";
-    vendorHash = "sha256-h86UxF8s6QpmXQaV9j05XnyTT2bwnEGApMSmEs4Ofho=";
+    vendorHash = "sha256-5BGQX6dXv8lEIVGi5so71jmbMM5sDYFQFlX67XgkiDs=";
   };
 in stdenv.mkDerivation {
   inherit pname version;
@@ -38,7 +38,7 @@ in stdenv.mkDerivation {
 
   yarnOfflineCache = fetchYarnDeps {
     yarnLock = src + "/yarn.lock";
-    hash = "sha256-VLero9gHqkh6svauRSwZf2ASpEBu9iQcPUx+J77SR+o=";
+    hash = "sha256-EVbyxhZhe6rKYY65HrU0fqE6m/tzKY7mjdgYvDDj8po=";
   };
 
   preConfigure = ''
