@@ -5,7 +5,7 @@
 }:
 buildGoModule (finalAttrs: {
   pname = "pelican-wings";
-  version = "1.0.0-rc1";
+  version = "1.0.0-rc.1";
 
   src = fetchFromGitHub {
     owner = "pelican-dev";
